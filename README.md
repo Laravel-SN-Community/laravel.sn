@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://pbs.twimg.com/profile_images/1882727642266255360/iZnGTRJT_400x400.jpg" width="800" alt="Illustration of Afiyeu logo. The logo is composed of stylized white text spelling out 'Afiyeu' with a green dot at the end.">
+    <img src="https://pbs.twimg.com/profile_images/1882727642266255360/iZnGTRJT_400x400.jpg" width="400" alt="Illustration of Afiyeu logo. The logo is composed of stylized white text spelling out 'Afiyeu' with a green dot at the end.">
 </p>
 
 ------
