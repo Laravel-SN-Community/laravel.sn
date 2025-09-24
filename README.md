@@ -6,11 +6,11 @@
 
 ## Installation
 
-this is a regular Laravel application; it's build on top of Laravel 11 and uses Livewire, AlpineJs and Tailwind CSS for the frontend. If you are familiar with Laravel, you should feel right at home.
+this is a regular Laravel application; it's build on top of Laravel 12 and uses Livewire, AlpineJs and Tailwind CSS for the frontend. If you are familiar with Laravel, you should feel right at home.
 
 In terms of local development, you can use the following requirements:
 
-- PHP 8.3^ - with Mysql, GD, and other common extensions.
+- PHP 8.2^ - with sqlite.
 - Node.js 16 or more recent.
 
 If you have these requirements, you can start by cloning the repository and installing the dependencies:
@@ -18,9 +18,9 @@ If you have these requirements, you can start by cloning the repository and inst
 ```bash
 git clone https://github.com/Laravel-SN-Community/laravel.sn
 
-cd afiyeu-app
+cd laravel.sn
 
-git checkout -b feat/your-feature # or fix/your-fix
+git checkout -b feature/your-feature # or fix/your-fix
 ```
 
 > **Don't push directly to the `main` or `dev` branch**. Instead, create a new branch and push it to your branch.
@@ -85,7 +85,7 @@ Visit [github.com/DjolofTech/afiyeu-app/pulls](https://github.com/Laravel-SN-Com
 
 ## Tooling
 
-Afiyeu uses a few tools to ensure the code quality and consistency. Of course, [Pest](https://pestphp.com) is the testing framework of choice, and we also use [PHPStan](https://phpstan.org) for static analysis.
+Laravel.sn uses a few tools to ensure the code quality and consistency. Of course, [Pest](https://pestphp.com) is the testing framework of choice, and we also use [PHPStan](https://phpstan.org) for static analysis.
 
 In terms of code style, we use [Laravel Pint](https://laravel.com/docs/11.x/pint) to ensure the code is consistent and follows the Laravel conventions.
 
@@ -108,7 +108,7 @@ composer test
 
 ## Production
 
-Afiyeu is hosted on [DigitalOcean](https://www.digitalocean.com) and uses [Laravel Forge](https://forge.laravel.com) to manage the server and deployments.
+Laravel.sn is hosted on [DigitalOcean](https://www.digitalocean.com) and uses [Laravel Forge](https://forge.laravel.com) to manage the server and deployments.
 ---
 
 ## Licence
