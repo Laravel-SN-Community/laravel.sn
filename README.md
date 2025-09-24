@@ -6,12 +6,16 @@
 
 ## Installation
 
-this is a regular Laravel application; it's build on top of Laravel 12 and uses Livewire, AlpineJs and Tailwind CSS for the frontend. If you are familiar with Laravel, you should feel right at home.
+This is a regular Laravel application; it's built on top of [Laravel 12](https://laravel.com) and uses : 
+  -  [Livewire](https://livewire.laravel.com/) 
+  -  [AlpineJs](https://alpinejs.dev/)
+  -  [Tailwind CSS](https://tailwindcss.com/)  
 
 In terms of local development, you can use the following requirements:
 
-- PHP 8.2^ - with sqlite.
-- Node.js 16 or more recent.
+- PHP 8.2^
+- Node.js 16 or more recent
+- sqlite as database
 
 If you have these requirements, you can start by cloning the repository and installing the dependencies:
 
