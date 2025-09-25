@@ -2,14 +2,12 @@
 
 namespace App\Livewire\Pages;
 
-use Livewire\Component;
-use Masmerise\Toaster\Toaster;
 use App\Enums\SubscriberStatus;
-use Illuminate\Validation\Rule;
+use App\Models\NewsletterSubscription;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
-use App\Models\NewsletterSubscription;
-use Spatie\Newsletter\Facades\Newsletter;
+use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class WelcomePage extends Component
 {
@@ -24,28 +22,29 @@ class WelcomePage extends Component
 
     public function subscribe()
     {
-            $this->validate();
+        $this->validate();
 
-            $existingSubscription = NewsletterSubscription::where('email', $this->email)
-                ->where('status', SubscriberStatus::Subscribed)
-                ->first();
+        $existingSubscription = NewsletterSubscription::where('email', $this->email)
+            ->where('status', SubscriberStatus::Subscribed)
+            ->first();
 
-            if ($existingSubscription) {
-                Toaster::error(__('this email is already subscribed to our newsletter'));
-                return;
-            }
+        if ($existingSubscription) {
+            Toaster::error(__('this email is already subscribed to our newsletter'));
 
-            $subscription = NewsletterSubscription::create(
-                [
-                    'email' => $this->email,
-                    'status' => SubscriberStatus::Subscribed,
-                    'subscribed_at' => now()
-                ],
-            );
+            return;
+        }
 
-            Toaster::success(__('thank you for subscribing to our newsletter'));
+        $subscription = NewsletterSubscription::create(
+            [
+                'email' => $this->email,
+                'status' => SubscriberStatus::Subscribed,
+                'subscribed_at' => now(),
+            ],
+        );
 
-            $this->reset('email');
+        Toaster::success(__('thank you for subscribing to our newsletter'));
+
+        $this->reset('email');
 
     }
 }
