@@ -8,9 +8,9 @@
                     <h1 class="text-xl font-bold text-gray-900">Laravel Senegal</h1>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#presentation" class="text-gray-700 hover:text-red-600 transition-colors">{{ __('Presentation') }}</a>
-                    <a href="#newsletter" class="text-gray-700 hover:text-red-600 transition-colors">{{ __('Newsletter') }}</a>
-                    <a href="#contact" class="text-gray-700 hover:text-red-600 transition-colors">{{ __('Contact') }}</a>
+                    <a href="#presentation" class="text-gray-900 font-bold hover:text-red-600 transition-colors">{{ __('Presentation') }}</a>
+                    <a href="#newsletter" class="text-gray-900 font-bold hover:text-red-600 transition-colors">{{ __('Newsletter') }}</a>
+                    <a href="#contact" class="text-gray-900 font-bold hover:text-red-600 transition-colors">{{ __('Contact') }}</a>
                 </div>
             </div>
         </div>
