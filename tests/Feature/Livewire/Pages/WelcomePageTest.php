@@ -8,8 +8,8 @@ use Livewire\Livewire;
 
 it('can render the welcome page', function () {
     $response = $this->get('/')
-                ->assertSeeLivewire(WelcomePage::class)
-                ->assertStatus(200);
+        ->assertSeeLivewire(WelcomePage::class)
+        ->assertStatus(200);
 });
 
 it('can subscribe to the newsletter', function () {
