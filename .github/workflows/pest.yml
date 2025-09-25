@@ -1,0 +1,40 @@
+name: Pest
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - feature/*
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache/files
+          key: dependencies-php-composer-${{ hashFiles('composer.lock') }}
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3' # Update according to your Laravel version
+
+      - name: Prepare Laravel
+        run: cp .env.example .env
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Generate the app key
+        run: php artisan key:generate
+
+      # Step 2: Execute Pest tests
+      - name: Run tests
+        run: vendor/bin/pest --parallel --compact tests
+        continue-on-error: false
