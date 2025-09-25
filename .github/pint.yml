@@ -1,0 +1,28 @@
+name: Pint
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - feature/*
+
+permissions:
+  contents: write
+
+jobs:
+  php-code-styling:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Fix PHP code style issues
+        uses: aglipanci/laravel-pint-action@2.4
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          push_options: --force
+          commit_message: Fix styling issues with Pint 🎨
