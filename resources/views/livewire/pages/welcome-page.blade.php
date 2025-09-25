@@ -92,22 +92,22 @@
             </p>
             
             <div class="bg-white p-8 rounded-lg shadow-md max-w-md mx-auto">
-                <div wire:click="subscribe" class="space-y-4">
+                <form wire:submit="subscribe" class="space-y-4">
                     <div>
-                        <input 
-                            type="email" 
-                            wire:model="email" 
+                        <input
+                            type="email"
+                            wire:model="email"
                             placeholder="Votre adresse email"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             required
                         >
-                        @error('email') 
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p> 
+                        @error('email')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-                    
-                    <button 
-                        type="submit" 
+
+                    <button
+                        type="submit"
                         class="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors disabled:opacity-50"
                         wire:loading.attr="disabled"
                     >
@@ -115,12 +115,8 @@
                         <span wire:loading>Inscription en cours...</span>
                     </button>
                 </form>
-                
-                @if (session()->has('message'))
-                    <div class="mt-4 p-3 bg-green-100 text-green-700 rounded-lg">
-                        {{ session('message') }}
-                    </div>
-                @endif
+
+
             </div>
         </div>
     </section>
