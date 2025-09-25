@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://pbs.twimg.com/profile_images/1882727642266255360/iZnGTRJT_400x400.jpg" width="400" alt="Illustration of Afiyeu logo. The logo is composed of stylized white text spelling out 'Afiyeu' with a green dot at the end.">
+    <img src="https://pbs.twimg.com/profile_images/1882727642266255360/iZnGTRJT_400x400.jpg" width="400" alt="Laravel Senegal community logo with isometric design in Senegalese flag colors.">
 </p>
 
 ------
@@ -85,7 +85,7 @@ git commit -am "Your commit message"
 git push
 ```
 
-Visit [github.com/DjolofTech/afiyeu-app/pulls](https://github.com/Laravel-SN-Community/laravel.sn/pulls) and create a pull request.
+Visit [github.com/Laravel-SN-Community/laravel.sn/pulls](https://github.com/Laravel-SN-Community/laravel.sn/pulls) and create a pull request.
 
 ## Tooling
 
