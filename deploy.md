@@ -4,9 +4,9 @@
 Ce pipeline CI utilise GitHub Actions pour automatiser les tests Pest sur toutes les branches du projet Laravel.sn.
 
 ## Déclencheurs
-Le pipeline s'exécute automatiquement :
-- À chaque push sur **toute branche** (`branches: [ '*' ]`)
-- À chaque pull request vers **toute branche**
+Le pipeline s'exécute automatiquement sur les branches principales :
+- À chaque push sur : `main`, `develop`, `staging`, `feature/setup-ci-pipeline`
+- À chaque pull request vers ces mêmes branches
 
 ## Workflow du Pipeline
 
@@ -80,10 +80,18 @@ Pour exécuter les mêmes vérifications en local :
 ./vendor/bin/pint
 ```
 
+## Structure du projet
+
+Le pipeline est configuré pour les 4 branches principales :
+1. **`main`** : Branche de production
+2. **`develop`** : Branche de développement
+3. **`staging`** : Branche de pré-production
+4. **`feature/setup-ci-pipeline`** : Branche de configuration CI
+
 ## Personnalisation
 
 Vous pouvez modifier le workflow selon vos besoins :
-- **Branches spécifiques** : Changez `branches: [ '*' ]` vers `branches: [ 'main', 'develop' ]`
+- **Ajouter d'autres branches** : Modifiez `branches: [ main, develop, staging, feature/setup-ci-pipeline ]`
 - **PHP version** : Modifiez `php-version: '8.2'`
 - **Tests avec couverture** : Ajoutez `coverage: xdebug` dans la configuration PHP
 - **Notifications** : Ajoutez des étapes pour Slack, Discord, etc.
