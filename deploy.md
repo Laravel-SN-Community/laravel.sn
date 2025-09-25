@@ -1,109 +1,89 @@
-# Configuration du Pipeline CI/CD
+# Configuration du Pipeline CI
 
 ## Vue d'ensemble
-Ce pipeline CI/CD utilise GitHub Actions pour automatiser les tests, la sécurité et le déploiement de Laravel.sn sur DigitalOcean via Laravel Forge.
+Ce pipeline CI utilise GitHub Actions pour automatiser les tests Pest sur toutes les branches du projet Laravel.sn.
 
-## Secrets GitHub requis
-
-Pour que le pipeline fonctionne correctement, vous devez configurer les secrets suivants dans votre repository GitHub (`Settings > Secrets and variables > Actions`):
-
-### Secrets Laravel Forge
-- `FORGE_API_TOKEN`: Token API de Laravel Forge (généré dans Forge > Account > API)
-- `FORGE_PRODUCTION_SERVER_ID`: ID du serveur de production dans Forge
-- `FORGE_PRODUCTION_SITE_ID`: ID du site de production dans Forge
-- `FORGE_STAGING_SERVER_ID`: ID du serveur de staging dans Forge (optionnel)
-- `FORGE_STAGING_SITE_ID`: ID du site de staging dans Forge (optionnel)
-
-### Comment obtenir les IDs Forge
-
-1. **Token API Forge**:
-   - Connectez-vous à Laravel Forge
-   - Allez dans `Account > API`
-   - Créez un nouveau token API
-
-2. **Server ID et Site ID**:
-   - Dans l'URL de votre site Forge: `https://forge.laravel.com/servers/{SERVER_ID}/sites/{SITE_ID}`
-   - Ou utilisez l'API Forge: `curl -H "Authorization: Bearer YOUR_TOKEN" https://forge.laravel.com/api/v1/servers`
+## Déclencheurs
+Le pipeline s'exécute automatiquement :
+- À chaque push sur **toute branche** (`branches: [ '*' ]`)
+- À chaque pull request vers **toute branche**
 
 ## Workflow du Pipeline
 
-### 1. Job `test`
-- Se déclenche sur push vers `main` et `develop`, et sur les pull requests
-- Configure PHP 8.2 avec toutes les extensions nécessaires
-- Installe les dépendances Composer et NPM
-- Exécute les tests PHPUnit
-- Vérifie le style de code avec Laravel Pint
-- Construit les assets avec Vite
+### Job `test` - Tests Pest et Vérifications
+1. **Configuration de l'environnement**:
+   - Ubuntu latest
+   - PHP 8.2 avec toutes les extensions Laravel nécessaires
+   - Node.js 18 avec cache NPM
 
-### 2. Job `security`
-- Exécute un audit de sécurité avec `composer audit`
-- Vérifie les vulnérabilités connues dans les dépendances
+2. **Installation des dépendances**:
+   - Installation des packages Composer
+   - Installation des dépendances NPM
+   - Construction des assets avec Vite
 
-### 3. Job `deploy-staging`
-- Se déclenche uniquement sur push vers `develop`
-- Utilise l'API Laravel Forge pour déclencher un déploiement staging
+3. **Préparation de l'application**:
+   - Copie du fichier `.env.example` vers `.env`
+   - Génération de la clé d'application Laravel
+   - Configuration des permissions des dossiers
+   - Création d'une base de données SQLite pour les tests
 
-### 4. Job `deploy-production`
-- Se déclenche uniquement sur push vers `main`
-- Utilise l'API Laravel Forge pour déclencher un déploiement production
-- Attend la fin du déploiement et affiche les logs
+4. **Exécution des tests**:
+   - **Tests Pest** : `./vendor/bin/pest`
+   - **Vérification du style de code** : `./vendor/bin/pint --test`
 
-### 5. Job `notify`
-- Notifie le statut du déploiement
+## Configuration requise
 
-## Configuration Laravel Forge
-
-### Script de déploiement Forge recommandé
-
-```bash
-cd /home/forge/laravel.sn
-
-git pull origin $FORGE_SITE_BRANCH
-
-$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-
-( flock -w 10 9 || exit 1
-    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
-
-if [ -f artisan ]; then
-    $FORGE_PHP artisan migrate --force
-    $FORGE_PHP artisan config:cache
-    $FORGE_PHP artisan route:cache
-    $FORGE_PHP artisan view:cache
-    $FORGE_PHP artisan queue:restart
-fi
-
-npm ci --production=false
-npm run build
+### Composer
+Le projet doit avoir Pest installé. Vérifiez que `composer.json` contient :
+```json
+{
+  "require-dev": {
+    "pestphp/pest": "^2.0",
+    "pestphp/pest-plugin-laravel": "^2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
 ```
 
-### Variables d'environnement Forge
-
-Assurez-vous que ces variables sont configurées dans Forge:
-- `APP_ENV=production`
-- `APP_DEBUG=false`
-- `APP_URL=https://laravel.sn`
-- Configuration de base de données
-- Configuration de cache (Redis recommandé)
-- Configuration de queue
+### Tests
+Les tests doivent être dans le dossier `tests/` avec la structure standard Laravel :
+- `tests/Feature/` - Tests fonctionnels
+- `tests/Unit/` - Tests unitaires
 
 ## Utilisation
 
-1. **Développement**: Poussez vers `develop` pour déclencher les tests et déploiement staging
-2. **Production**: Poussez vers `main` pour déclencher les tests et déploiement production
-3. **Pull Requests**: Les tests s'exécutent automatiquement sur toutes les PR vers `main`
+1. **Push sur n'importe quelle branche** : Les tests s'exécutent automatiquement
+2. **Création d'une PR** : Les tests s'exécutent pour valider les changements
+3. **Consultation des résultats** : Allez dans l'onglet "Actions" de votre repository GitHub
+
+## Statut des tests
+
+- ✅ **Succès** : Tous les tests passent et le code respecte les standards
+- ❌ **Échec** : Au moins un test échoue ou le style de code n'est pas conforme
+
+## Commandes locales
+
+Pour exécuter les mêmes vérifications en local :
+
+```bash
+# Tests Pest
+./vendor/bin/pest
+
+# Vérification du style de code
+./vendor/bin/pint --test
+
+# Correction automatique du style de code
+./vendor/bin/pint
+```
 
 ## Personnalisation
 
-Vous pouvez personnaliser le workflow selon vos besoins:
-- Modifier les branches de déclenchement
-- Ajouter des notifications (Slack, Discord, etc.)
-- Ajouter des tests supplémentaires (analyse statique, tests E2E)
-- Configurer des environnements de déploiement supplémentaires
-
-## Dépannage
-
-- Vérifiez que tous les secrets sont configurés correctement
-- Consultez les logs GitHub Actions pour identifier les erreurs
-- Vérifiez la configuration du script de déploiement dans Laravel Forge
-- Assurez-vous que les permissions API Forge sont correctement configurées
+Vous pouvez modifier le workflow selon vos besoins :
+- **Branches spécifiques** : Changez `branches: [ '*' ]` vers `branches: [ 'main', 'develop' ]`
+- **PHP version** : Modifiez `php-version: '8.2'`
+- **Tests avec couverture** : Ajoutez `coverage: xdebug` dans la configuration PHP
+- **Notifications** : Ajoutez des étapes pour Slack, Discord, etc.
