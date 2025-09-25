@@ -34,7 +34,7 @@ class WelcomePage extends Component
             return;
         }
 
-        $subscription = NewsletterSubscription::create(
+        NewsletterSubscription::create(
             [
                 'email' => $this->email,
                 'status' => SubscriberStatus::Subscribed,
