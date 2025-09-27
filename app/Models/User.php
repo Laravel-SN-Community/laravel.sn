@@ -6,10 +6,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Str;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -66,7 +67,7 @@ class User extends Authenticatable
         ];
     }
 
-     public function initials(): string
+    public function initials(): string
     {
         return Str::of($this->name)
             ->explode(' ')

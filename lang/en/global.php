@@ -22,7 +22,7 @@ return [
     'open_navigation' => 'Open main menu',
     'close_navigation' => 'Close menu',
     'logout' => 'Log out',
-    'signed_as'=> 'Signed as',
+    'signed_as' => 'Signed as',
     'footer' => [
         'title' => 'Footer',
         'copyright' => '© :date Laravel Senegal. All rights reserved.',
