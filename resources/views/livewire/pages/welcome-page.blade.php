@@ -12,10 +12,9 @@
             </p>
         </div>
         <div class="mt-10 gap-4 sm:flex sm:items-center sm:justify-center">
-            <a href="#presentation"
-                class="inline-block bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
-                Découvrir la communauté
-            </a>
+            <x-danger-button class="capitalize" :href="route('register')">
+                {{ __('pages/home.join_community') }}
+            </x-danger-button>
         </div>
     </x-section>
 
@@ -164,7 +163,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    {{-- <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
@@ -181,5 +180,5 @@
                 </p>
             </div>
         </div>
-    </footer>
+    </footer> --}}
 </div>

@@ -12,6 +12,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
+        "livewire/volt": "^1.7",
         "masmerise/livewire-toaster": "^2.8",
         "spatie/laravel-newsletter": "^5.3"
     },

@@ -38,7 +38,8 @@
 
         {{ $slot }}
 
-        {{-- <x-toaster-hub /> --}}
+        <x-toaster-hub />
+        <x-layouts.footer />
     </div>
     </div>
     @livewireScripts
