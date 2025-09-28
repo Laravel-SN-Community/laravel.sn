@@ -10,5 +10,6 @@ class Article extends Model
     protected $fillable = ['title', 'slug', 'content', 'status', 'published_at'];
     protected $casts = [
         'status' => ArticleStatus::class,
+        'published_at' => 'datetime',
     ];
 }
