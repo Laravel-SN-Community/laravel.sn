@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('content');
-            $table->string('status')->default(ArticleStatus::Published->value);
+            $table->string('status')->default(ArticleStatus::Draft->value);
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
         });
