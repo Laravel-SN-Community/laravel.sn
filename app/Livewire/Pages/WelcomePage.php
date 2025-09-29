@@ -11,14 +11,8 @@ use Masmerise\Toaster\Toaster;
 
 class WelcomePage extends Component
 {
-    #[Validate('required|email|max:255|unique:newsletter_subscriptions,email,status,subscribed')]
+    #[Validate('required|email|max:255|unique:newsletter_subscriptions,email')]
     public $email;
-
-    #[Layout('layouts.guest')]
-    public function render()
-    {
-        return view('livewire.pages.welcome-page');
-    }
 
     public function subscribe()
     {
@@ -45,5 +39,12 @@ class WelcomePage extends Component
 
         $this->reset('email');
 
+    }
+
+
+    #[Layout('layouts.guest')]
+    public function render()
+    {
+        return view('livewire.pages.welcome-page');
     }
 }
