@@ -25,7 +25,6 @@ class WelcomePage extends Component
         $this->validate();
 
         $existingSubscription = NewsletterSubscription::where('email', $this->email)
-            ->where('status', SubscriberStatus::Subscribed->value)
             ->first();
 
         if ($existingSubscription) {
