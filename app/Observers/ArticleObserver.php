@@ -7,7 +7,6 @@ use App\Models\Article;
 
 class ArticleObserver
 {
-
     public function saving(Article $article): void
     {
         if ($article->status === ArticleStatus::Published && is_null($article->published_at)) {

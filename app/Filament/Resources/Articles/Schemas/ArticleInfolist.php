@@ -6,8 +6,8 @@ use App\Enums\ArticleStatus;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Support\Enums\FontWeight;
-use Filament\Schemas\Schema;;
 
 class ArticleInfolist
 {
@@ -49,7 +49,7 @@ class ArticleInfolist
                                                     ArticleStatus::Published => 'primary',
                                                     default => 'success',
                                                 }
-                                            )
+                                            ),
                                     ]),
                             ])
                             ->collapsible(),
@@ -95,7 +95,7 @@ class ArticleInfolist
                             ->columnSpanFull()
                             ->extraAttributes([
                                 'class' => 'prose prose-sm max-w-none dark:prose-invert',
-                                'style' => 'max-height: 500px; overflow-y: auto; padding: 1rem; border-radius: 0.5rem;'
+                                'style' => 'max-height: 500px; overflow-y: auto; padding: 1rem; border-radius: 0.5rem;',
                             ]),
                     ])
                     ->collapsible()
