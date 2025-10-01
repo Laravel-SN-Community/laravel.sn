@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Articles\Pages;
 
-use App\Enums\ArticleStatus;
 use App\Filament\Resources\Articles\ArticleResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
@@ -19,5 +18,4 @@ class EditArticle extends EditRecord
             DeleteAction::make(),
         ];
     }
-
 }
