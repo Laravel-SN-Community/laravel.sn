@@ -34,6 +34,9 @@ jobs:
       - name: Generate the app key
         run: php artisan key:generate
 
+      - name: Create SQLite database
+        run: touch database/database.sqlite
+
       # Step 2: Execute Pest tests
       - name: Run tests
         run: vendor/bin/pest --parallel --compact tests
