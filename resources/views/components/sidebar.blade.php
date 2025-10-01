@@ -25,7 +25,7 @@
 >
     {{-- Backdrop - click to close sidebar --}}
     <div 
-        class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm"
+        class="fixed inset-0 bg-gray-900/80 backdrop-blur-xs"
         x-on:click="mobileNavOpen = false"
         aria-hidden="true"
     ></div>
@@ -46,7 +46,7 @@
             <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
                 <button 
                     type="button" 
-                    class="-m-2.5 rounded-md p-2.5 text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors duration-200" 
+                    class="-m-2.5 rounded-md p-2.5 text-white hover:text-gray-300 focus:outline-hidden focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900 transition-colors duration-200" 
                     x-on:click="mobileNavOpen = false"
                     aria-label="Close sidebar"
                 >
