@@ -1,0 +1,10 @@
+{
+    "agents": [
+        "codex",
+        "cursor"
+    ],
+    "editors": [
+        "cursor"
+    ],
+    "guidelines": []
+}
