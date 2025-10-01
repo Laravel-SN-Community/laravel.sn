@@ -18,8 +18,10 @@ class ArticlesTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->limit(50)
                     ->searchable(),
                 TextColumn::make('slug')
+                    ->limit(30)
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge()
