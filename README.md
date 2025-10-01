@@ -63,11 +63,17 @@ In a **separate terminal**, build the assets in watch mode:
 npm run dev
 ```
 
+Create a admin user for the Filament admin panel:
+
+```bash
+php artisan make:filament-user
+```
 Finally, start the development server:
 
 ```bash
 php artisan serve
 ```
+> You can now access the application at [http://localhost:8000](http://localhost:8000) and the admin panel at [http://localhost:8000/admin](http://localhost:8000/admin).
 
 > Note: By default, emails are sent to the `log` driver. You can change this in the `.env` file to something like `mailtrap`.
 

@@ -11,21 +11,14 @@ use Masmerise\Toaster\Toaster;
 
 class WelcomePage extends Component
 {
-    #[Validate('required|email|max:255|unique:newsletter_subscriptions,email,status,subscribed')]
+    #[Validate('required|email|max:255|unique:newsletter_subscriptions,email')]
     public $email;
-
-    #[Layout('layouts.guest')]
-    public function render()
-    {
-        return view('livewire.pages.welcome-page');
-    }
 
     public function subscribe()
     {
         $this->validate();
 
         $existingSubscription = NewsletterSubscription::where('email', $this->email)
-            ->where('status', SubscriberStatus::Subscribed)
             ->first();
 
         if ($existingSubscription) {
@@ -46,5 +39,12 @@ class WelcomePage extends Component
 
         $this->reset('email');
 
+    }
+
+
+    #[Layout('layouts.guest')]
+    public function render()
+    {
+        return view('livewire.pages.welcome-page');
     }
 }
