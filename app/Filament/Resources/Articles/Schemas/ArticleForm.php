@@ -40,10 +40,11 @@ class ArticleForm
                                         ->body('You can\'t generate content without a title.')
                                         ->warning()
                                         ->send();
+
                                     return;
                                 }
                                 try {
-//                                    $prompt = "Write a detailed article about: " . $state;
+                                    //                                    $prompt = "Write a detailed article about: " . $state;
                                     $prompt = "You are a Laravel expert SEO content writer.
 Generate a comprehensive and detailed long-form blog article about the following title.
 The language of the article must match the language of the title.
@@ -72,6 +73,7 @@ Guidelines:
                                             ->body('The AI did not return any content. Please try again.')
                                             ->warning()
                                             ->send();
+
                                         return;
                                     }
                                     $set('content', $content);
@@ -80,15 +82,16 @@ Guidelines:
                                         ->body('The AI has generated content for your article.')
                                         ->success()
                                         ->send();
-                                }catch (\Exception $e) {
+                                } catch (\Exception $e) {
                                     Notification::make()
                                         ->title('Error generating content.')
                                         ->body($e->getMessage())
                                         ->danger()
                                         ->send();
+
                                     return;
                                 }
-//                                $set('content', 'AI generated content for: ' . $state);
+                                //                                $set('content', 'AI generated content for: ' . $state);
                             })
                     )
                     ->required(),
