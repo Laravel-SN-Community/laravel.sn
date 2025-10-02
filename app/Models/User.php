@@ -32,6 +32,10 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'github_id',
+        'github_token',
+        'github_refresh_token',
+        'avatar',
     ];
 
     /**
@@ -44,6 +48,8 @@ class User extends Authenticatable implements FilamentUser
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'github_token',
+        'github_refresh_token',
     ];
 
     /**
