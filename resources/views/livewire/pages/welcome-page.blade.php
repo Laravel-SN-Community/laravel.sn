@@ -9,16 +9,18 @@
                     <h1 class="text-xl font-bold text-gray-900">Laravel Senegal</h1>
                 </div>
                 <div class="flex items-center space-x-8">
-                    <!-- Navigation links - hidden on mobile, visible on desktop -->
+                    <!-- Navigation links -->
                     <div class="hidden md:flex items-center space-x-8">
-                        <a href="#presentation"
-                            class="text-gray-900 font-bold hover:text-red-600 transition-colors">{{ __('Presentation') }}</a>
-                        <a href="#newsletter"
-                            class="text-gray-900 font-bold hover:text-red-600 transition-colors">{{ __('Newsletter') }}</a>
+                        <a href="{{ route('welcome') }}"
+                            wire:navigate
+                            class="{{ request()->routeIs('welcome') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Accueil') }}</a>
+                        <a href="{{ route('events') }}"
+                            wire:navigate
+                            class="{{ request()->routeIs('events') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Événements') }}</a>
                         <!-- Vertical divider -->
                         <div class="h-6 w-px bg-gray-300"></div>
                     </div>
-                    <!-- GitHub icon - always visible -->
+                    <!-- GitHub icon -->
                     <a href="https://github.com/Laravel-SN-Community/laravel.sn" target="_blank"
                         class="text-gray-900 hover:text-red-600 transition-colors" title="GitHub">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -343,10 +345,9 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-6 text-white">Liens Rapides</h4>
                     <ul class="space-y-3">
-                        <li><a href="#about" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">À Propos</a></li>
-                        <li><a href="#events" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Événements</a></li>
-                        <li><a href="#community" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Communauté</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Contact</a></li>
+                        <li><a wire:navigate href="{{ route('welcome') }}" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Accueil</a></li>
+                        <li><a wire:navigate href="{{ route('events') }}" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Événements</a></li>
+                        <li><a wire:navigate href="{{ route('welcome') }}#contact" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Contact</a></li>
                     </ul>
                 </div>
 
