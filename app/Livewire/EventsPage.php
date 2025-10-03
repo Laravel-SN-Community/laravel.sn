@@ -3,9 +3,9 @@
 namespace App\Livewire;
 
 use App\Models\Event;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Layout;
 
 class EventsPage extends Component
 {
