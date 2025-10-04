@@ -175,7 +175,7 @@
     <section id="contact" class="py-24 bg-white dark:bg-gray-950">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14">
-               
+
                 <h2 class="mt-3 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Restons en contact
                 </h2>
                 <p class="mt-3 text-lg text-gray-600 dark:text-gray-400">Rejoignez la communauté ou suivez nos
@@ -245,7 +245,7 @@
                             <a href="https://www.linkedin.com/company/laravel-senegal" target="_blank"
                                 class="group inline-flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-blue-800 transition hover:shadow-md dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-200">
                                 <span class="inline-flex items-center gap-2 font-medium">
-=                                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                         <path
                                             d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.77 1.87-2.77 3.8V24h-4V8z" />
                                     </svg>
