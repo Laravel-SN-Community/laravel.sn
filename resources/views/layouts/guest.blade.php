@@ -23,7 +23,9 @@
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
+            <x-topbar-guest />
             {{ $slot }}
+            <x-footer />
         </div>
 
         @livewireScripts

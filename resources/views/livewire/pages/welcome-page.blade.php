@@ -1,39 +1,8 @@
-<div class="min-h-screen bg-linear-to-br from-red-50 via-white to-green-50">
-    <!-- Navigation Header -->
-    <nav class="bg-white shadow-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-3">
-                    <img src="{{ asset('images/Laravelsn.jpg') }}" alt="Laravel Senegal"
-                        class="h-10 w-10 rounded-full object-cover">
-                    <h1 class="text-xl font-bold text-gray-900">Laravel Senegal</h1>
-                </div>
-                <div class="flex items-center space-x-8">
-                    <!-- Navigation links - hidden on mobile, visible on desktop -->
-                    <div class="hidden md:flex items-center space-x-8">
-                        <a href="#presentation"
-                            class="text-gray-900 font-bold hover:text-red-600 transition-colors">{{ __('Presentation') }}</a>
-                        <a href="#newsletter"
-                            class="text-gray-900 font-bold hover:text-red-600 transition-colors">{{ __('Newsletter') }}</a>
-                        <!-- Vertical divider -->
-                        <div class="h-6 w-px bg-gray-300"></div>
-                    </div>
-                    <!-- GitHub icon - always visible -->
-                    <a href="https://github.com/Laravel-SN-Community/laravel.sn" target="_blank"
-                        class="text-gray-900 hover:text-red-600 transition-colors" title="GitHub">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<div class="min-h-screen bg-linear-to-br from-red-50 via-white to-green-50 snap-y snap-mandatory overflow-y-scroll">
 
     <!-- Hero Section -->
     <section
-        class="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+        class="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-gray-50 to-white overflow-hidden snap-start snap-always">
         <!-- Grid Background -->
         <div class="absolute inset-0 opacity-20">
             <div class="absolute inset-0"
@@ -86,214 +55,94 @@
     </section>
 
     <!-- Presentation Section -->
- <!-- Presentation Section - Design Alternatif -->
-<section id="presentation" class="py-20 bg-gradient-to-br from-white via-red-50/30 to-green-50/30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header avec badge -->
-        <div class="text-center mb-16">
-          
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Une Communauté <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-green-600">Vibrante</span>
-            </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Rassembler, former et inspirer la prochaine génération de développeurs Laravel au Sénégal
-            </p>
-        </div>
-
-        <!-- Grid principale avec image et stats -->
-        <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <!-- Colonne de gauche - Image et stats -->
-            <div class="relative">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                    <div class="aspect-[4/3] bg-gradient-to-br from-red-200 to-green-200 flex items-center justify-center">
-                        <!-- Placeholder pour image communautaire -->
-                        <div class="text-center text-gray-600">
-                            <svg class="w-24 h-24 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                            </svg>
-                            <p class="text-lg font-semibold">Image de la communauté</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stats overlay -->
-                <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                    <div class="flex items-center space-x-4">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                            <span class="text-2xl font-bold text-gray-900">500+</span>
-                        </div>
-                        <span class="text-gray-600">Développeurs actifs</span>
-                    </div>
-                </div>
+    <section id="presentation" class="min-h-screen py-20 bg-gradient-to-br from-white via-red-50/30 to-green-50/30 snap-start snap-always">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header avec badge -->
+            <div class="text-center mb-16">
+            
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Une Communauté <span class="text-red-600">Vibrante</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Rassembler, former et inspirer la prochaine génération de développeurs Laravel au Sénégal
+                </p>
             </div>
 
-            <!-- Colonne de droite - Contenu -->
-            <div class="space-y-6">
-                <h3 class="text-3xl font-bold text-gray-900">
-                    Construisons ensemble <br>l'écosystème Laravel <span class="text-red-600">Sénégalais</span>
-                </h3>
+            <!-- Grid principale avec image et stats -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <!-- Colonne de gauche - Image et stats -->
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="aspect-[4/3] bg-gradient-to-br from-red-200 to-green-200 flex items-center justify-center">
+                            <img src="{{ asset('images/Laravelsn.jpg') }}" alt="Laravel Senegal" class="w-full h-full object-cover">
+                        </div>
+                    </div>
 
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    Laravel Sénégal est bien plus qu'une communauté de développeurs. C'est un espace d'échange,
-                    d'apprentissage et d'innovation où les passionnés du framework Laravel se rencontrent,
-                    partagent et grandissent ensemble.
-                </p>
+                    <!-- Stats overlay -->
+                    <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-2xl font-bold text-gray-900">500+</span>
+                            </div>
+                            <span class="text-gray-600">Développeurs actifs</span>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="grid grid-cols-2 gap-4 pt-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
+                <!-- Colonne de droite - Contenu -->
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-900">
+                        Construisons ensemble <br>l'écosystème Laravel <span class="text-red-600">Sénégalais</span>
+                    </h3>
+
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        Laravel Sénégal est bien plus qu'une communauté de développeurs. C'est un espace d'échange,
+                        d'apprentissage et d'innovation où les passionnés du framework Laravel se rencontrent,
+                        partagent et grandissent ensemble.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Événements mensuels</span>
                         </div>
-                        <span class="text-gray-700 font-medium">Événements mensuels</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                            </svg>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Ressources gratuites</span>
                         </div>
-                        <span class="text-gray-700 font-medium">Ressources gratuites</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
-                            </svg>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Mentorat actif</span>
                         </div>
-                        <span class="text-gray-700 font-medium">Mentorat actif</span>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
-                            </svg>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700 font-medium">Projets collaboratifs</span>
                         </div>
-                        <span class="text-gray-700 font-medium">Projets collaboratifs</span>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Valeurs et piliers -->
-        <div class="grid md:grid-cols-3 gap-8 mt-16">
-            <!-- Carte 1 -->
-            <div class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-red-200">
-                <div class="absolute -top-4 left-6">
-                    <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center text-white shadow-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                        </svg>
-                    </div>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-4">Communauté Inclusive</h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    Un espace accueillant pour tous les développeurs, du débutant au expert.
-                    Nous croyons en la force de la diversité et de l'entraide.
-                </p>
-                <ul class="space-y-2 text-gray-600">
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Échanges bienveillants
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Mentorat par les pairs
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Réseautage qualité
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Carte 2 -->
-            <div class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-green-200">
-                <div class="absolute -top-4 left-6">
-                    <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center text-white shadow-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-4">Événements Réguliers</h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    Meetups, ateliers pratiques et conférences pour rester à la pointe
-                    des technologies et des meilleures pratiques Laravel.
-                </p>
-                <ul class="space-y-2 text-gray-600">
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Meetups mensuels
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Ateliers pratiques
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Conférences annuelles
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Carte 3 -->
-            <div class="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-yellow-200">
-                <div class="absolute -top-4 left-6">
-                    <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center text-white shadow-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                    </div>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-4">Innovation Continue</h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    Stimuler l'innovation technologique et promouvoir l'open source
-                    pour contribuer activement à l'écosystème Laravel mondial.
-                </p>
-                <ul class="space-y-2 text-gray-600">
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Projets open source
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Veille technologique
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        Contributions actives
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-
-    </div>
-</section>
+    </section>
 
     <!-- Newsletter Section -->
-    <section id="newsletter" class="py-20 bg-gray-50">
+    {{-- <section id="newsletter" class="py-20 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Newsletter</h2>
             <p class="text-lg text-gray-600 mb-8">
@@ -322,49 +171,48 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white dark:bg-gray-950">
+    <section id="contact" class="min-h-screen py-24 bg-white snap-start snap-always">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14">
-
-                <h2 class="mt-3 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Restons en contact
+               
+                <h2 class="mt-3 text-4xl font-bold tracking-tight text-gray-900">Restons en contact
                 </h2>
-                <p class="mt-3 text-lg text-gray-600 dark:text-gray-400">Rejoignez la communauté ou suivez nos
+                <p class="mt-3 text-lg text-gray-600">Rejoignez la communauté ou suivez nos
                     actualités.</p>
             </div>
 
             <div class="grid gap-8 md:grid-cols-2">
                 <div class="space-y-6">
-                    <div class="rounded-2xl border border-gray-200 p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
+                    <div class="rounded-2xl border border-gray-200 p-6 shadow-sm">
                         <div class="flex items-start gap-4">
                             <div
-                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-100 text-rose-600 dark:bg-rose-500/15 dark:text-rose-300">
+                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-rose-100 text-rose-600">
                                 <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                                         d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8m-16 11h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
-                                <p class="text-gray-600 dark:text-gray-400">laravelsenegal@gmail.com</p>
+                                <h3 class="text-lg font-semibold text-gray-900">Email</h3>
+                                <p class="text-gray-600">laravelsenegal@gmail.com</p>
                                 <a href="mailto:laravelsenegal@gmail.com"
-                                    class="mt-2 inline-flex items-center text-sm font-medium text-rose-600 hover:underline dark:text-rose-300">Écrire
+                                    class="mt-2 inline-flex items-center text-sm font-medium text-rose-600 hover:underline">Écrire
                                     un email →</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="rounded-2xl border border-gray-200 p-6 shadow-sm dark:border-white/10 dark:bg-white/5">
-                        <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Réseaux & Communauté</h3>
+                    <div class="rounded-2xl border border-gray-200 p-6 shadow-sm">
+                        <h3 class="mb-4 text-lg font-semibold text-gray-900">Réseaux & Communauté</h3>
                         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
                             <a href="https://chat.whatsapp.com/JwITxALLv0uJIGNu7AsVnx" target="_blank"
-                                class="group inline-flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-800 transition hover:shadow-md dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-200">
+                                class="group inline-flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-800 transition hover:shadow-md">
                                 <span class="inline-flex items-center gap-2 font-medium">
-                                    <svg class="h-5 w-5" viewBox="0 0 32 32" fill="currentColor">
-                                        <path
-                                            d="M16 .6a15.3 15.3 0 0 0-13 23.3L2 31.4l7.7-1.9A15.4 15.4 0 1 0 16 .6Zm8.9 24a12.2 12.2 0 0 1-7 3.8 12.4 12.4 0 0 1-10-2.7l-.7-.5-4.6 1.1 1.2-4.5-.5-.8a12.4 12.4 0 0 1 1.8-15.4 12.2 12.2 0 0 1 17.3.6A12.3 12.3 0 0 1 24.9 24.6Z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6" viewBox="0 0 48 48">
+                                        <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"></path><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"></path><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"></path><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"></path><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"></path>
                                     </svg>
                                     WhatsApp
                                 </span>
@@ -372,7 +220,7 @@
                             </a>
 
                             <a href="https://x.com/laravel_sn" target="_blank"
-                                class="group inline-flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:text-gray-200">
+                                class="group inline-flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition hover:shadow-md">
                                 <span class="inline-flex items-center gap-2 font-medium">
                                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -384,7 +232,7 @@
                             </a>
 
                             <a href="https://github.com/Laravel-SN-Community/laravel.sn" target="_blank"
-                                class="group inline-flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:text-gray-200">
+                                class="group inline-flex items-center justify-between rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 transition hover:shadow-md">
                                 <span class="inline-flex items-center gap-2 font-medium">
                                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -396,11 +244,10 @@
                             </a>
 
                             <a href="https://www.linkedin.com/company/laravel-senegal" target="_blank"
-                                class="group inline-flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-blue-800 transition hover:shadow-md dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-200">
+                                class="group inline-flex items-center justify-between rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-blue-800 transition hover:shadow-md">
                                 <span class="inline-flex items-center gap-2 font-medium">
-                                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                        <path
-                                            d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.77 1.87-2.77 3.8V24h-4V8z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6" viewBox="0 0 48 48">
+                                        <path fill="#0288D1" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path fill="#FFF" d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z"></path>
                                     </svg>
                                     LinkedIn
                                 </span>
@@ -412,13 +259,13 @@
 
                 <div class="space-y-6">
                     <div
-                        class="rounded-3xl border border-white/60 bg-white p-8 shadow-xl dark:border-white/10 dark:bg-white/5">
-                        <h3 class="mb-2 text-2xl font-semibold text-gray-900 dark:text-white">Proposer un talk</h3>
-                        <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">Pitch rapide par email — notre équipe
+                        class="rounded-3xl border border-white/60 bg-white p-8 shadow-xl">
+                        <h3 class="mb-2 text-2xl font-semibold text-gray-900">Proposer un talk</h3>
+                        <p class="mb-6 text-sm text-gray-600">Pitch rapide par email — notre équipe
                             programme les prochains meetups.</p>
 
                         <a href="mailto:laravelsenegal@gmail.com?subject=Proposition%20de%20talk%20Laravel%20S%C3%A9n%C3%A9gal"
-                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-6 py-3 font-semibold text-white shadow-lg transition hover:scale-[1.01] hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-300 dark:bg-rose-500 dark:hover:bg-rose-400">
+                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-6 py-3 font-semibold text-white shadow-lg transition hover:scale-[1.01] hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-300">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
                                 <path
                                     d="M12 12.713 1.2 6.053C1.69 4.86 2.79 4 4.11 4h15.78c1.33 0 2.42.86 2.91 2.053L12 12.713zm0 2.574L.75 7.5v10.39C.75 19.06 1.69 20 2.86 20h18.28c1.17 0 2.11-.94 2.11-2.11V7.5L12 15.287z" />
@@ -426,30 +273,12 @@
                             Envoyer ma proposition
                         </a>
 
-                        <p class="mt-5 text-xs text-gray-500 dark:text-gray-400">En nous contactant, vous acceptez
+                        <p class="mt-5 text-xs text-gray-500">En nous contactant, vous acceptez
                             notre politique de confidentialité.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <div class="flex items-center justify-center space-x-3 mb-4">
-                    <img src="{{ asset('images/Laravelsn.jpg') }}" alt="Laravel Senegal"
-                        class="h-8 w-8 rounded-full object-cover">
-                    <h3 class="text-xl font-bold">Laravel Sénégal</h3>
-                </div>
-                <p class="text-gray-400 mb-4">
-                    La communauté Laravel du Sénégal - Ensemble, construisons l'avenir du développement web
-                </p>
-                <p class="text-gray-500 text-sm">
-                    © {{ date('Y') }} Laravel Sénégal. Tous droits réservés.
-                </p>
-            </div>
-        </div>
-    </footer>
+    
 </div>
