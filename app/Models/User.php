@@ -69,11 +69,11 @@ class User extends Authenticatable implements FilamentUser
             'role' => UserRole::class,
         ];
     }
+
     public function hasRole(UserRole $role): bool
     {
         return $this->role === $role;
     }
-
 
     public function canAccessPanel(Panel $panel): bool
     {
