@@ -18,7 +18,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence(4),
             'slug' => $this->faker->unique()->slug(),
-            'content' => '<p>' . $this->faker->paragraphs(3, true) . '</p>',
+            'content' => '<p>'.$this->faker->paragraphs(3, true).'</p>',
             'status' => ArticleStatus::Published,
             'published_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];

@@ -1,7 +1,7 @@
 <?php
 
-use App\Livewire\Pages\Articles\Show as ShowArticle;
 use App\Livewire\EventsPage;
+use App\Livewire\Pages\Articles\Show as ShowArticle;
 use App\Livewire\Pages\ArticlesPage;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;

@@ -64,7 +64,7 @@ it('can search articles on blog page', function () {
 it('displays individual article page', function () {
     $article = Article::factory()->create([
         'title' => 'Test Article',
-        'slug' => 'test-article-' . uniqid(),
+        'slug' => 'test-article-'.uniqid(),
         'content' => '<p>This is the article content</p>',
         'status' => ArticleStatus::Published,
         'published_at' => now(),
@@ -80,7 +80,7 @@ it('displays individual article page', function () {
 it('returns 404 for draft articles', function () {
     $article = Article::factory()->create([
         'title' => 'Draft Article',
-        'slug' => 'draft-article-' . uniqid(),
+        'slug' => 'draft-article-'.uniqid(),
         'status' => ArticleStatus::Draft,
         'published_at' => now(),
     ]);

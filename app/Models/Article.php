@@ -37,14 +37,14 @@ class Article extends Model
                 ]);
 
                 $html = $converter->convert($this->content)->getContent();
-                
+
                 // Add Prism.js classes to code blocks for syntax highlighting
                 $html = preg_replace(
                     '/<pre><code class="language-([^"]+)">/',
                     '<pre class="language-$1"><code class="language-$1">',
                     $html
                 );
-                
+
                 // Handle code blocks without language specification
                 $html = preg_replace(
                     '/<pre><code>/',
@@ -66,6 +66,7 @@ class Article extends Model
             get: function (): string {
                 // Strip markdown syntax and get first 150 characters
                 $plainText = strip_tags($this->content_html);
+
                 return Str::limit($plainText, 150);
             }
         );
