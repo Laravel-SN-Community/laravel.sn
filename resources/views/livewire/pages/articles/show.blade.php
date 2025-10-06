@@ -100,9 +100,18 @@
 
 <!-- Initialize Prism.js after content is loaded -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function initializePrism() {
         if (typeof Prism !== 'undefined') {
             Prism.highlightAll();
         }
-    });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initializePrism);
+    
+    // Initialize after Livewire navigation
+    document.addEventListener('livewire:navigated', initializePrism);
+    
+    // Also initialize after Livewire updates (fallback)
+    document.addEventListener('livewire:updated', initializePrism);
 </script>
