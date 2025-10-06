@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Articles\Schemas;
 
 use App\Enums\ArticleStatus;
-use App\Models\Category;
 use Filament\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\MarkdownEditor;

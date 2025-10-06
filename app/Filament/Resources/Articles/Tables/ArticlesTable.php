@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Articles\Tables;
 
 use App\Enums\ArticleStatus;
-use App\Models\Category;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
