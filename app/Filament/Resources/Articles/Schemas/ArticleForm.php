@@ -98,6 +98,22 @@ Guidelines:
                 TextInput::make('slug')
                     ->scopedUnique()
                     ->required(),
+                Select::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        TextInput::make('slug')
+                            ->maxLength(255),
+                        TextInput::make('description')
+                            ->maxLength(500),
+                    ])
+                    ->helperText('Select a category for this article or create a new one'),
+
                 Select::make('status')
                     ->options(ArticleStatus::class)
                     ->required(),

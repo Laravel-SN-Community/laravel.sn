@@ -14,6 +14,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.23",
         "laravel/tinker": "^2.9",
+        "league/commonmark": "^2.7",
         "livewire/livewire": "^3.0",
         "masmerise/livewire-toaster": "^2.8",
         "spatie/laravel-newsletter": "^5.3"

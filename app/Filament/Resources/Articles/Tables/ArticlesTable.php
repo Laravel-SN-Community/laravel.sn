@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ArticlesTable
@@ -23,6 +24,12 @@ class ArticlesTable
                 TextColumn::make('slug')
                     ->limit(30)
                     ->searchable(),
+                TextColumn::make('category.name')
+                    ->label('Category')
+                    ->badge()
+                    ->color(fn ($record) => $record->category?->color ?? 'gray')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('status')
                     ->badge()
                     ->color(
@@ -47,7 +54,12 @@ class ArticlesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('status')
+                    ->options(ArticleStatus::class),
             ])
             ->recordActions([
                 ViewAction::make(),
