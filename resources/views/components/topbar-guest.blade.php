@@ -15,6 +15,9 @@
                     <a href="{{ route('events') }}"
                         wire:navigate
                         class="{{ request()->routeIs('events') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Événements') }}</a>
+                    <a href="{{ route('articles') }}"
+                        wire:navigate
+                        class="{{ request()->routeIs('articles') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Articles') }}</a>
                     <!-- Vertical divider -->
                     <div class="h-6 w-px bg-gray-300"></div>
                 </div>
