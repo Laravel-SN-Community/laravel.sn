@@ -15,5 +15,8 @@
         "postcss": "^8.4.32",
         "tailwindcss": "^4.1.13",
         "vite": "^6.0.11"
+    },
+    "dependencies": {
+        "prismjs": "^1.30.0"
     }
 }
