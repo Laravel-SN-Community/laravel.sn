@@ -21,6 +21,7 @@ class ArticleFactory extends Factory
             'content' => '<p>' . $this->faker->paragraphs(3, true) . '</p>',
             'status' => ArticleStatus::Published,
             'published_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'category_id' => \App\Models\Category::factory(),
         ];
     }
 

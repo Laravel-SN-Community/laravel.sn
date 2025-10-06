@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use League\CommonMark\CommonMarkConverter;
 
@@ -16,12 +17,20 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'content', 'status', 'published_at'];
+    protected $fillable = ['title', 'slug', 'content', 'status', 'published_at', 'category_id'];
 
     protected $casts = [
         'status' => ArticleStatus::class,
         'published_at' => 'datetime',
     ];
+
+    /**
+     * Get the category that owns the article.
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     /**
      * Get the article content as HTML (parsed from markdown).
