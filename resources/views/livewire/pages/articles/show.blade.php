@@ -16,6 +16,16 @@
     <!-- Article Content -->
     <section class="py-12 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {{-- @dd($article->getFirstMedia('articles')->getUrl()) --}}
+            <!-- Article Cover Image -->
+            @if($article->hasMedia('articles'))
+                <div class="relative mb-8 rounded-xl overflow-hidden shadow-lg">
+                    <img src="{{ $article->getFirstMediaUrl('articles') }}" 
+                         alt="{{ $article->title }}"
+                         class="w-full h-auto max-h-[500px] object-cover">
+                </div>
+            @endif
+
             <!-- Article Header -->
             <header class="mb-8">
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
@@ -63,15 +73,8 @@
                                 </svg>
                             </a>
                         </div>
-</div>
+                    </div>
 
-                    <a wire:navigate href="{{ route('articles') }}" 
-                       class="inline-flex items-center text-red-600 hover:text-red-700 font-medium transition-colors">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                        Retour au blog
-                    </a>
                 </div>
             </footer>
         </div>

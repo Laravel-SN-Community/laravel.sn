@@ -56,6 +56,14 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($articles as $article)
                         <article class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <!-- Article Cover Image -->
+                            <div class="relative h-48 overflow-hidden bg-gray-100">
+                                <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}" 
+                                     alt="{{ $article->title }}"
+                                     class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                            </div>
+
                             <!-- Article Header -->
                             <div class="p-6 pb-4">
                                 <div class="flex items-start justify-between mb-4">

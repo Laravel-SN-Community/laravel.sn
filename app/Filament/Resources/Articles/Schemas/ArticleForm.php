@@ -7,6 +7,7 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Utilities\Get;
@@ -98,6 +99,13 @@ Guidelines:
                 TextInput::make('slug')
                     ->scopedUnique()
                     ->required(),
+                SpatieMediaLibraryFileUpload::make('cover')
+                    ->collection('articles')
+                    ->image()
+                    ->imageEditor()
+
+                    ->maxSize(5120)
+                    ->columnSpanFull(),
                 Select::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name')
