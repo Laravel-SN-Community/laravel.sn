@@ -7,8 +7,6 @@ use App\Livewire\Pages\ArticlesPage;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::middleware('guest')->group(function () {
     Route::get('/', WelcomePage::class)->name('welcome');
     Route::get('/events', EventsPage::class)->name('events');

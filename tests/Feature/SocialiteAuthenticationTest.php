@@ -142,4 +142,3 @@ it('redirects to login with error on oauth failure', function () {
     $response->assertRedirect(route('login'));
     $response->assertSessionHas('error');
 });
-
