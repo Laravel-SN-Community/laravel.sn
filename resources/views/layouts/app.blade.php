@@ -19,9 +19,9 @@
         @livewireStyles
     </head>
     <body class="h-full bg-gray-50">
-        {{-- 
+        {{--
             Main Application Layout
-            
+
             Features:
             - Alpine.js state management for mobile navigation and dropdowns
             - Responsive sidebar layout
@@ -30,12 +30,12 @@
         <div x-data="{ userDropdownOpen: false, mobileNavOpen: false }" class="h-full">
             {{-- Sidebar Component --}}
             <x-sidebar/>
-            
+
             {{-- Main Content Area --}}
             <div class="lg:pl-72">
                 {{-- Top Navigation Bar --}}
                 <x-topbar/>
-                
+
                 {{-- Page Content --}}
                 <main class="py-6">
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -43,15 +43,15 @@
                     </div>
                 </main>
             </div>
-            
+
             {{-- Future: Notification Components --}}
             {{-- <livewire:notifications/> --}}
             {{-- <livewire:database-notifications/> --}}
         </div>
-        
+
         {{-- Modal Stack --}}
         @stack('modals')
-        
+
         {{-- Scripts --}}
         @filamentScripts()
         @livewireScripts

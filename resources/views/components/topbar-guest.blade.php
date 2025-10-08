@@ -4,20 +4,20 @@
             <div class="flex items-center space-x-3">
                 <img src="{{ asset('images/Laravelsn.jpg') }}" alt="Laravel Senegal"
                     class="h-10 w-10 rounded-full object-cover">
-                <h1 class="text-xl font-bold text-gray-900">Laravel Senegal</h1>
+                <h1 class="text-xl font-bold text-gray-900">{{ __('global.site_name') }}</h1>
             </div>
             <div class="flex items-center space-x-8">
                 <!-- Navigation links -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('welcome') }}"
                         wire:navigate
-                        class="{{ request()->routeIs('welcome') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Accueil') }}</a>
+                        class="{{ request()->routeIs('welcome') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('global.navigation.home') }}</a>
                     <a href="{{ route('events') }}"
                         wire:navigate
-                        class="{{ request()->routeIs('events') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Événements') }}</a>
+                        class="{{ request()->routeIs('events') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('global.navigation.events') }}</a>
                     <a href="{{ route('articles') }}"
                         wire:navigate
-                        class="{{ request()->routeIs('articles') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Articles') }}</a>
+                        class="{{ request()->routeIs('articles') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('global.navigation.articles') }}</a>
                     <!-- Vertical divider -->
                     <div class="h-6 w-px bg-gray-300"></div>
                 </div>
