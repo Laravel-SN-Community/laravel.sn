@@ -2,21 +2,20 @@
 
 namespace App\Filament\Resources\Articles\Schemas;
 
-use Prism\Prism\Prism;
-use Illuminate\Support\Str;
 use App\Enums\ArticleStatus;
 use Filament\Actions\Action;
-use Filament\Schemas\Schema;
-use Prism\Prism\Enums\Provider;
-use Gemini\Laravel\Facades\Gemini;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Schemas\Schema;
+use Illuminate\Support\Str;
+use Prism\Prism\Enums\Provider;
+use Prism\Prism\Prism;
 
 class ArticleForm
 {
