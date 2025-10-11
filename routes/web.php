@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\SocialiteController;
-use App\Livewire\EventsPage;
 use App\Livewire\Pages\Articles\Show as ShowArticle;
 use App\Livewire\Pages\ArticlesPage;
+use App\Livewire\Pages\EventsPage;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
 

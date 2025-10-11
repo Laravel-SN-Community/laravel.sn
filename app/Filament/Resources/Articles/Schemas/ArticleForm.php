@@ -13,8 +13,9 @@ use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
-use Gemini\Laravel\Facades\Gemini;
 use Illuminate\Support\Str;
+use Prism\Prism\Enums\Provider;
+use Prism\Prism\Prism;
 
 class ArticleForm
 {
@@ -46,28 +47,102 @@ class ArticleForm
                                 }
                                 try {
                                     //                                    $prompt = "Write a detailed article about: " . $state;
-                                    $prompt = "You are a Laravel expert SEO content writer.
-Generate a comprehensive and detailed long-form blog article about the following title.
-The language of the article must match the language of the title.
+                                    $prompt = "You are an expert SEO content writer specializing in Laravel development, web technologies, and best practices.
 
-Title: \"$state\"
+                                                Your task: Generate a comprehensive, well-researched, long-form blog article based on the provided title.
 
-Guidelines:
-- If the title is in English, write the article in English.
-- If the title is in French, write the article in French.
-- Minimum length: 1200 words.
-- Format the output strictly in Markdown (not HTML).
-- Use proper Markdown syntax:
-  * # H1 for the main title
-  * ## H2 and ### H3 for subheadings
-  * Lists (- or 1.)
-  * Code blocks with ```php for Laravel examples
-  * Images with ![alt](url)
-- Include introduction, detailed sections, and a strong conclusion.
-- At the end, suggest a Meta description and 3–5 SEO keywords in Markdown list format.";
-                                    $response = Gemini::generativeModel(model: 'gemini-2.0-flash')
-                                        ->generateContent($prompt);
-                                    $content = $response->text();
+                                                INPUT INFORMATION:
+                                                - Title: \"$state\"
+                                                - Target audience: Laravel developers (beginner to advanced)
+                                                - Language: Auto-detect from title (English → English, French → Français)
+
+                                                CONTENT REQUIREMENTS:
+
+                                                Structure:
+                                                1. **Eye-catching Introduction** (150-200 words)
+                                                - Hook the reader with a compelling opening
+                                                - Briefly explain what the article covers
+                                                - Highlight key value propositions
+                                                - Include a clear context of why this topic matters
+
+                                                2. **Detailed Main Sections** (800-1000 words)
+                                                - Create 4-6 well-organized sections with descriptive H2 headings
+                                                - Each section should have 150-250 words minimum
+                                                - Use H3 subheadings to break up complex topics
+                                                - Include practical examples relevant to Laravel developers
+                                                - Provide real-world use cases and scenarios
+
+                                                3. **Code Examples**
+                                                - Include 3-5 practical Laravel code snippets (```php blocks)
+                                                - Add comments explaining complex logic
+                                                - Show both incorrect and correct approaches when relevant
+                                                - Ensure all code is production-ready and follows Laravel conventions
+
+                                                4. **Key Takeaways Section** (100-150 words)
+                                                - Summarize critical points in a memorable way
+                                                - Use bullet points for clarity
+                                                - Focus on actionable insights
+
+                                                5. **Compelling Conclusion** (150-200 words)
+                                                - Recap the main points
+                                                - Reinforce the article's value
+                                                - Include a strong call-to-action
+                                                - Suggest related topics the reader might explore
+
+                                                FORMATTING REQUIREMENTS:
+                                                - Use strict Markdown syntax (NO HTML tags)
+                                                - # H1: Main title (use the provided title)
+                                                - ## H2: Major sections
+                                                - ### H3: Subsections (use when needed for clarity)
+                                                - **Bold** for emphasis on key terms
+                                                - Use unordered lists (-) or ordered lists (1.) appropriately
+                                                - Code blocks with ```php language identifier
+                                                - Include images with descriptive alt text: ![descriptive alt text](url)
+                                                - Add 2-3 relevant images throughout the article
+                                                - Use proper Markdown formatting for links: [anchor text](url)
+
+                                                QUALITY STANDARDS:
+                                                - Minimum word count: 1200 words
+                                                - Write in clear, professional but accessible language
+                                                - Avoid redundancy and fluff
+                                                - Use active voice and strong verbs
+                                                - Include current best practices and industry standards
+                                                - Ensure SEO-friendly content without keyword stuffing
+                                                - Every section should provide genuine value
+
+                                                SEO OPTIMIZATION:
+                                                - Include the main keyword naturally 5-7 times throughout the article
+                                                - Use LSI (Latent Semantic Indexing) keywords related to the topic
+                                                - Write descriptive headings that include relevant keywords
+                                                - Ensure the article answers common questions about the topic
+
+                                                OUTPUT FORMAT - End the article with a dedicated SEO section:
+
+                                                ---
+                                                
+
+                                                TONE AND STYLE:
+                                                - Professional yet approachable
+                                                - Educational and informative
+                                                - Practical and actionable
+                                                - Confident and authoritative
+                                                - Avoid overly technical jargon; explain when necessary
+                                                - Include tips and warnings where appropriate
+
+                                                IMPORTANT NOTES:
+                                                - Ensure content is original and well-researched
+                                                - Follow Laravel naming conventions and best practices
+                                                - Include Laravel version-specific information if relevant
+                                                - Be factually accurate; double-check code examples
+                                                - Write for long-form engagement (people should stay to read the full article)
+                                                - Make the article shareable and reference-worthy";
+
+                                    $response = Prism::text()
+                                        ->using(Provider::Anthropic, 'claude-3-5-sonnet-20241022')
+                                        ->withPrompt($prompt)
+                                        ->asText();
+
+                                    $content = $response->text;
                                     if (empty($content)) {
                                         Notification::make()
                                             ->title('No content generated.')
