@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Pages;
 
 use App\Models\Event;
 use Livewire\Attributes\Layout;
@@ -35,7 +35,7 @@ class EventsPage extends Component
             ->orderBy('date', 'desc')
             ->paginate(5);
 
-        return view('livewire.events-page', [
+        return view('livewire.pages.events-page', [
             'events' => $events,
         ]);
     }
