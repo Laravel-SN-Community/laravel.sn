@@ -20,7 +20,7 @@
             <!-- Article Cover Image -->
             @if($article->hasMedia('articles'))
                 <div class="relative mb-8 rounded-xl overflow-hidden shadow-lg">
-                    <img src="{{ $article->getFirstMediaUrl('articles') }}" 
+                    <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}" 
                          alt="{{ $article->title }}"
                          class="w-full h-auto max-h-[500px] object-cover">
                 </div>

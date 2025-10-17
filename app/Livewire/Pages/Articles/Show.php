@@ -19,6 +19,9 @@ class Show extends Component
         }
 
         $this->article = $article;
+
+        // Record unique view for this article
+        views($article)->record();
     }
 
     #[Layout('layouts.guest')]

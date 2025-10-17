@@ -30,6 +30,11 @@ class ArticlesTable
                     ->color(fn ($record) => $record->category?->color ?? 'gray')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('views_count')
+                    ->label('Unique Views')
+                    ->getStateUsing(fn ($record) => views($record)->unique()->count())
+                    ->sortable(query: fn ($query, $direction) => $query->orderBy('id', $direction))
+                    ->alignEnd(),
                 TextColumn::make('status')
                     ->badge()
                     ->color(
