@@ -25,6 +25,12 @@ jobs:
         with:
           php-version: '8.4'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
       - name: Prepare Laravel
         run: cp .env.example .env
 
@@ -33,6 +39,12 @@ jobs:
 
       - name: Generate the app key
         run: php artisan key:generate
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build Vite assets
+        run: npm run build
 
       # Step 2: Execute Pest tests
       - name: Run tests
