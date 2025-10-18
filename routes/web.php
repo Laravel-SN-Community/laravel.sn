@@ -3,6 +3,7 @@
 use App\Http\Controllers\SocialiteController;
 use App\Livewire\Pages\Articles\Show as ShowArticle;
 use App\Livewire\Pages\ArticlesPage;
+use App\Livewire\Pages\DashboardPage;
 use App\Livewire\Pages\EventsPage;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', DashboardPage::class)->name('dashboard');
 });
