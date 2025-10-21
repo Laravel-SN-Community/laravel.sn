@@ -29,7 +29,9 @@
     <body>
         <div class="font-sans text-gray-900 antialiased">
             <x-topbar-guest />
-            {{ $slot }}
+            <div class="pt-[104px]">
+                {{ $slot }}
+            </div>
             <x-footer />
         </div>
 
