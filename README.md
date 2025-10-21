@@ -69,7 +69,7 @@ Finally, start the development server:
 php artisan serve
 ```
 # Admin credentials
-- Email: admin@gmail.com
+- Email: admin1@gmail.com
 - Password: passer
 
 > Create GEMINI_API_KEY in your .env file to enable AI features.

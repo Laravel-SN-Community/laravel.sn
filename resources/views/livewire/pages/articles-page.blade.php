@@ -33,7 +33,7 @@
             <!-- Search -->
             <div class="max-w-2xl mx-auto mb-12">
                 <div class="relative">
-                    <input type="text" 
+                    <input type="text"
                            wire:model.live.debounce.300ms="search"
                            placeholder="Rechercher un article..."
                            class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
@@ -57,20 +57,23 @@
                     @foreach($articles as $article)
                         <article class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                             <!-- Article Cover Image -->
-                            <div class="relative h-48 overflow-hidden bg-gray-100">
-                                <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}" 
-                                     alt="{{ $article->title }}"
-                                     class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                            </div>
-
+                            <a wire:navigate href="{{ route('article.show', $article->slug) }}">
+                                <div class="relative h-48 overflow-hidden bg-gray-100">
+                                    <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}"
+                                        alt="{{ $article->title }}"
+                                        class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                </div>
+                            </a>
                             <!-- Article Header -->
                             <div class="p-6 pb-4">
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex-1">
-                                        <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
-                                            {{ $article->title }}
-                                        </h3>
+                                        <a wire:navigate href="{{ route('article.show', $article->slug) }}">
+                                            <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 hover:text-red-500 hover:underline">
+                                                {{ $article->title }}
+                                            </h3>
+                                        </a>
                                         <div class="flex items-center text-gray-600 mb-2">
                                             <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -120,7 +123,7 @@
                         @endif
                     </p>
                     @if($search)
-                        <button wire:click="$set('search', '')" 
+                        <button wire:click="$set('search', '')"
                                 class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
                             Voir tous les articles
                         </button>
@@ -129,5 +132,5 @@
             @endif
         </div>
     </section>
-    
+
 </div>
