@@ -3,7 +3,7 @@
     <div class="bg-red-600 text-white text-center py-2 px-4">
         <div class="max-w-7xl mx-auto flex items-center justify-center space-x-2">
             <span class="text-xl font-medium">🎉 Senegal PHP & Laravel Event, samedi 1 novembre 2025 au Orange Digital Center</span>
-            <a wire:navigate href={{ route('events') }} class="inline-flex items-center hover:underline" title="Visitez Laravel.sn">
+            <a wire:navigate href="{{ route('event.show', 2) }}" class="inline-flex items-center hover:underline" title="Visitez Laravel.sn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 animate-bounce">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
                 </svg>
