@@ -104,20 +104,10 @@
 
                             <!-- Event Actions -->
                             <div class="px-6 pb-6">
-                                <div class="flex gap-3">
-                                    @if($event->rsvp_link)
-                                        <a href="{{ $event->rsvp_link }}" target="_blank"
-                                           class="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors text-center">
-                                            S'inscrire
-                                        </a>
-                                    @endif
-                                    @if($event->event_link)
-                                        <a href="{{ $event->event_link }}" target="_blank"
-                                           class="flex-1 border-2 border-red-600 text-red-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-600 hover:text-white transition-colors text-center">
-                                            En savoir plus
-                                        </a>
-                                    @endif
-                                </div>
+                                <a wire:navigate href="{{ route('event.show', $event) }}"
+                                   class="block w-full bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors text-center">
+                                    Voir les détails
+                                </a>
                             </div>
                         </div>
                     @endforeach
