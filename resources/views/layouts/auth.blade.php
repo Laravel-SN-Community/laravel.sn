@@ -15,7 +15,7 @@
         rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" href=" {{ asset('images/Laravelsn.png') }}">
+    @include('partials._favicons')
 
 
     <!-- Prism.js for syntax highlighting -->
