@@ -1,11 +1,9 @@
-<x-slot:title>{{ $article->title }}</x-slot:title>
-
 <div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
 
     <!-- Back Button -->
     <section class="relative py-8 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <a wire:navigate href="{{ route('articles') }}"
+            <a wire:navigate href="{{ route('articles') }}" 
                class="inline-flex items-center text-red-600 hover:text-red-700 font-medium transition-colors">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -22,7 +20,7 @@
             <!-- Article Cover Image -->
             @if($article->hasMedia('articles'))
                 <div class="relative mb-8 rounded-xl overflow-hidden shadow-lg">
-                    <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}"
+                    <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}" 
                          alt="{{ $article->title }}"
                          class="w-full h-auto max-h-[500px] object-cover">
                 </div>
@@ -33,7 +31,7 @@
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
                     {{ $article->title }}
                 </h1>
-
+                
                 <div class="flex items-center text-gray-600 mb-6">
                     <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
@@ -60,14 +58,14 @@
                     <div class="flex items-center space-x-4">
                         <span class="text-gray-600">Partager cet article :</span>
                         <div class="flex space-x-3">
-                            <a href="https://twitter.com/intent/tweet?text={{ urlencode($article->title) }}&url={{ urlencode(request()->url()) }}"
+                            <a href="https://twitter.com/intent/tweet?text={{ urlencode($article->title) }}&url={{ urlencode(request()->url()) }}" 
                                target="_blank"
                                class="text-gray-400 hover:text-red-600 transition-colors">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M18.9 1.98h3.28l-7.17 8.2 8.43 11.84h-6.6l-5.17-6.78-5.91 6.78H1.47l7.67-8.8L1 1.98h6.8l4.7 6.17 6.4-6.17Z"/>
                                 </svg>
                             </a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(request()->url()) }}"
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(request()->url()) }}" 
                                target="_blank"
                                class="text-gray-400 hover:text-red-600 transition-colors">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -88,9 +86,9 @@
             <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
                 Autres articles
             </h2>
-
+            
             <div class="text-center">
-                <a wire:navigate href="{{ route('articles') }}"
+                <a wire:navigate href="{{ route('articles') }}" 
                    class="inline-flex items-center bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
@@ -100,7 +98,7 @@
             </div>
         </div>
     </section>
-
+    
 </div>
 
 <!-- Initialize Prism.js after content is loaded -->
@@ -113,10 +111,10 @@
 
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', initializePrism);
-
+    
     // Initialize after Livewire navigation
     document.addEventListener('livewire:navigated', initializePrism);
-
+    
     // Also initialize after Livewire updates (fallback)
     document.addEventListener('livewire:updated', initializePrism);
 </script>

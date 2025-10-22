@@ -1,4 +1,3 @@
-<x-slot:title>Articles</x-slot:title>
 <div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
 
     <!-- Hero Section -->
@@ -34,7 +33,7 @@
             <!-- Search -->
             <div class="max-w-2xl mx-auto mb-12">
                 <div class="relative">
-                    <input type="text"
+                    <input type="text" 
                            wire:model.live.debounce.300ms="search"
                            placeholder="Rechercher un article..."
                            class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
@@ -59,7 +58,7 @@
                         <article class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                             <!-- Article Cover Image -->
                             <div class="relative h-48 overflow-hidden bg-gray-100">
-                                <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}"
+                                <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}" 
                                      alt="{{ $article->title }}"
                                      class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -121,7 +120,7 @@
                         @endif
                     </p>
                     @if($search)
-                        <button wire:click="$set('search', '')"
+                        <button wire:click="$set('search', '')" 
                                 class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
                             Voir tous les articles
                         </button>
@@ -130,5 +129,5 @@
             @endif
         </div>
     </section>
-
+    
 </div>

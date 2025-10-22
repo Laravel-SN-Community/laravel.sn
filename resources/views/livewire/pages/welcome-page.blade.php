@@ -1,4 +1,3 @@
-{{-- <x-slot:title>Home</x-slot:title> --}}
 <div class="min-h-screen bg-linear-to-br from-red-50 via-white to-green-50 snap-y snap-mandatory overflow-y-scroll">
 
     <!-- Hero Section -->
@@ -60,7 +59,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header avec badge -->
             <div class="text-center mb-16">
-
+            
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                     Une Communauté <span class="text-red-600">Vibrante</span>
                 </h2>
@@ -178,7 +177,7 @@
     <section id="contact" class="min-h-screen py-24 bg-white snap-start snap-always">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14">
-
+               
                 <h2 class="mt-3 text-4xl font-bold tracking-tight text-gray-900">Restons en contact
                 </h2>
                 <p class="mt-3 text-lg text-gray-600">Rejoignez la communauté ou suivez nos
@@ -281,5 +280,5 @@
             </div>
         </div>
     </section>
-
+    
 </div>

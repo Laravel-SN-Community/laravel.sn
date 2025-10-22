@@ -1,4 +1,3 @@
-<x-slot:title>Événements</x-slot:title>
 <div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
 
     <!-- Hero Section -->
@@ -37,7 +36,7 @@
                     <!-- Search -->
                     <div class="flex-1">
                         <div class="relative">
-                            <input type="text"
+                            <input type="text" 
                                    wire:model.live.debounce.300ms="search"
                                    placeholder="Rechercher un événement..."
                                    class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
@@ -49,7 +48,7 @@
 
                     <!-- Filter -->
                     <div class="sm:w-48">
-                        <select wire:model.live="filter"
+                        <select wire:model.live="filter" 
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
                             <option value="all">Tous les événements</option>
                             <option value="upcoming">À venir</option>
@@ -135,7 +134,7 @@
                         @endif
                     </p>
                     @if($search)
-                        <button wire:click="$set('search', '')"
+                        <button wire:click="$set('search', '')" 
                                 class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
                             Voir tous les événements
                         </button>
@@ -144,5 +143,5 @@
             @endif
         </div>
     </section>
-
+    
 </div>
