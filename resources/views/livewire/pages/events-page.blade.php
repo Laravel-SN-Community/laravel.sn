@@ -76,9 +76,11 @@
                             <div class="p-6 pb-4">
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex-1">
-                                        <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
-                                            {{ $event->name }}
-                                        </h3>
+                                        <a wire:navigate href="{{ route('event.show', $event) }}">
+                                            <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 hover:text-red-500 hover:underline">
+                                                {{ $event->name }}
+                                            </h3>
+                                        </a>
                                         <div class="flex items-center text-gray-600 mb-2">
                                             <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
