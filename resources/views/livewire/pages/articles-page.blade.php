@@ -1,3 +1,4 @@
+<x-slot:title>Articles</x-slot:title>
 <div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
 
     <!-- Hero Section -->
