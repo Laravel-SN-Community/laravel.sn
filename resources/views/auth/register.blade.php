@@ -1,4 +1,5 @@
 <x-auth-layout>
+    <x-slot:title>Register</x-slot:title>
     <div class="min-h-screen bg-gray-100">
         <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-4 py-12 sm:px-6 lg:px-8">
             <div class="overflow-hidden rounded-2xl bg-white shadow-2xl md:grid md:grid-cols-[3fr_2fr]">
@@ -7,9 +8,9 @@
                     <div class="space-y-8">
                         <!-- Logo and Header -->
                         <a href="{{ route('welcome') }}" class="flex items-center space-x-3 hover:opacity-80 transition">
-                            <img 
-                                src="{{ asset('images/Laravelsn.jpg') }}" 
-                                alt="Laravel Sénégal Logo" 
+                            <img
+                                src="{{ asset('images/Laravelsn.jpg') }}"
+                                alt="Laravel Sénégal Logo"
                                 class="h-10 w-10 rounded-lg object-cover"
                             >
                             <span class="text-2xl font-bold text-gray-900">Laravel Sénégal</span>
