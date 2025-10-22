@@ -2,7 +2,7 @@
     <!-- Background Pattern -->
     <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
     <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
-    
+
     <!-- Watermark LaravelSn -->
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
         <h1 class="font-black leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-600/20 to-gray-400/20 select-none
@@ -10,11 +10,11 @@
             LaravelSn
         </h1>
     </div>
-    
+
     <!-- Main Footer Content -->
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            
+
             <!-- Brand Section -->
             <div class="lg:col-span-2">
                 <div class="flex items-center gap-3 mb-6">
@@ -27,10 +27,10 @@
                 <p class="text-gray-300 text-lg mb-6 max-w-md">
                     La communauté Laravel du Sénégal. Ensemble, construisons l'avenir du développement web au Sénégal.
                 </p>
-                
+
                 <!-- Social Links -->
                 <div class="flex gap-4">
-                    <a href="https://x.com/laravel_sn" target="_blank" 
+                    <a href="https://x.com/laravel_sn" target="_blank"
                        class="group flex items-center justify-center w-10 h-10 bg-gray-800 rounded-lg hover:bg-rose-600 transition-all duration-300 hover:scale-110">
                         <svg class="w-5 h-5 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18.9 1.98h3.28l-7.17 8.2 8.43 11.84h-6.6l-5.17-6.78-5.91 6.78H1.47l7.67-8.8L1 1.98h6.8l4.7 6.17 6.4-6.17Z"/>
