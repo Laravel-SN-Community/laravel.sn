@@ -1,8 +1,3 @@
-@php
-    use App\Models\Event;
-    $ongoingEvent = Event::query()->upcoming()->published()->first();
-@endphp
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -25,6 +20,7 @@
     <!-- Icons -->
     @include('partials._favicons')
 
+
     <!-- Prism.js for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
@@ -39,11 +35,6 @@
 
 <body>
     <div class="min-h-screen w-full bg-[#f8fafc]">
-        {{-- Top banner --}}
-        @if ($ongoingEvent)
-            <x-top-banner :ongoingEvent="$ongoingEvent" />
-        @endif
-        
         <div class="font-sans text-gray-900 antialiased">
             <x-topbar-guest />
             {{ $slot }}
@@ -51,13 +42,6 @@
         </div>
         <x-toaster-hub />
     </div>
-    {{-- Additional scripts --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/all.min.js"
-        integrity="sha512-fxASHhXi6WjjUR9Hr8qt2IxNW2AzyZOpoPi4+UgVU0lTFNKMQ8INkZaQ5ZED2aAldHuHNaLlaHuwQ1oGT+LHhw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-
     @livewireScripts
 </body>
 
