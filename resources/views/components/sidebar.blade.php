@@ -60,16 +60,16 @@
             {{-- Mobile sidebar content --}}
             <div class="flex grow flex-col overflow-y-auto bg-white shadow-2xl">
                 {{-- Logo section with gradient --}}
-                <div class="flex h-16 shrink-0 items-center gap-3 border-b border-gray-100 bg-gradient-to-r from-blue-600 to-indigo-600 px-6">
-                    <img 
-                        src="{{ asset('images/Laravelsn.jpg') }}" 
+                <a href="{{ route('welcome') }}" wire:navigate class="flex h-16 shrink-0 items-center gap-3 border-b border-gray-100 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 hover:from-blue-700 hover:to-indigo-700 transition-colors">
+                    <img
+                        src="{{ asset('images/Laravelsn.jpg') }}"
                         class="h-9 w-9 rounded-lg object-cover shadow-md ring-2 ring-white/30"
                         alt="{{ config('app.name') }}"
                     />
                     <span class="text-lg font-bold text-white">
                         {{ config('app.name') }}
                     </span>
-                </div>
+                </a>
                 
                 {{-- Navigation items --}}
                 <nav class="flex-1 px-4 py-6">
@@ -100,8 +100,8 @@
     {{-- Desktop sidebar content --}}
     <div class="flex grow flex-col overflow-y-auto border-r border-gray-200 bg-white">
         {{-- Logo section with modern gradient --}}
-        <div class="flex h-16 shrink-0 items-center gap-3 border-b border-gray-100 bg-red-600 px-6">
-            <img 
+        <a href="{{ route('welcome') }}" wire:navigate class="flex h-16 shrink-0 items-center gap-3 border-b border-gray-100 bg-red-600 px-6 hover:bg-red-700 transition-colors">
+            <img
                 src="{{ asset('images/Laravelsn.jpg') }}"
                 alt="{{ config('app.name') }}"
                 class="h-9 w-9 rounded-lg object-cover shadow-md ring-2 ring-white/30"
@@ -109,7 +109,7 @@
             <span class="text-lg font-bold text-white">
                 {{ config('app.name') }}
             </span>
-        </div>
+        </a>
         
         {{-- Navigation items --}}
         <nav class="flex-1 px-4 py-6">

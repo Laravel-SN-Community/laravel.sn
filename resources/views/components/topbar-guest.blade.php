@@ -18,6 +18,14 @@
                 {{-- Spacer --}}
                 <div class="h-6 w-px bg-gray-300"></div>
 
+                {{-- Submit Project Button --}}
+                @auth
+                    <a href="{{ route('my-projects') }}" wire:navigate
+                        class="px-4 py-2 bg-red-600 text-white text-sm font-semibold rounded-md hover:bg-red-700 transition-colors">
+                        Soumettre un projet
+                    </a>
+                @endauth
+
                 <!-- GitHub icon -->
                 <a href="https://github.com/Laravel-SN-Community/laravel.sn" target="_blank"
                     class="text-gray-900 hover:text-red-600 transition-colors" title="GitHub">
@@ -86,6 +94,14 @@
                         <div class="divide-y-2 divide-gray-50 p-4 relative h-full">
                             <div class="mt-5 flex flex-col space-y-4">
                                 @include('partials._navigation')
+
+                                {{-- Submit Project Button (Mobile) --}}
+                                @auth
+                                    <a href="{{ route('my-projects') }}" wire:navigate
+                                        class="px-4 py-3 bg-blue-600 text-white text-sm font-semibold rounded-md hover:bg-blue-700 transition-colors text-center">
+                                        Soumettre un projet
+                                    </a>
+                                @endauth
                             </div>
 
                             <div class="fixed bottom-4">

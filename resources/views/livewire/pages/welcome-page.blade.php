@@ -1,6 +1,6 @@
 {{-- <x-slot:title>Home</x-slot:title> --}}
 <div class="min-h-screen bg-linear-to-br from-red-50 via-white to-green-50 snap-y snap-mandatory overflow-y-scroll">
-
+    
     <!-- Hero Section -->
     <section
         class="relative min-h-screen flex items-center justify-center text-center bg-gradient-to-br from-gray-50 to-white overflow-hidden snap-start snap-always">
@@ -151,6 +151,90 @@
             </div>
         </div>
     </section>
+
+    <!-- Featured Projects Section -->
+    @if($featuredProjects->count() > 0)
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                    Projets <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-500">Vedettes</span>
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Découvrez les projets les plus populaires de notre communauté Laravel Sénégal
+                </p>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                @foreach($featuredProjects as $project)
+                <a href="{{ route('projects.show', $project->slug) }}" class="group h-full">
+                    <div class="bg-white dark:bg-zinc-800 rounded-xl shadow-md hover:shadow-2xl ring-1 ring-gray-200 dark:ring-zinc-700 overflow-hidden transition-all duration-300 hover:scale-105 h-full flex flex-col">
+                        
+                        <!-- Image Container -->
+                        <div class="relative w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-zinc-700 dark:to-zinc-800 overflow-hidden">
+                            @if($project->image_url && file_exists(public_path($project->image_url)))
+                                <img 
+                                    src="{{ $project->image_url }}" 
+                                    alt="{{ $project->title }}"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                >
+                            @else
+                                <!-- Placeholder -->
+                                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-950 dark:to-orange-950">
+                                    <div class="text-center">
+                                        <svg class="w-12 h-12 text-red-400 dark:text-red-600 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <p class="text-xs text-red-600 dark:text-red-400 font-medium">Pas d'image</p>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <!-- Category Badge -->
+                            @if($project->category)
+                            <div class="absolute top-3 right-3">
+                                <span class="inline-block bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+                                    {{ $project->category->name }}
+                                </span>
+                            </div>
+                            @endif
+                        </div>
+
+                        <!-- Content Container -->
+                        <div class="p-5 flex flex-col flex-grow">
+                            <!-- Title -->
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-red-600 dark:group-hover:text-red-500 transition-colors line-clamp-2">
+                                {{ $project->title }}
+                            </h3>
+
+                            <!-- Description -->
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 flex-grow">
+                                {{ $project->excerpt ?? 'Aucune description disponible' }}
+                            </p>
+
+                            <!-- Footer -->
+                            <div class="border-t border-gray-200 dark:border-zinc-700 pt-3 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="flex items-center text-red-600 dark:text-red-500">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                        </svg>
+                                        <span class="text-xs font-semibold ml-1">{{ $project->votes_count ?? 0 }}</span>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                                    {{ $project->user->name ?? 'Anonyme' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
 
     <!-- Newsletter Section -->
     {{-- <section id="newsletter" class="py-20 bg-gray-50">

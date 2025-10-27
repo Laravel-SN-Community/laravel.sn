@@ -59,6 +59,32 @@
                     </header>
 
                     <main class="mt-6">
+                        {{-- Featured Projects Section --}}
+                        @if($featuredProjects->count() > 0)
+                        <div class="mb-16">
+                            <h2 class="text-3xl font-bold text-center text-black dark:text-white mb-8">Featured Projects</h2>
+                            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                                @foreach($featuredProjects as $project)
+                                <a href="{{ route('projects.show', $project->slug) }}" class="group">
+                                    <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/5 dark:ring-zinc-800 p-6 transition duration-300 hover:ring-black/20 dark:hover:ring-zinc-700 hover:shadow-lg">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <h3 class="text-lg font-semibold text-black dark:text-white group-hover:text-[#FF2D20] transition-colors">{{ $project->title }}</h3>
+                                            @if($project->category)
+                                            <span class="text-xs bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full">{{ $project->category->name }}</span>
+                                            @endif
+                                        </div>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">{{ $project->excerpt }}</p>
+                                        <div class="flex items-center justify-between text-sm">
+                                            <span class="text-gray-500 dark:text-gray-400">{{ $project->votes_count }} votes</span>
+                                            <span class="text-gray-500 dark:text-gray-400">{{ $project->user->name }}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
                             <a
                                 href="https://laravel.com/docs"
