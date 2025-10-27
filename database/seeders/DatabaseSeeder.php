@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
             'role' => UserRole::ADMIN,
             'password' => bcrypt('passer'),
         ]);
+
+        // Seed projects
+        $this->call([
+            ProjectSeeder::class,
+        ]);
+
         // php artisan db:seed
     }
 }
