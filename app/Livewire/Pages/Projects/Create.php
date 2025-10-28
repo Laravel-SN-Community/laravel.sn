@@ -5,7 +5,7 @@ namespace App\Livewire\Pages\Projects;
 use App\Enums\ProjectStatus;
 use App\Models\Category;
 use App\Models\Project;
-use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
@@ -14,7 +14,9 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -65,6 +67,9 @@ class Create extends Component implements HasForms
             }
         }
 
+        // Clear cache for user's projects
+        Cache::forget('user_projects_' . Auth::id());
+
         $this->closeModal();
         $this->resetPage();
         $this->dispatch('project-created');
@@ -73,10 +78,14 @@ class Create extends Component implements HasForms
     public function deleteProject(int $projectId): void
     {
         Project::where('user_id', Auth::id())->findOrFail($projectId)->delete();
+
+        // Clear cache for user's projects
+        Cache::forget('user_projects_' . Auth::id());
+
         $this->resetPage();
     }
 
-    public function form(Form $form): Form
+    public function form($form): Schema
     {
         return $form
             ->schema([
@@ -104,7 +113,9 @@ class Create extends Component implements HasForms
 
                 Select::make('category_id')
                     ->label('Project Category')
-                    ->options(Category::pluck('name', 'id'))
+                    ->options(Cache::remember('categories_list', 3600, function () { // Cache for 1 hour
+                        return Category::pluck('name', 'id');
+                    }))
                     ->searchable()
                     ->preload()
                     ->required()
@@ -142,34 +153,23 @@ class Create extends Component implements HasForms
                     ->columnSpanFull()
                     ->panelLayout('grid'),
 
-                MarkdownEditor::make('description')
+                RichEditor::make('description')
                     ->label('Project Description')
                     ->required()
-                    ->fileAttachmentsDirectory('projects')
-                    ->fileAttachmentsDisk('public')
-                    ->helperText('Describe your project in detail. You can use Markdown formatting.')
-                    ->columnSpanFull()
                     ->toolbarButtons([
                         'bold',
                         'italic',
+                        'underline',
+                        'strike',
                         'link',
                         'bulletList',
                         'orderedList',
-                        'codeBlock',
+                        'h2',
+                        'h3',
+                        'blockquote',
                     ])
-                    ->placeholder('## About This Project
-
-Describe what your project does, its features, and how to use it.
-
-### Key Features
-- Feature 1
-- Feature 2
-- Feature 3
-
-### Technologies Used
-- Tech 1
-- Tech 2
-- Tech 3'),
+                    ->placeholder('<h2>About This Project</h2><p>Describe what your project does, its features, and how to use it.</p><h3>Key Features</h3><ul><li>Feature 1</li><li>Feature 2</li><li>Feature 3</li></ul><h3>Technologies Used</h3><ul><li>Tech 1</li><li>Tech 2</li><li>Tech 3</li></ul>')
+                    ->columnSpanFull(),
             ])
             ->columns(1)
             ->statePath('data');
@@ -178,11 +178,15 @@ Describe what your project does, its features, and how to use it.
     #[Layout('layouts.app')]
     public function render()
     {
-        $projects = Project::where('user_id', Auth::id())
-            ->with('category')
-            ->withCount(['votes', 'comments'])
-            ->latest()
-            ->paginate(10);
+        $cacheKey = 'user_projects_' . Auth::id() . '_page_' . $this->getPage();
+
+        $projects = Cache::remember($cacheKey, 300, function () { // Cache for 5 minutes
+            return Project::where('user_id', Auth::id())
+                ->with('category')
+                ->withCount(['votes', 'comments'])
+                ->latest()
+                ->paginate(10);
+        });
 
         return view('livewire.pages.projects.create', compact('projects'));
     }

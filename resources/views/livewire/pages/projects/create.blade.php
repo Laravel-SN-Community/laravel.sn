@@ -80,10 +80,103 @@
 
                 <!-- Form Content -->
                 <div class="px-6 py-6 overflow-y-auto" style="max-height: calc(100vh - 200px);">
-                    <form wire:submit="submit" class="space-y-6">
-                        <!-- Render Filament form -->
-                        <div class="filament-form">
-                            {{ $this->form }}
+                    <form wire:submit="submit" class="space-y-8">
+                        <!-- Project Title -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Project Title <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" wire:model="data.title" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="Enter your project title">
+                            @error('data.title') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        </div>
+
+                        <!-- URL Slug -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                URL Slug <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" wire:model="data.slug" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="auto-generated-from-title">
+                            <p class="text-sm text-gray-500">This will be used in the project URL</p>
+                            @error('data.slug') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        </div>
+
+                        <!-- Project Category -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Project Category <span class="text-red-500">*</span>
+                            </label>
+                            <select wire:model="data.category_id" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors">
+                                <option value="">Choose a category</option>
+                                @foreach(\App\Models\Category::all() as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            <p class="text-sm text-gray-500">Select the most appropriate category for your project</p>
+                            @error('data.category_id') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        </div>
+
+                        <!-- GitHub Repository -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                GitHub Repository <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 text-sm">https://</span>
+                                </div>
+                                <input type="url" wire:model="data.github_url" class="w-full pl-20 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="github.com/username/repository">
+                            </div>
+                            <p class="text-sm text-gray-500">Link to your project's GitHub repository</p>
+                            @error('data.github_url') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        </div>
+
+                        <!-- Live Demo -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Live Demo
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 text-sm">https://</span>
+                                </div>
+                                <input type="url" wire:model="data.demo_url" class="w-full pl-20 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" placeholder="demo.example.com">
+                            </div>
+                            <p class="text-sm text-gray-500">Optional: Link to a live demo or project website</p>
+                            @error('data.demo_url') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        </div>
+
+                        <!-- Project Screenshots -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Project Screenshots
+                            </label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-red-400 transition-colors">
+                                <div class="space-y-4">
+                                    <div class="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-lg font-medium text-gray-900">Drag & Drop your files or Browse</p>
+                                        <p class="text-sm text-gray-500">Files</p>
+                                    </div>
+                                    <button type="button" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
+                                        Browse
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500">Upload up to 5 screenshots showcasing your project (max 5MB each)</p>
+                            @error('data.screenshots') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                        </div>
+
+                        <!-- Project Description -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Project Description <span class="text-red-500">*</span>
+                            </label>
+                            <textarea wire:model="data.description" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors resize-vertical" placeholder="Describe your project in detail..."></textarea>
+                            @error('data.description') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
                         </div>
 
                         <!-- Action Buttons -->

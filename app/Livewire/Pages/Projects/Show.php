@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Project;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -67,6 +68,9 @@ class Show extends Component
             Toaster::success('Thanks for your vote!');
         }
 
+        // Clear project cache
+        Cache::forget('project_show_' . $this->project->id);
+
         $this->project->refresh();
     }
 
@@ -98,6 +102,9 @@ class Show extends Component
             // Update average rating
             $this->updateAverageRating();
 
+            // Clear project cache
+            Cache::forget('project_show_' . $this->project->id);
+
             Toaster::success('Thank you for your review!');
 
             // Reset form
@@ -125,6 +132,9 @@ class Show extends Component
         $review->delete();
         $this->updateAverageRating();
 
+        // Clear project cache
+        Cache::forget('project_show_' . $this->project->id);
+
         Toaster::info('Your review has been deleted.');
         $this->project->refresh();
     }
@@ -143,13 +153,19 @@ class Show extends Component
     #[Layout('layouts.guest')]
     public function render()
     {
-        $reviews = $this->project->comments()
-            ->with('user')
-            ->latest()
-            ->get();
+        $cacheKey = 'project_show_' . $this->project->id;
 
-        $hasVoted = Auth::check() && $this->project->hasVotedBy(Auth::user());
-        $hasReviewed = Auth::check() && $this->project->hasReviewedBy(Auth::user());
+        [$reviews, $hasVoted, $hasReviewed] = Cache::remember($cacheKey, 300, function () { // Cache for 5 minutes
+            $reviews = $this->project->comments()
+                ->with('user')
+                ->latest()
+                ->get();
+
+            $hasVoted = Auth::check() && $this->project->hasVotedBy(Auth::user());
+            $hasReviewed = Auth::check() && $this->project->hasReviewedBy(Auth::user());
+
+            return [$reviews, $hasVoted, $hasReviewed];
+        });
 
         return view('livewire.pages.projects.show', [
             'reviews' => $reviews,
