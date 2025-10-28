@@ -33,7 +33,7 @@ class EventsPage extends Component
                     ->orWhere('description', 'like', '%'.$this->search.'%');
             }))
             ->orderBy('date', 'desc')
-            ->paginate(5);
+            ->simplePaginate(5);
 
         return view('livewire.pages.events-page', [
             'events' => $events,

@@ -31,7 +31,7 @@ class ArticlesPage extends Component
                 });
             })
             ->orderBy('published_at', 'desc')
-            ->paginate(9);
+            ->simplePaginate(9);
 
         return view('livewire.pages.articles-page', [
             'articles' => $articles,

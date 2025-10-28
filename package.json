@@ -17,6 +17,7 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
+        "gsap": "^3.13.0",
         "prismjs": "^1.30.0"
     }
 }
