@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('project_reviews', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
-            $table->integer('rating')->unsigned(); // 1 à 5
+            $table->morphs('commentable');
+            $table->unsignedTinyInteger('rating');
             $table->text('comment')->nullable();
             $table->timestamps();
 
-            // Un utilisateur ne peut laisser qu'un seul avis par projet
-            $table->unique(['user_id', 'project_id']);
+            // Allow users to add multiple comments; no unique constraint needed
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('project_reviews');
+        Schema::dropIfExists('comments');
     }
 };

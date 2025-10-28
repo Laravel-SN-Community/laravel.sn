@@ -7,7 +7,6 @@ use App\Models\Project;
 use App\Models\ProjectReview;
 use App\Models\ProjectVote;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;

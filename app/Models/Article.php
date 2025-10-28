@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Str;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\MediaLibrary\HasMedia;
@@ -36,6 +37,22 @@ class Article extends Model implements HasMedia, ViewableContract
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Polymorphic comments for the article.
+     */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
+     * Polymorphic votes for the article.
+     */
+    public function votes(): MorphMany
+    {
+        return $this->morphMany(Vote::class, 'votable');
     }
 
     /**

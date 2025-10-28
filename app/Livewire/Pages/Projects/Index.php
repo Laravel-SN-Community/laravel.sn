@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Pages\Projects;
 
-use App\Enums\ProjectStatus;
 use App\Models\Project;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
