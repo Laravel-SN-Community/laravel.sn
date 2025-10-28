@@ -210,9 +210,9 @@ Parfait pour les développeurs qui veulent un blog simple mais puissant!",
         $this->command->info('✅ Votes et avis ajoutés!');
         $this->command->info('');
         $this->command->info('Utilisateurs de test créés:');
-        $this->command->info("- Admin: admin@laravel.sn / password");
-        $this->command->info("- User 1: john@laravel.sn / password");
-        $this->command->info("- User 2: jane@laravel.sn / password");
-        $this->command->info("- User 3: bob@laravel.sn / password");
+        $this->command->info('- Admin: admin@laravel.sn / password');
+        $this->command->info('- User 1: john@laravel.sn / password');
+        $this->command->info('- User 2: jane@laravel.sn / password');
+        $this->command->info('- User 3: bob@laravel.sn / password');
     }
 }

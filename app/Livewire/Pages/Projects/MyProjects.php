@@ -15,19 +15,25 @@ use Masmerise\Toaster\Toaster;
 
 class MyProjects extends Component
 {
-    use WithPagination;
     use WithFileUploads;
+    use WithPagination;
 
     // Modal state
     public bool $showModal = false;
 
     // Form fields
     public string $title = '';
+
     public string $description = '';
+
     public string $github_url = '';
+
     public string $demo_url = '';
+
     public array $screenshots = [];
+
     public ?int $category_id = null;
+
     public string $new_category_name = '';
 
     public function rules(): array
@@ -64,7 +70,7 @@ class MyProjects extends Component
         // Handle category: create new if name provided, otherwise use selected
         $categoryId = $this->category_id;
 
-        if (!empty($this->new_category_name)) {
+        if (! empty($this->new_category_name)) {
             // Check if category already exists
             $category = Category::firstOrCreate(
                 ['name' => $this->new_category_name],
@@ -106,6 +112,7 @@ class MyProjects extends Component
 
         if ($project->user_id !== Auth::id()) {
             Toaster::error('Vous ne pouvez supprimer que vos propres projets.');
+
             return;
         }
 
