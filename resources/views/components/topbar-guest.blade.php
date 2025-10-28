@@ -1,4 +1,4 @@
-<header class="bg-white shadow-xs sticky top-0 z-10">
+<header class="bg-white shadow-xs sticky top-0 z-40">
     <div class="flex h-16 items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ open: false }"
         @keydown.window.escape="open = false; document.body.style.overflow = 'auto';">
         <a href="{{ route('welcome') }}" wire:navigate>
@@ -62,7 +62,7 @@
                     <div x-show="open" x-transition:enter="transition ease-out duration-300"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0" class="fixed inset-0 z-10 bg-black/40 backdrop-blur-sm"
+                        x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
                         @click="open = false; document.body.style.overflow = 'auto';" style="display: none"></div>
 
                     <!-- SLIDE PANEL -->
@@ -70,7 +70,7 @@
                         x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                         x-transition:leave="transform transition ease-in-out duration-300"
                         x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
-                        class="fixed top-0 left-0 h-full w-72 bg-[#f8fafc] shadow-xl z-10" style="display: none">
+                        class="fixed top-0 left-0 h-full w-72 bg-[#f8fafc] shadow-xl z-50" style="display: none">
 
                         <div class="flex items-center justify-between p-4 border-b">
                             <!-- App Logo -->
