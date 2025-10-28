@@ -1,5 +1,6 @@
-import './bootstrap';
-import '../../vendor/masmerise/livewire-toaster/resources/js';
+import "./bootstrap";
+import "../../vendor/masmerise/livewire-toaster/resources/js";
+import { gsap } from "gsap";
 
 document.addEventListener("livewire:navigated", function () {
     // Banner text slider
@@ -20,12 +21,12 @@ document.addEventListener("livewire:navigated", function () {
         items = gsap.utils.toArray(items);
         config = config || {};
         let tl = gsap.timeline({
-            repeat: config.repeat,
-            paused: config.paused,
-            defaults: { ease: "none" },
-            onReverseComplete: () =>
-                tl.totalTime(tl.rawTime() + tl.duration() * 100),
-        }),
+                repeat: config.repeat,
+                paused: config.paused,
+                defaults: { ease: "none" },
+                onReverseComplete: () =>
+                    tl.totalTime(tl.rawTime() + tl.duration() * 100),
+            }),
             length = items.length,
             startX = items[0].offsetLeft,
             times = [],
@@ -43,8 +44,8 @@ document.addEventListener("livewire:navigated", function () {
                     xPercents[i] = snap(
                         (parseFloat(gsap.getProperty(el, "x", "px")) /
                             widths[i]) *
-                        100 +
-                        gsap.getProperty(el, "xPercent")
+                            100 +
+                            gsap.getProperty(el, "xPercent")
                     );
                 }),
             getTotalWidth = () =>
@@ -52,7 +53,7 @@ document.addEventListener("livewire:navigated", function () {
                 (xPercents[length - 1] / 100) * widths[length - 1] -
                 startX +
                 items[length - 1].offsetWidth *
-                gsap.getProperty(items[length - 1], "scaleX") +
+                    gsap.getProperty(items[length - 1], "scaleX") +
                 (parseFloat(config.paddingRight) || 0),
             totalWidth,
             curX,
@@ -86,7 +87,7 @@ document.addEventListener("livewire:navigated", function () {
                     {
                         xPercent: snap(
                             ((curX - distanceToLoop + totalWidth) / widths[i]) *
-                            100
+                                100
                         ),
                     },
                     {
@@ -140,7 +141,7 @@ document.addEventListener("livewire:navigated", function () {
                     tl.progress(
                         wrap(
                             startProgress +
-                            (draggable.startX - draggable.x) * ratio
+                                (draggable.startX - draggable.x) * ratio
                         )
                     ),
                 syncIndex = () => tl.updateIndex();
@@ -181,4 +182,4 @@ document.addEventListener("livewire:navigated", function () {
 
         return tl;
     }
-})
+});

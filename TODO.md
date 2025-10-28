@@ -1,7 +1,8 @@
-# TODO: Add Featured Projects Preview on Landing Page
+# TODO: Refactor Project Creation to Use Filament Components
 
 ## Tasks
 
--   [ ] Update WelcomePage.php: Add logic to fetch up to 4 approved projects ordered by votes.
--   [ ] Update welcome.blade.php: Add a section to display featured projects with previews.
--   [ ] Style the project preview cards to match the landing page design.
+-   [x] Add `form()` method to `app/Livewire/Pages/Projects/Create.php` with Filament components for title, slug, category, github_url, demo_url, screenshots, description.
+-   [x] Update `submit()` method in `Create.php` to include `category_id` in Project creation.
+-   [x] Test the form submission and ensure media uploads work properly.
+-   [x] Verify the form renders correctly in the modal.

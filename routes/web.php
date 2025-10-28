@@ -7,7 +7,7 @@ use App\Livewire\Pages\DashboardPage;
 use App\Livewire\Pages\Events\Show as ShowEvent;
 use App\Livewire\Pages\EventsPage;
 use App\Livewire\Pages\Projects\Index as ProjectsIndex;
-use App\Livewire\Pages\Projects\MyProjects;
+use App\Livewire\Pages\Projects\Create;
 use App\Livewire\Pages\Projects\Show as ShowProject;
 
 use App\Livewire\Pages\WelcomePage;
@@ -37,7 +37,7 @@ Route::middleware([
     Route::get('/dashboard', DashboardPage::class)->name('dashboard');
 
     // Community Projects (authenticated routes - BEFORE dynamic route)
-    Route::get('/my-projects', MyProjects::class)->name('my-projects');
+    Route::get('/my-projects', Create::class)->name('my-projects');
 });
 
 // Community Projects (dynamic route - MUST BE LAST)
