@@ -89,13 +89,8 @@
             <ul role="list" class="space-y-1">
                 {{-- Panel Admin Filament --}}
                 <li>
-                    @php
-                        $manifestExists = file_exists(public_path('build/manifest.json'));
-                        $adminHref = $manifestExists ? url('/admin') : url('/admin/test-warm');
-                    @endphp
-
                     <a
-                        href="{{ $adminHref }}"
+                        href="/admin"
                         class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200"
                     >
                         <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 group-hover:bg-red-100 transition-all duration-200">
@@ -105,11 +100,6 @@
                             </svg>
                         </div>
                         <span class="flex-1">{{ __('Panel Admin') }}</span>
-                        @unless($manifestExists)
-                            <span class="ml-2 inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800">
-                                {{ __('Préparation') }}
-                            </span>
-                        @endunless
                         <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>

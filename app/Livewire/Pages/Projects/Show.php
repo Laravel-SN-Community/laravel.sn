@@ -3,11 +3,11 @@
 namespace App\Livewire\Pages\Projects;
 
 use App\Enums\ProjectStatus;
-use App\Models\Comment;
 use App\Models\Project;
-use App\Models\Vote;
+use App\Models\ProjectReview;
+use App\Models\ProjectVote;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -17,8 +17,6 @@ class Show extends Component
     public Project $project;
 
     public int $rating = 0;
-
-    public string $title = '';
 
     public string $comment = '';
 
@@ -33,16 +31,8 @@ class Show extends Component
 
         $this->project = $project;
 
-        // Record unique view for this project but throttle recordings to avoid
-        // a DB write on every single page hit. Use cooldown to reduce writes.
-        // See vendor cyrildewit/eloquent-viewable documentation for cooldown usage.
-        try {
-            views($project)->cooldown(now()->addMinutes(30))->record();
-        } catch (\Throwable $e) {
-            // If view recording fails for any reason, swallow the exception so
-            // it doesn't block page rendering. We'll still show the page.
-            report($e);
-        }
+        // Record unique view for this project
+        views($project)->record();
     }
 
     public function toggleVote(): void
@@ -55,9 +45,8 @@ class Show extends Component
         }
 
         $userId = Auth::id();
-        $existingVote = Vote::where('user_id', $userId)
-            ->where('votable_type', Project::class)
-            ->where('votable_id', $this->project->id)
+        $existingVote = ProjectVote::where('user_id', $userId)
+            ->where('project_id', $this->project->id)
             ->first();
 
         if ($existingVote) {
@@ -67,17 +56,13 @@ class Show extends Component
             Toaster::info('Vote removed.');
         } else {
             // Add vote
-            Vote::create([
+            ProjectVote::create([
                 'user_id' => $userId,
-                'votable_type' => Project::class,
-                'votable_id' => $this->project->id,
+                'project_id' => $this->project->id,
             ]);
             $this->project->increment('votes_count');
             Toaster::success('Thanks for your vote!');
         }
-
-        // Clear project cache
-        Cache::forget('project_show_' . $this->project->id);
 
         $this->project->refresh();
     }
@@ -92,17 +77,14 @@ class Show extends Component
         }
 
         $this->validate([
-            'title' => 'required|string|max:255',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|max:1000',
         ]);
 
         try {
-            Comment::create([
+            ProjectReview::create([
                 'user_id' => Auth::id(),
-                'commentable_type' => Project::class,
-                'commentable_id' => $this->project->id,
-                'title' => $this->title,
+                'project_id' => $this->project->id,
                 'rating' => $this->rating,
                 'comment' => $this->comment,
             ]);
@@ -110,13 +92,9 @@ class Show extends Component
             // Update average rating
             $this->updateAverageRating();
 
-            // Clear project cache
-            Cache::forget('project_show_' . $this->project->id);
-
             Toaster::success('Thank you for your review!');
 
             // Reset form
-            $this->title = '';
             $this->rating = 0;
             $this->comment = '';
             $this->showReviewForm = false;
@@ -129,7 +107,7 @@ class Show extends Component
 
     public function deleteReview(int $reviewId): void
     {
-        $review = Comment::findOrFail($reviewId);
+        $review = ProjectReview::findOrFail($reviewId);
 
         if ($review->user_id !== Auth::id()) {
             Toaster::error('You can only delete your own reviews.');
@@ -140,17 +118,13 @@ class Show extends Component
         $review->delete();
         $this->updateAverageRating();
 
-        // Clear project cache
-        Cache::forget('project_show_' . $this->project->id);
-
         Toaster::info('Your review has been deleted.');
         $this->project->refresh();
     }
 
     private function updateAverageRating(): void
     {
-        $averageRating = Comment::where('commentable_type', Project::class)
-            ->where('commentable_id', $this->project->id)
+        $averageRating = ProjectReview::where('project_id', $this->project->id)
             ->avg('rating');
 
         $this->project->update([
@@ -161,33 +135,18 @@ class Show extends Component
     #[Layout('layouts.guest')]
     public function render()
     {
-        $cacheKey = 'project_show_' . $this->project->id;
-        [$reviews, $hasVoted, $hasReviewed, $viewsCount] = Cache::remember($cacheKey, 300, function () { // Cache for 5 minutes
-            $reviews = $this->project->comments()
-                ->with('user')
-                ->latest()
-                ->get();
+        $reviews = $this->project->reviews()
+            ->with('user')
+            ->latest()
+            ->get();
 
-            $hasVoted = Auth::check() && $this->project->hasVotedBy(Auth::user());
-            $hasReviewed = Auth::check() && $this->project->hasReviewedBy(Auth::user());
-
-            // Compute unique views count and cache it along with other data to
-            // avoid running this query directly in the Blade template.
-            $viewsCount = 0;
-            try {
-                $viewsCount = views($this->project)->unique()->count();
-            } catch (\Throwable $e) {
-                report($e);
-            }
-
-            return [$reviews, $hasVoted, $hasReviewed, $viewsCount];
-        });
+        $hasVoted = Auth::check() && $this->project->hasVotedBy(Auth::user());
+        $hasReviewed = Auth::check() && $this->project->hasReviewedBy(Auth::user());
 
         return view('livewire.pages.projects.show', [
             'reviews' => $reviews,
             'hasVoted' => $hasVoted,
             'hasReviewed' => $hasReviewed,
-            'viewsCount' => $viewsCount,
         ])->title($this->project->title.' - Community Projects');
     }
 }

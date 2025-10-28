@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\MediaLibrary\HasMedia;
@@ -60,19 +60,19 @@ class Project extends Model implements HasMedia, ViewableContract
     }
 
     /**
-     * Polymorphic votes for the project.
+     * Get the votes for the project.
      */
-    public function votes(): MorphMany
+    public function votes(): HasMany
     {
-        return $this->morphMany(Vote::class, 'votable');
+        return $this->hasMany(ProjectVote::class);
     }
 
     /**
-     * Polymorphic comments for the project.
+     * Get the reviews for the project.
      */
-    public function comments(): MorphMany
+    public function reviews(): HasMany
     {
-        return $this->morphMany(Comment::class, 'commentable');
+        return $this->hasMany(ProjectReview::class);
     }
 
     /**
@@ -169,6 +169,6 @@ class Project extends Model implements HasMedia, ViewableContract
             return false;
         }
 
-        return $this->comments()->where('user_id', $user->id)->exists();
+        return $this->reviews()->where('user_id', $user->id)->exists();
     }
 }

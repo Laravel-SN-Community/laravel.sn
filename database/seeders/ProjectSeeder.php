@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Enums\ProjectStatus;
 use App\Enums\UserRole;
-use App\Models\Comment;
 use App\Models\Project;
-use App\Models\Vote;
+use App\Models\ProjectReview;
+use App\Models\ProjectVote;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -160,53 +160,48 @@ Parfait pour les développeurs qui veulent un blog simple mais puissant!",
         ]);
 
         // Add votes for project 1
-        Vote::create(['user_id' => $user2->id, 'votable_type' => Project::class, 'votable_id' => $project1->id]);
-        Vote::create(['user_id' => $user3->id, 'votable_type' => Project::class, 'votable_id' => $project1->id]);
-        Vote::create(['user_id' => $admin->id, 'votable_type' => Project::class, 'votable_id' => $project1->id]);
+        ProjectVote::create(['user_id' => $user2->id, 'project_id' => $project1->id]);
+        ProjectVote::create(['user_id' => $user3->id, 'project_id' => $project1->id]);
+        ProjectVote::create(['user_id' => $admin->id, 'project_id' => $project1->id]);
 
         // Add votes for project 2
-        Vote::create(['user_id' => $user1->id, 'votable_type' => Project::class, 'votable_id' => $project2->id]);
-        Vote::create(['user_id' => $user3->id, 'votable_type' => Project::class, 'votable_id' => $project2->id]);
-        Vote::create(['user_id' => $admin->id, 'votable_type' => Project::class, 'votable_id' => $project2->id]);
+        ProjectVote::create(['user_id' => $user1->id, 'project_id' => $project2->id]);
+        ProjectVote::create(['user_id' => $user3->id, 'project_id' => $project2->id]);
+        ProjectVote::create(['user_id' => $admin->id, 'project_id' => $project2->id]);
 
-        // Add comments for project 1
-        Comment::create([
+        // Add reviews for project 1
+        ProjectReview::create([
             'user_id' => $user2->id,
-            'commentable_type' => Project::class,
-            'commentable_id' => $project1->id,
+            'project_id' => $project1->id,
             'rating' => 5,
             'comment' => 'Excellent projet! Le code est très bien structuré et la documentation est claire. Je l\'utilise pour mon propre site e-commerce.',
         ]);
 
-        Comment::create([
+        ProjectReview::create([
             'user_id' => $user3->id,
-            'commentable_type' => Project::class,
-            'commentable_id' => $project1->id,
+            'project_id' => $project1->id,
             'rating' => 4,
             'comment' => 'Très bon projet, facile à installer et à personnaliser. Quelques petites améliorations à apporter sur l\'interface mobile.',
         ]);
 
-        // Add comments for project 2
-        Comment::create([
+        // Add reviews for project 2
+        ProjectReview::create([
             'user_id' => $user1->id,
-            'commentable_type' => Project::class,
-            'commentable_id' => $project2->id,
+            'project_id' => $project2->id,
             'rating' => 5,
             'comment' => 'Le meilleur CMS Laravel que j\'ai utilisé! L\'éditeur Markdown est génial et l\'admin Filament est très intuitive.',
         ]);
 
-        Comment::create([
+        ProjectReview::create([
             'user_id' => $user3->id,
-            'commentable_type' => Project::class,
-            'commentable_id' => $project2->id,
+            'project_id' => $project2->id,
             'rating' => 5,
             'comment' => 'Projet de qualité professionnelle. Parfait pour démarrer un blog rapidement. Bravo!',
         ]);
 
-        Comment::create([
+        ProjectReview::create([
             'user_id' => $admin->id,
-            'commentable_type' => Project::class,
-            'commentable_id' => $project2->id,
+            'project_id' => $project2->id,
             'rating' => 4,
             'comment' => 'Très bonne base pour un blog. Le système de catégories et de tags est bien pensé.',
         ]);
@@ -215,9 +210,9 @@ Parfait pour les développeurs qui veulent un blog simple mais puissant!",
         $this->command->info('✅ Votes et avis ajoutés!');
         $this->command->info('');
         $this->command->info('Utilisateurs de test créés:');
-        $this->command->info('- Admin: admin@laravel.sn / password');
-        $this->command->info('- User 1: john@laravel.sn / password');
-        $this->command->info('- User 2: jane@laravel.sn / password');
-        $this->command->info('- User 3: bob@laravel.sn / password');
+        $this->command->info("- Admin: admin@laravel.sn / password");
+        $this->command->info("- User 1: john@laravel.sn / password");
+        $this->command->info("- User 2: jane@laravel.sn / password");
+        $this->command->info("- User 3: bob@laravel.sn / password");
     }
 }

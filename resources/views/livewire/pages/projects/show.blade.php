@@ -52,7 +52,7 @@
                 <p class="text-sm text-gray-600">Avis</p>
             </div>
             <div class="bg-white border border-gray-200 rounded-xl p-4 text-center">
-                    <div class="text-2xl font-bold text-gray-900 mb-2">{{ $viewsCount ?? 0 }}</div>
+                <div class="text-2xl font-bold text-gray-900 mb-2">{{ views($project)->unique()->count() }}</div>
                 <p class="text-sm text-gray-600">Vues</p>
             </div>
         </div>
@@ -118,17 +118,6 @@
                     {{-- Review Form --}}
                     <form wire:submit="submitReview" class="mb-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
                         <h3 class="text-xl font-bold text-gray-900 mb-6">Votre avis</h3>
-
-                        {{-- Title --}}
-                        <div class="mb-6">
-                            <label for="title" class="block text-sm font-semibold text-gray-700 mb-2">
-                                Titre de votre avis
-                            </label>
-                            <input id="title" wire:model="title" type="text"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                                placeholder="Donnez un titre à votre avis...">
-                            @error('title') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
-                        </div>
 
                         {{-- Rating Stars --}}
                         <div class="mb-6">
@@ -208,11 +197,6 @@
                                 <span class="{{ $i <= $review->rating ? 'text-yellow-400' : 'text-gray-300' }}">⭐</span>
                             @endfor
                         </div>
-
-                        {{-- Title --}}
-                        @if($review->title)
-                            <h4 class="text-lg font-semibold text-gray-900 mb-2">{{ $review->title }}</h4>
-                        @endif
 
                         {{-- Comment --}}
                         @if($review->comment)

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Projects\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
 use Filament\Infolists\Components\TextEntry;
@@ -66,9 +67,7 @@ class ProjectInfolist
                             ->suffix(' / 5'),
                         TextEntry::make('reviews.count')
                             ->label('Total Reviews')
-                            // Prefer the precomputed reviews_count when available to avoid
-                            // executing a query per record when rendering the infolist.
-                            ->state(fn ($record) => $record->reviews_count ?? $record->reviews()->count()),
+                            ->state(fn ($record) => $record->reviews()->count()),
                     ]),
 
                 Section::make('Moderation')
