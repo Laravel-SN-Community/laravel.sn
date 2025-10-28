@@ -13,9 +13,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/filament.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+        @filamentStyles
         @livewireStyles
     </head>
     <body class="h-full bg-gray-50">
@@ -45,7 +46,7 @@
             </div>
             
             {{-- Future: Notification Components --}}
-            {{-- <livewire:notifications/> --}}
+            @livewire('notifications') 
             {{-- <livewire:database-notifications/> --}}
         </div>
         

@@ -6,6 +6,7 @@ use App\Livewire\Pages\ArticlesPage;
 use App\Livewire\Pages\DashboardPage;
 use App\Livewire\Pages\Events\Show as ShowEvent;
 use App\Livewire\Pages\EventsPage;
+use App\Livewire\Pages\Projects\Index as ProjectsIndex;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,5 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', DashboardPage::class)->name('dashboard');
+    Route::get('/projects', ProjectsIndex::class)->name('projects.index');
 });
