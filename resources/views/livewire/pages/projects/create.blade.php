@@ -28,7 +28,7 @@
                                 </span>
                                 <span class="flex items-center gap-1">
                                     <i class="ri-chat-1-line w-4 h-4 text-blue-500"></i>
-                                    {{ $project->reviews_count }}
+                                    {{ $project->comments_count }}
                                 </span>
                                 <span>{{ $project->created_at->diffForHumans() }}</span>
                             </div>

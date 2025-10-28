@@ -3,9 +3,9 @@
 namespace App\Livewire\Pages\Projects;
 
 use App\Enums\ProjectStatus;
+use App\Models\Comment;
 use App\Models\Project;
-use App\Models\ProjectReview;
-use App\Models\ProjectVote;
+use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -16,6 +16,8 @@ class Show extends Component
     public Project $project;
 
     public int $rating = 0;
+
+    public string $title = '';
 
     public string $comment = '';
 
@@ -44,8 +46,9 @@ class Show extends Component
         }
 
         $userId = Auth::id();
-        $existingVote = ProjectVote::where('user_id', $userId)
-            ->where('project_id', $this->project->id)
+        $existingVote = Vote::where('user_id', $userId)
+            ->where('votable_type', Project::class)
+            ->where('votable_id', $this->project->id)
             ->first();
 
         if ($existingVote) {
@@ -55,9 +58,10 @@ class Show extends Component
             Toaster::info('Vote removed.');
         } else {
             // Add vote
-            ProjectVote::create([
+            Vote::create([
                 'user_id' => $userId,
-                'project_id' => $this->project->id,
+                'votable_type' => Project::class,
+                'votable_id' => $this->project->id,
             ]);
             $this->project->increment('votes_count');
             Toaster::success('Thanks for your vote!');
@@ -76,14 +80,17 @@ class Show extends Component
         }
 
         $this->validate([
+            'title' => 'required|string|max:255',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|max:1000',
         ]);
 
         try {
-            ProjectReview::create([
+            Comment::create([
                 'user_id' => Auth::id(),
-                'project_id' => $this->project->id,
+                'commentable_type' => Project::class,
+                'commentable_id' => $this->project->id,
+                'title' => $this->title,
                 'rating' => $this->rating,
                 'comment' => $this->comment,
             ]);
@@ -94,6 +101,7 @@ class Show extends Component
             Toaster::success('Thank you for your review!');
 
             // Reset form
+            $this->title = '';
             $this->rating = 0;
             $this->comment = '';
             $this->showReviewForm = false;
@@ -106,7 +114,7 @@ class Show extends Component
 
     public function deleteReview(int $reviewId): void
     {
-        $review = ProjectReview::findOrFail($reviewId);
+        $review = Comment::findOrFail($reviewId);
 
         if ($review->user_id !== Auth::id()) {
             Toaster::error('You can only delete your own reviews.');
@@ -123,7 +131,8 @@ class Show extends Component
 
     private function updateAverageRating(): void
     {
-        $averageRating = ProjectReview::where('project_id', $this->project->id)
+        $averageRating = Comment::where('commentable_type', Project::class)
+            ->where('commentable_id', $this->project->id)
             ->avg('rating');
 
         $this->project->update([
@@ -134,7 +143,7 @@ class Show extends Component
     #[Layout('layouts.guest')]
     public function render()
     {
-        $reviews = $this->project->reviews()
+        $reviews = $this->project->comments()
             ->with('user')
             ->latest()
             ->get();

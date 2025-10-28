@@ -119,6 +119,17 @@
                     <form wire:submit="submitReview" class="mb-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
                         <h3 class="text-xl font-bold text-gray-900 mb-6">Votre avis</h3>
 
+                        {{-- Title --}}
+                        <div class="mb-6">
+                            <label for="title" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Titre de votre avis
+                            </label>
+                            <input id="title" wire:model="title" type="text"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                                placeholder="Donnez un titre à votre avis...">
+                            @error('title') <p class="mt-2 text-sm text-red-600">{{ $message }}</p> @enderror
+                        </div>
+
                         {{-- Rating Stars --}}
                         <div class="mb-6">
                             <label class="block text-sm font-semibold text-gray-700 mb-3">Évaluation</label>
@@ -197,6 +208,11 @@
                                 <span class="{{ $i <= $review->rating ? 'text-yellow-400' : 'text-gray-300' }}">⭐</span>
                             @endfor
                         </div>
+
+                        {{-- Title --}}
+                        @if($review->title)
+                            <h4 class="text-lg font-semibold text-gray-900 mb-2">{{ $review->title }}</h4>
+                        @endif
 
                         {{-- Comment --}}
                         @if($review->comment)

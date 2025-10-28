@@ -34,7 +34,7 @@ class Index extends Component
         $projects = Project::query()
             ->select(['id', 'user_id', 'title', 'slug', 'description', 'votes_count', 'average_rating', 'approved_at', 'created_at'])
             ->with(['user:id,name'])
-            ->withCount(['votes', 'reviews'])
+            ->withCount(['votes', 'comments'])
             ->approved()
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {

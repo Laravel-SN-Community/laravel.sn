@@ -13,6 +13,8 @@ class Vote extends Model
 
     protected $fillable = [
         'user_id',
+        'votable_type',
+        'votable_id',
     ];
 
     public function user(): BelongsTo

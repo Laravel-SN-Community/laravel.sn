@@ -12,15 +12,14 @@ use App\Livewire\Pages\Projects\Show as ShowProject;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
-    Route::get('/', WelcomePage::class)->name('welcome');
-    Route::get('/events', EventsPage::class)->name('events');
-    Route::get('/event/{event}', ShowEvent::class)->name('event.show');
-    Route::get('/articles', ArticlesPage::class)->name('articles');
-    Route::get('/article/{article:slug}', ShowArticle::class)->name('article.show');
-    Route::get('/projects', ProjectsIndex::class)->name('projects.index');
-    Route::get('/projects/{project:slug}', ShowProject::class)->name('projects.show');
-});
+Route::get('/', WelcomePage::class)->name('welcome');
+
+Route::get('/events', EventsPage::class)->name('events');
+Route::get('/event/{event}', ShowEvent::class)->name('event.show');
+Route::get('/articles', ArticlesPage::class)->name('articles');
+Route::get('/article/{article:slug}', ShowArticle::class)->name('article.show');
+Route::get('/projects', ProjectsIndex::class)->name('projects.index');
+Route::get('/projects/{project:slug}', ShowProject::class)->name('projects.show');
 
 // OAuth routes
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])
@@ -35,5 +34,5 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', DashboardPage::class)->name('dashboard');
 
-    Route::get('/my-projects', MyProjects::class)->name('my-projects');
+    Route::get('/my-projects', Create::class)->name('my-projects');
 });

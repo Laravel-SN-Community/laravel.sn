@@ -7,7 +7,6 @@
 @source '../../vendor/laravel/jetstream/**/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../../vendor/masmerise/livewire-toaster/resources/views/*.blade.php';
-@import "@filamentphp/core/resources/css/index.css";
 
 @theme {
     --font-sans: "Playfair Display", Figtree, ui-sans-serif, system-ui,
