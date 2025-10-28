@@ -39,10 +39,6 @@
 
 <body>
     <div class="min-h-screen w-full bg-[#f8fafc]">
-        {{-- Top banner --}}
-        @if ($ongoingEvent)
-            <x-top-banner :ongoingEvent="$ongoingEvent" />
-        @endif
         
         <div class="font-sans text-gray-900 antialiased">
             <x-topbar-guest />
