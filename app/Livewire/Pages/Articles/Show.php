@@ -20,13 +20,26 @@ class Show extends Component
 
         $this->article = $article;
 
-        // Record unique view for this article
-        views($article)->record();
+        // Record unique view but throttle for fewer DB writes.
+        try {
+            views($article)->cooldown(now()->addMinutes(30))->record();
+        } catch (\Throwable $e) {
+            report($e);
+        }
     }
 
     #[Layout('layouts.guest')]
     public function render()
     {
-        return view('livewire.pages.articles.show');
+        $viewsCount = 0;
+        try {
+            $viewsCount = views($this->article)->unique()->count();
+        } catch (\Throwable $e) {
+            report($e);
+        }
+
+        return view('livewire.pages.articles.show', [
+            'viewsCount' => $viewsCount,
+        ]);
     }
 }

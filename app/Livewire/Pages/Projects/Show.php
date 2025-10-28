@@ -33,8 +33,16 @@ class Show extends Component
 
         $this->project = $project;
 
-        // Record unique view for this project
-        views($project)->record();
+        // Record unique view for this project but throttle recordings to avoid
+        // a DB write on every single page hit. Use cooldown to reduce writes.
+        // See vendor cyrildewit/eloquent-viewable documentation for cooldown usage.
+        try {
+            views($project)->cooldown(now()->addMinutes(30))->record();
+        } catch (\Throwable $e) {
+            // If view recording fails for any reason, swallow the exception so
+            // it doesn't block page rendering. We'll still show the page.
+            report($e);
+        }
     }
 
     public function toggleVote(): void
@@ -154,8 +162,7 @@ class Show extends Component
     public function render()
     {
         $cacheKey = 'project_show_' . $this->project->id;
-
-        [$reviews, $hasVoted, $hasReviewed] = Cache::remember($cacheKey, 300, function () { // Cache for 5 minutes
+        [$reviews, $hasVoted, $hasReviewed, $viewsCount] = Cache::remember($cacheKey, 300, function () { // Cache for 5 minutes
             $reviews = $this->project->comments()
                 ->with('user')
                 ->latest()
@@ -164,13 +171,23 @@ class Show extends Component
             $hasVoted = Auth::check() && $this->project->hasVotedBy(Auth::user());
             $hasReviewed = Auth::check() && $this->project->hasReviewedBy(Auth::user());
 
-            return [$reviews, $hasVoted, $hasReviewed];
+            // Compute unique views count and cache it along with other data to
+            // avoid running this query directly in the Blade template.
+            $viewsCount = 0;
+            try {
+                $viewsCount = views($this->project)->unique()->count();
+            } catch (\Throwable $e) {
+                report($e);
+            }
+
+            return [$reviews, $hasVoted, $hasReviewed, $viewsCount];
         });
 
         return view('livewire.pages.projects.show', [
             'reviews' => $reviews,
             'hasVoted' => $hasVoted,
             'hasReviewed' => $hasReviewed,
+            'viewsCount' => $viewsCount,
         ])->title($this->project->title.' - Community Projects');
     }
 }

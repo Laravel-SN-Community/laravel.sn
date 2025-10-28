@@ -66,7 +66,9 @@ class ProjectInfolist
                             ->suffix(' / 5'),
                         TextEntry::make('reviews.count')
                             ->label('Total Reviews')
-                            ->state(fn ($record) => $record->reviews()->count()),
+                            // Prefer the precomputed reviews_count when available to avoid
+                            // executing a query per record when rendering the infolist.
+                            ->state(fn ($record) => $record->reviews_count ?? $record->reviews()->count()),
                     ]),
 
                 Section::make('Moderation')

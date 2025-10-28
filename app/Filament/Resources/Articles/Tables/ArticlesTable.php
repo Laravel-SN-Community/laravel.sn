@@ -32,7 +32,10 @@ class ArticlesTable
                     ->sortable(),
                 TextColumn::make('views_count')
                     ->label('Unique Views')
-                    ->getStateUsing(fn ($record) => views($record)->unique()->count())
+                    // Prefer precomputed values if available to avoid running a
+                    // query per row. The eloquent-viewable package provides
+                    // scopeWithViewsCount() which can populate `unique_views_count`.
+                    ->getStateUsing(fn ($record) => $record->unique_views_count ?? $record->views_count ?? 0)
                     ->sortable(query: fn ($query, $direction) => $query->orderBy('id', $direction))
                     ->alignEnd(),
                 TextColumn::make('status')

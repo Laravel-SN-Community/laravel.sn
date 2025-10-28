@@ -12,6 +12,22 @@ use App\Livewire\Pages\Projects\Show as ShowProject;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
 
+// Readiness endpoint used by the admin warming page. Returns JSON { ready: bool }
+Route::get('admin/ready', function () {
+    $manifest = public_path('build/manifest.json');
+
+    if (file_exists($manifest)) {
+        return response()->json(['ready' => true, 'message' => 'Assets found']);
+    }
+
+    return response()->json(['ready' => false, 'message' => 'Assets missing: run npm run build'], 200);
+});
+
+// Simple test route to view the warming page directly
+Route::get('admin/test-warm', function () {
+    return response()->view('admin.warming');
+});
+
 Route::get('/', WelcomePage::class)->name('welcome');
 
 Route::get('/events', EventsPage::class)->name('events');

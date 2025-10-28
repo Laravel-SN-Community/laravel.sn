@@ -150,24 +150,12 @@
                             <label class="block text-sm font-medium text-gray-700">
                                 Project Screenshots
                             </label>
-                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-red-400 transition-colors">
-                                <div class="space-y-4">
-                                    <div class="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="text-lg font-medium text-gray-900">Drag & Drop your files or Browse</p>
-                                        <p class="text-sm text-gray-500">Files</p>
-                                    </div>
-                                    <button type="button" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
-                                        Browse
-                                    </button>
-                                </div>
+                            <div wire:loading.attr="disabled" wire:target="screenshots">
+                                <input type="file" wire:model="screenshots" multiple accept="image/*" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors" onchange="previewImages(this)">
                             </div>
+                            <div id="image-preview" class="mt-2 grid grid-cols-2 md:grid-cols-3 gap-2"></div>
                             <p class="text-sm text-gray-500">Upload up to 5 screenshots showcasing your project (max 5MB each)</p>
-                            @error('data.screenshots') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+                            @error('screenshots.*') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
                         </div>
 
                         <!-- Project Description -->
@@ -199,6 +187,43 @@
 
     @push('scripts')
     <script>
+        function previewImages(input) {
+            const preview = document.getElementById('image-preview');
+            preview.innerHTML = '';
+
+            if (input.files) {
+                Array.from(input.files).forEach((file, index) => {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const div = document.createElement('div');
+                            div.className = 'relative';
+                            div.innerHTML = `
+                                <img src="${e.target.result}" class="w-full h-24 object-cover rounded-lg border">
+                                <button type="button" onclick="removeImage(${index})" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600">
+                                    ×
+                                </button>
+                            `;
+                            preview.appendChild(div);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        }
+
+        function removeImage(index) {
+            const input = document.querySelector('input[type="file"][name="data.screenshots"]');
+            const dt = new DataTransfer();
+            const files = Array.from(input.files);
+
+            files.splice(index, 1);
+            files.forEach(file => dt.items.add(file));
+
+            input.files = dt.files;
+            previewImages(input);
+        }
+
         document.addEventListener('alpine:initializing', () => {
             // Forcer le rechargement des styles Filament dans le modal
             if (window.Livewire) {

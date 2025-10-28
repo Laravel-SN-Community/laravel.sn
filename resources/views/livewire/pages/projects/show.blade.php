@@ -52,7 +52,7 @@
                 <p class="text-sm text-gray-600">Avis</p>
             </div>
             <div class="bg-white border border-gray-200 rounded-xl p-4 text-center">
-                <div class="text-2xl font-bold text-gray-900 mb-2">{{ views($project)->unique()->count() }}</div>
+                    <div class="text-2xl font-bold text-gray-900 mb-2">{{ $viewsCount ?? 0 }}</div>
                 <p class="text-sm text-gray-600">Vues</p>
             </div>
         </div>

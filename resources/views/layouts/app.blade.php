@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Heroicons CSS -->
-    <link href="https://unpkg.com/heroicons@2.0.18/24/outline/style.css" rel="stylesheet">
+    <!-- Heroicons: removed external unpkg stylesheet to avoid blocked MIME requests.
+        Use blade-heroicons SVG components (already installed) or include icons locally if needed. -->
     <link
     href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
     rel="stylesheet"
