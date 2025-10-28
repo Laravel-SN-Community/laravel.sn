@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Events\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -40,6 +41,16 @@ class EventForm
                     ->label('Lien de l\'événement')
                     ->url()
                     ->maxLength(255),
+                SpatieMediaLibraryFileUpload::make('images')
+                    ->collection('events')
+                    ->label('Images de l\'événement')
+                    ->multiple()
+                    ->image()
+                    ->imageEditor()
+                    ->reorderable()
+                    ->maxFiles(10)
+                    ->maxSize(5120)
+                    ->columnSpanFull(),
                 Toggle::make('is_published')
                     ->label('Publié')
                     ->default(true),

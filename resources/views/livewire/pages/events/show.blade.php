@@ -58,6 +58,29 @@
                 </div>
             </article>
 
+            @php($mediaItems = $event->getMedia('events'))
+            @if($mediaItems->isNotEmpty())
+                <!-- Event Gallery -->
+                <div class="mt-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 underline">{{__('Guest (s)')}}</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        @foreach($mediaItems as $media)
+                            <div class="group relative overflow-hidden rounded-xl bg-gray-100 aspect-[4/3]">
+                                <a href="{{ $media->getUrl() }}" target="_blank" class="block w-full h-full">
+                                    <img
+                                        src="{{ $media->getUrl() }}"
+                                        alt="{{ $event->name }} - Image {{ $loop->iteration }}"
+                                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        loading="lazy"
+                                    />
+                                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <!-- Action Buttons -->
             @if($event->rsvp_link || $event->event_link)
                 <div class="mt-8 flex flex-wrap gap-4">
