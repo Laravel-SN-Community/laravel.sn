@@ -72,7 +72,7 @@
                                     </h3>
 
                                     <!-- 2. Project Description -->
-                                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                    <p class="text-sm mb-4">
                                         {{ $project->description }}
                                     </p>
 
@@ -109,7 +109,7 @@
                                     </div>
 
                                     <!-- 6. Project User Name -->
-                                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <div class="flex items-center text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
@@ -145,8 +145,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Aucun projet trouvé</h3>
-                    <p class="text-gray-600 mb-8">
-                        @if($search)
+                    <p class=             @if($search)
                             Aucun projet ne correspond à votre recherche "{{ $search }}".
                         @else
                             Aucun projet n'est actuellement disponible.
