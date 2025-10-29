@@ -5,6 +5,7 @@ namespace App\Livewire\Pages\Projects;
 use App\Enums\ProjectStatus;
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\Technology;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -26,8 +27,8 @@ class Create extends Component implements HasActions, HasSchemas
     public function createAction(): Action
     {
         return Action::make('create')
-            ->label(__('Add a Project'))
-            ->modalHeading(__('Add a new Project'))
+            ->label(__('Share your project'))
+            ->modalHeading(__('Share your project with the community'))
             ->color('danger')
             ->icon(Heroicon::CodeBracket)
             ->modalWidth('xl')
@@ -40,6 +41,15 @@ class Create extends Component implements HasActions, HasSchemas
                     ->label('Description')
                     ->required()
                     ->columnSpanFull(),
+                Select::make('technologies')
+                    ->label('Technologies')
+                    ->options(
+                        Technology::all()->pluck('name', 'id')
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->multiple()
+                    ->required(),
                 Select::make('categories')
                     ->label('Categories')
                     ->options(
@@ -68,6 +78,8 @@ class Create extends Component implements HasActions, HasSchemas
                     'project_link' => $data['project_link'],
                     'status' => ProjectStatus::Approved,
                 ]);
+
+                $project->technologies()->attach($data['technologies']);
 
                 $project->categories()->attach($data['categories']);
             })

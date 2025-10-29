@@ -60,6 +60,17 @@
                             </div>
                         @endif
 
+                        <!-- Technologies -->
+                        @if($project->technologies->isNotEmpty())
+                            <div class="flex items-center gap-2 mt-2">
+                                @foreach($project->technologies as $technology)
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-red-600">
+                                        {{ $technology->name }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
+
                         <!-- Footer with Links and Stats -->
                         <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
                             <!-- Left: GitHub and Project Links -->

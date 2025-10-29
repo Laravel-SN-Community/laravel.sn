@@ -37,6 +37,14 @@ class Project extends Model
     }
 
     /**
+     * Get the technologies for the project.
+     */
+    public function technologies(): BelongsToMany
+    {
+        return $this->belongsToMany(Technology::class);
+    }
+
+    /**
      * Get a truncated description of the project (50 characters).
      */
     protected function shortDescription(): Attribute
