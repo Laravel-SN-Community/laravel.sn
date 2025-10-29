@@ -61,7 +61,6 @@ class Create extends Component implements HasActions, HasSchemas
                     ->required(),
                 TextInput::make('github_link')
                     ->label('Github Link')
-                    ->required()
                     ->maxLength(255),
                 TextInput::make('project_link')
                     ->label('Project Link')
