@@ -18,6 +18,7 @@ class Index extends Component
         $userId = auth()->user()?->id;
 
         $projects = Project::query()
+            ->with('categories')
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->paginate(9);

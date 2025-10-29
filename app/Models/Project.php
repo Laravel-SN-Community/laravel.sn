@@ -3,18 +3,18 @@
 namespace App\Models;
 
 use App\Enums\ProjectStatus;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
-class Project extends Model implements HasMedia
+class Project extends Model
 {
     use HasFactory;
-    use InteractsWithMedia;
 
-    protected $fillable = ['name', 'description', 'github_link', 'project_link', 'status', 'user_id'];
+    protected $fillable = ['name', 'slug', 'description', 'github_link', 'project_link', 'status', 'user_id'];
 
     protected function casts(): array
     {
@@ -26,5 +26,23 @@ class Project extends Model implements HasMedia
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the categories for the project.
+     */
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * Get a truncated description of the project (50 characters).
+     */
+    protected function shortDescription(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => Str::limit($this->description, 50)
+        );
     }
 }

@@ -15,76 +15,86 @@
             </div>
 
             <!-- Projects Masonry Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 @forelse($projects as $project)
-                    <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                        <!-- Project Cover Image -->
-                        <div class="relative h-48 overflow-hidden bg-gray-100">
-                            @if($project->getFirstMediaUrl('covers'))
-                                <img src="{{ $project->getFirstMediaUrl('covers') }}" 
-                                     alt="{{ $project->name }}"
-                                     class="w-full h-full object-cover">
-                            @else
-                                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-red-50 to-green-50">
-                                    <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                    </svg>
-                                </div>
-                            @endif
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-                        </div>
-                        
-                        <!-- Project Content -->
-                        <div class="p-6">
-                            <!-- Status Badge -->
-                            <div class="flex items-center justify-between mb-4">
-                                @if($project->status->value === 'approved')
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        Approved
-                                    </span>
-                                @else
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-                                        </svg>
-                                        Pending
-                                    </span>
-                                @endif
+                    <div class="bg-white rounded-xl border border-gray-200 p-5 hover:border-red-600 transition-colors">
+                        <!-- Header with Icon, Name, and Status -->
+                        <div class="flex items-start justify-between mb-2">
+                            <div class="flex items-center gap-2 flex-1 min-w-0">
+                                <!-- Bookmark Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                                </svg>
+                                  
+                                <!-- Project Name -->
+                                <h3 class="text-base font-semibold text-red-600 truncate">
+                                    {{ $project->name }}
+                                </h3>
                             </div>
+                            
+                            <!-- Status Badge -->
+                            @if($project->status->value === 'approved')
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border border-gray-300 dark:border-gray-600">
+                                    Approved
+                                </span>
+                            @else
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 border border-gray-300 dark:border-gray-600">
+                                    Pending
+                                </span>
+                            @endif
+                        </div>
 
-                            <!-- Project Name -->
-                            <h3 class="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">
-                                {{ $project->name }}
-                            </h3>
+                        <!-- Description -->
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-3 line-clamp-2">
+                            {{ $project->short_description }}
+                        </p>
 
-                            <!-- Project Description -->
-                            <p class="text-gray-600 text-sm line-clamp-4 mb-4">
-                                {{ $project->description }}
-                            </p>
+                        <!-- Categories -->
+                        @if($project->categories->isNotEmpty())
+                            <div class="flex items-center gap-2">
+                                @foreach($project->categories as $category)
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-red-600">
+                                        {{ $category->name }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        @endif
 
-                            <!-- Links -->
-                            <div class="flex gap-3 pt-4 border-t border-gray-200">
+                        <!-- Footer with Links and Stats -->
+                        <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+                            <!-- Left: GitHub and Project Links -->
+                            <div class="flex items-center gap-4">
                                 @if($project->github_link)
                                     <a href="{{ $project->github_link }}" target="_blank" rel="noopener noreferrer"
-                                       class="flex-1 flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-semibold hover:bg-gray-800 transition-colors">
-                                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+                                       class="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                                        <svg class="w-5 h-5 transition-colors duration-200" fill="currentColor" viewBox="0 0 24 24" style="color: #6e7681;"
+                                             onmouseover="this.style.color='#181717';"
+                                             onmouseout="this.style.color='#6e7681';">
+                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.79-.26.79-.58v-2.23c-3.34.72-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.31-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.53-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0Z"/>
                                         </svg>
-                                        GitHub
                                     </a>
                                 @endif
+                                
                                 @if($project->project_link)
                                     <a href="{{ $project->project_link }}" target="_blank" rel="noopener noreferrer"
-                                       class="flex-1 flex items-center justify-center px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                        </svg>
-                                        View
+                                       class="flex items-center gap-1.5 text-xs text-gray-500 hover:text-red-600 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                        </svg>                                      
                                     </a>
                                 @endif
+                            </div>
+                            
+                            <!-- Right: Stats Icon -->
+                            <div class="flex items-center gap-4">
+                                <!-- Star Icon -->
+                                <div class="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
+                                    </svg>
+                                    <span class="text-lg text-gray-500">0</span>
+                                </div>
                             </div>
                         </div>
                     </div>

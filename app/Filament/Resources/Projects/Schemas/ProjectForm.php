@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Projects\Schemas;
 
 use App\Enums\ProjectStatus;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -18,12 +17,6 @@ class ProjectForm
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                SpatieMediaLibraryFileUpload::make('cover')
-                    ->collection('projects')
-                    ->image()
-                    ->imageEditor()
-                    ->maxSize(5120)
-                    ->columnSpanFull(),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),

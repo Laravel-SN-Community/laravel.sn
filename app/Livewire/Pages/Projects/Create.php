@@ -3,15 +3,18 @@
 namespace App\Livewire\Pages\Projects;
 
 use App\Enums\ProjectStatus;
+use App\Models\Category;
 use App\Models\Project;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\MarkdownEditor;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Concerns\InteractsWithSchemas;
 use Filament\Schemas\Contracts\HasSchemas;
+use Filament\Support\Icons\Heroicon;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
@@ -23,7 +26,11 @@ class Create extends Component implements HasActions, HasSchemas
     public function createAction(): Action
     {
         return Action::make('create')
-            ->label('Create')
+            ->label(__('Add a Project'))
+            ->modalHeading(__('Add a new Project'))
+            ->color('danger')
+            ->icon(Heroicon::CodeBracket)
+            ->modalWidth('xl')
             ->schema([
                 TextInput::make('name')
                     ->label('Name')
@@ -33,6 +40,15 @@ class Create extends Component implements HasActions, HasSchemas
                     ->label('Description')
                     ->required()
                     ->columnSpanFull(),
+                Select::make('categories')
+                    ->label('Categories')
+                    ->options(
+                        Category::all()->pluck('name', 'id')
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->multiple()
+                    ->required(),
                 TextInput::make('github_link')
                     ->label('Github Link')
                     ->required()
@@ -41,18 +57,11 @@ class Create extends Component implements HasActions, HasSchemas
                     ->label('Project Link')
                     ->required()
                     ->maxLength(255),
-                SpatieMediaLibraryFileUpload::make('cover')
-                    ->label('Cover Image')
-                    ->collection('projects')
-                    ->required()
-                    ->image()
-                    ->imageEditor()
-                    ->maxSize(5120)
-                    ->columnSpanFull(),
             ])
             ->action(function ($data) {
                 $project = Project::create([
                     'user_id' => auth()->user()->id,
+                    'slug' => Str::slug($data['name']),
                     'name' => $data['name'],
                     'description' => $data['description'],
                     'github_link' => $data['github_link'],
@@ -60,13 +69,9 @@ class Create extends Component implements HasActions, HasSchemas
                     'status' => ProjectStatus::Approved,
                 ]);
 
-                if (isset($data['cover']) && $data['cover']) {
-                    $project->addMedia($data['cover'])
-                        ->toMediaCollection('projects');
-                }
+                $project->categories()->attach($data['categories']);
             })
-            ->successNotificationTitle('Project created successfully')
-            ->icon('heroicon-o-plus');
+            ->successNotificationTitle('Project created successfully');
     }
 
     #[Layout('layouts.app')]
