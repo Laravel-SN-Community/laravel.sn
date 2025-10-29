@@ -58,69 +58,57 @@
                     @endif
                 </a>
             </li>
-            
-            {{-- Future: Analytics Link --}}
-            {{-- <li>
-                <a 
-                    href="#" 
-                    wire:navigate
-                    class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200"
-                    title="{{ __('Analytics') }}"
-                >
-                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 group-hover:bg-red-100 transition-all duration-200">
-                        <svg class="h-5 w-5 shrink-0 text-gray-600 group-hover:text-red-600 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                        </svg>
-                    </div>
-                    <span class="flex-1">{{ __('Analytics') }}</span>
-                </a>
-            </li> --}}
         </ul>
     </li>
 
     {{-- Future: Content Management Section --}}
-    {{-- <li>
-        <div class="mb-3 flex items-center gap-2">
-            <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
-            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                {{ __('Content') }}
-            </span>
-            <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
-        </div>
+    <li>
+            <div class="mb-3 flex items-center gap-2">
+                <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
+                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                    {{ __('Projects') }}
+                </span>
+                <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
+            </div>
         
         <ul role="list" class="space-y-1">
             <li>
                 <a 
-                    href="#" 
+                    href="{{ route('projects.index') }}" 
                     wire:navigate
-                    class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200"
-                    title="{{ __('Posts') }}"
+                    class="{{ request()->route()->getName() == 'projects.index' 
+                        ? 'bg-gradient-to-r from-red-50 to-red-50/50 text-red-700 shadow-sm' 
+                        : 'text-gray-700 hover:bg-gray-50' 
+                    }} group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200"
+                    title="{{ __('Projects') }}"
                 >
-                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 group-hover:bg-red-100 transition-all duration-200">
-                        <svg class="h-5 w-5 shrink-0 text-gray-600 group-hover:text-red-600 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    <div class="{{ request()->route()->getName() == 'projects.index' 
+                        ? 'bg-red-600 shadow-md' 
+                        : 'bg-gray-100 group-hover:bg-red-100' 
+                    }} flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200">
+                        <svg 
+                            class="{{ request()->route()->getName() == 'projects.index' 
+                                ? 'text-white' 
+                                : 'text-gray-600 group-hover:text-red-600' 
+                            }} h-5 w-5 shrink-0 transition-colors duration-200" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="2" 
+                            stroke="currentColor"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                         </svg>
                     </div>
-                    <span class="flex-1">{{ __('Posts') }}</span>
-                </a>
-            </li>
-            <li>
-                <a 
-                    href="#" 
-                    wire:navigate
-                    class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200"
-                    title="{{ __('Media') }}"
-                >
-                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 group-hover:bg-red-100 transition-all duration-200">
-                        <svg class="h-5 w-5 shrink-0 text-gray-600 group-hover:text-red-600 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                    </div>
-                    <span class="flex-1">{{ __('Media') }}</span>
+                        <span class="flex-1">{{ __('Projects') }}</span>
+                    
+                    {{-- Active indicator --}}
+                    @if(request()->route()->getName() == 'projects.index')
+                        <div class="flex h-2 w-2 rounded-full bg-red-600 shadow-sm"></div>
+                    @endif
                 </a>
             </li>
         </ul>
-    </li> --}}
+    </li>
 
     {{-- Future: Settings Section --}}
     {{-- <li>

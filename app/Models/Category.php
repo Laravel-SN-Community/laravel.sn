@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
@@ -18,8 +18,16 @@ class Category extends Model
     /**
      * Get the articles for the category.
      */
-    public function articles(): HasMany
+    public function articles(): BelongsToMany
     {
-        return $this->hasMany(Article::class);
+        return $this->belongsToMany(Article::class);
+    }
+
+    /**
+     * Get the projects for the category.
+     */
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class);
     }
 }
