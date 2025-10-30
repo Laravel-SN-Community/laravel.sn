@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Technology;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -116,3 +117,35 @@ Artisan::command('technologies:seed', function () {
         );
     }
 })->purpose('Seed the technologies table with predefined data');
+
+Artisan::command('categories:seed', function () {
+    $categories = [
+        ['name' => 'Education & Learning', 'slug' => 'education-learning'],
+        ['name' => 'E-commerce', 'slug' => 'e-commerce'],
+        ['name' => 'Fintech & Payments', 'slug' => 'fintech-payments'],
+        ['name' => 'Mobility & Transport', 'slug' => 'mobility-transport'],
+        ['name' => 'Health & Pharmacy', 'slug' => 'health-pharmacy'],
+        ['name' => 'Food & Delivery', 'slug' => 'food-delivery'],
+        ['name' => 'Real Estate', 'slug' => 'real-estate'],
+        ['name' => 'Social Networks & Communities', 'slug' => 'social-networks-communities'],
+        ['name' => 'Recruitment & Jobs', 'slug' => 'recruitment-jobs'],
+        ['name' => 'Productivity & Collaboration', 'slug' => 'productivity-collaboration'],
+        ['name' => 'Artificial Intelligence', 'slug' => 'artificial-intelligence'],
+        ['name' => 'Entrepreneurship & Startups', 'slug' => 'entrepreneurship-startups'],
+        ['name' => 'Media & Entertainment', 'slug' => 'media-entertainment'],
+        ['name' => 'Travel & Tourism', 'slug' => 'travel-tourism'],
+        ['name' => 'Communication & Networking', 'slug' => 'communication-networking'],
+        ['name' => 'Business Management', 'slug' => 'business-management'],
+        ['name' => 'Environment & Energy', 'slug' => 'environment-energy'],
+        ['name' => 'Software Development', 'slug' => 'software-development'],
+        ['name' => 'Public Administration', 'slug' => 'public-administration'],
+        ['name' => 'Sports & Wellness', 'slug' => 'sports-wellness'],
+    ];
+
+    foreach ($categories as $category) {
+        Category::firstOrCreate(
+            ['slug' => $category['slug']],
+            ['name' => $category['name']]
+        );
+    }
+})->purpose('Seed the categories table with predefined data');
