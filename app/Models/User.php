@@ -7,6 +7,7 @@ use App\Enums\UserRole;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -90,5 +91,22 @@ class User extends Authenticatable implements FilamentUser
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Get the projects that the user has voted for.
+     */
+    public function votedProjects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, 'votes')
+            ->withTimestamps();
+    }
+
+    /**
+     * Check if the user has voted for a specific project.
+     */
+    public function hasVotedFor(Project $project): bool
+    {
+        return $this->votedProjects()->where('project_id', $project->id)->exists();
     }
 }

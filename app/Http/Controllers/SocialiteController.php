@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserRole;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +68,19 @@ class SocialiteController extends Controller
 
         Auth::login($user, remember: true);
 
-        return redirect()->route('dashboard');
+        // Handle auto-vote for OAuth
+        $intendedUrl = session()->pull('url.intended', route('dashboard'));
+        $projectId = session()->pull('pending_vote_project_id');
+
+        if ($projectId) {
+            $project = Project::find($projectId);
+
+            if ($project && ! $user->hasVotedFor($project)) {
+                $user->votedProjects()->attach($project);
+            }
+        }
+
+        return redirect()->to($intendedUrl);
     }
 
     /**
