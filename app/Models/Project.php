@@ -45,6 +45,31 @@ class Project extends Model
     }
 
     /**
+     * Get the votes for the project.
+     */
+    public function votes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'votes')
+            ->withTimestamps();
+    }
+
+    /**
+     * Get the voters for the project.
+     */
+    public function voters(): BelongsToMany
+    {
+        return $this->votes();
+    }
+
+    /**
+     * Get the count of votes for the project.
+     */
+    public function votesCount(): int
+    {
+        return $this->votes()->count();
+    }
+
+    /**
      * Get a truncated description of the project (50 characters).
      */
     protected function shortDescription(): Attribute
