@@ -20,9 +20,9 @@ class Index extends Component
         $project = Project::findOrFail($projectId);
 
         if ($user->hasVotedFor($project)) {
-            $user->votedProjects()->detach($project);
+            $user->votes()->detach($project);
         } else {
-            $user->votedProjects()->attach($project);
+            $user->votes()->attach($project);
         }
     }
 

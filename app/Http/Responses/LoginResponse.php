@@ -17,7 +17,7 @@ class LoginResponse implements LoginResponseContract
             $project = Project::find($projectId);
 
             if ($project && ! $request->user()->hasVotedFor($project)) {
-                $request->user()->votedProjects()->attach($project);
+                $request->user()->votes()->attach($project);
             }
         }
 

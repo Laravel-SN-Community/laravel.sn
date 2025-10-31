@@ -121,7 +121,7 @@
                                 <div class="flex items-center gap-2 md:flex-shrink-0">
                                     <button wire:click="toggleVote({{ $project->id }})" 
                                             type="button"
-                                            class="flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-lg font-semibold hover:border-red-600 hover:text-red-600 transition-colors">
+                                            class="flex items-center gap-2 border px-4 py-2 rounded-lg font-semibold transition-colors {{ auth()->user()?->hasVotedFor($project) ? 'border-red-600 text-red-600' : 'border-gray-300 hover:border-red-600 hover:text-red-600' }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
@@ -147,7 +147,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Aucun projet trouvé</h3>
-                    <p class=             @if($search)
+                    <p class="mb-6">
+                        @if($search)
                             Aucun projet ne correspond à votre recherche "{{ $search }}".
                         @else
                             Aucun projet n'est actuellement disponible.

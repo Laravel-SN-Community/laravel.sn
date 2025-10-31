@@ -32,14 +32,13 @@ class ProjectPage extends Component
             return;
         }
 
-        /** @var \App\Models\Project $project */
         $project = Project::findOrFail($projectId);
 
         if ($user->hasVotedFor($project)) {
-            $user->votedProjects()->detach($project);
+            $user->votes()->detach($project);
             Toaster::error(__('You Downvoted this project. 😭😭'));
         } else {
-            $user->votedProjects()->attach($project);
+            $user->votes()->attach($project);
             Toaster::success(__('You Upvoted this project. 🔥🔥🔥'));
         }
     }

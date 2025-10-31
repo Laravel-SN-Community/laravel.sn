@@ -76,7 +76,7 @@ class SocialiteController extends Controller
             $project = Project::find($projectId);
 
             if ($project && ! $user->hasVotedFor($project)) {
-                $user->votedProjects()->attach($project);
+                $user->votes()->attach($project);
             }
         }
 
