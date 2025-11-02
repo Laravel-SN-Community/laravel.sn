@@ -147,6 +147,8 @@ class ArticleForm
                     ->required(),
                 SpatieMediaLibraryFileUpload::make('cover')
                     ->collection('articles')
+                    ->directory('articles/covers')
+                    ->disk('public')
                     ->image()
                     ->imageEditor()
 

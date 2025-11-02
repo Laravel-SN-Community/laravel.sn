@@ -10,6 +10,8 @@ use App\Livewire\Pages\ProjectPage;
 use App\Livewire\Pages\Projects\Index as ProjectsIndex;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Pages\Articles\Index as ArticlesIndex;
+use App\Livewire\Pages\Articles\CreateOrEdit as ArticlesCreateOrEdit;
 
 // Route::middleware('guest')->group(function () {
 
@@ -34,4 +36,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', DashboardPage::class)->name('dashboard');
     Route::get('/projects/create', ProjectsIndex::class)->name('projects.index');
+    Route::get('/my-articles', ArticlesIndex::class)->name('articles.index');
+    Route::get('/articles/create', ArticlesCreateOrEdit::class)->name('articles.create');
+    Route::get('/articles/{id}/edit', ArticlesCreateOrEdit::class)->name('articles.edit');
 });

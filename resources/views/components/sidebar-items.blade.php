@@ -1,6 +1,6 @@
-{{-- 
+{{--
     Modern Sidebar Navigation Items Component
-    
+
     Features:
     - Organized navigation sections
     - Active state with gradient highlighting
@@ -10,7 +10,7 @@
 --}}
 
 <ul role="list" class="space-y-6">
-    
+
     {{-- Main Navigation Section --}}
     <li>
         <div class="mb-3 flex items-center gap-2">
@@ -20,38 +20,38 @@
             </span>
             <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
         </div>
-        
+
         <ul role="list" class="space-y-1">
             {{-- Dashboard Link --}}
             <li>
-                <a 
-                    href="{{ route('dashboard') }}" 
+                <a
+                    href="{{ route('dashboard') }}"
                     wire:navigate
-                    class="{{ request()->route()->getName() == 'dashboard' 
-                        ? 'bg-gradient-to-r from-red-50 to-red-50/50 text-red-700 shadow-sm' 
-                        : 'text-gray-700 hover:bg-gray-50' 
+                    class="{{ request()->route()->getName() == 'dashboard'
+                        ? 'bg-gradient-to-r from-red-50 to-red-50/50 text-red-700 shadow-sm'
+                        : 'text-gray-700 hover:bg-gray-50'
                     }} group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200"
                     title="{{ __('Dashboard') }}"
                 >
-                    <div class="{{ request()->route()->getName() == 'dashboard' 
-                        ? 'bg-red-600 shadow-md' 
-                        : 'bg-gray-100 group-hover:bg-red-100' 
+                    <div class="{{ request()->route()->getName() == 'dashboard'
+                        ? 'bg-red-600 shadow-md'
+                        : 'bg-gray-100 group-hover:bg-red-100'
                     }} flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200">
-                        <svg 
-                            class="{{ request()->route()->getName() == 'dashboard' 
-                                ? 'text-white' 
-                                : 'text-gray-600 group-hover:text-red-600' 
-                            }} h-5 w-5 shrink-0 transition-colors duration-200" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            stroke-width="2" 
+                        <svg
+                            class="{{ request()->route()->getName() == 'dashboard'
+                                ? 'text-white'
+                                : 'text-gray-600 group-hover:text-red-600'
+                            }} h-5 w-5 shrink-0 transition-colors duration-200"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
                             stroke="currentColor"
                         >
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                         </svg>
                     </div>
                     <span class="flex-1">{{ __('Dashboard') }}</span>
-                    
+
                     {{-- Active indicator --}}
                     @if(request()->route()->getName() == 'dashboard')
                         <div class="flex h-2 w-2 rounded-full bg-red-600 shadow-sm"></div>
@@ -70,39 +70,88 @@
                 </span>
                 <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
             </div>
-        
+
         <ul role="list" class="space-y-1">
             <li>
-                <a 
-                    href="{{ route('projects.index') }}" 
+                <a
+                    href="{{ route('projects.index') }}"
                     wire:navigate
-                    class="{{ request()->route()->getName() == 'projects.index' 
-                        ? 'bg-gradient-to-r from-red-50 to-red-50/50 text-red-700 shadow-sm' 
-                        : 'text-gray-700 hover:bg-gray-50' 
+                    class="{{ request()->route()->getName() == 'projects.index'
+                        ? 'bg-gradient-to-r from-red-50 to-red-50/50 text-red-700 shadow-sm'
+                        : 'text-gray-700 hover:bg-gray-50'
                     }} group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200"
                     title="{{ __('Projects') }}"
                 >
-                    <div class="{{ request()->route()->getName() == 'projects.index' 
-                        ? 'bg-red-600 shadow-md' 
-                        : 'bg-gray-100 group-hover:bg-red-100' 
+                    <div class="{{ request()->route()->getName() == 'projects.index'
+                        ? 'bg-red-600 shadow-md'
+                        : 'bg-gray-100 group-hover:bg-red-100'
                     }} flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200">
-                        <svg 
-                            class="{{ request()->route()->getName() == 'projects.index' 
-                                ? 'text-white' 
-                                : 'text-gray-600 group-hover:text-red-600' 
-                            }} h-5 w-5 shrink-0 transition-colors duration-200" 
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            stroke-width="2" 
+                        <svg
+                            class="{{ request()->route()->getName() == 'projects.index'
+                                ? 'text-white'
+                                : 'text-gray-600 group-hover:text-red-600'
+                            }} h-5 w-5 shrink-0 transition-colors duration-200"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
                             stroke="currentColor"
                         >
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                         </svg>
                     </div>
                         <span class="flex-1">{{ __('Projects') }}</span>
-                    
+
                     {{-- Active indicator --}}
                     @if(request()->route()->getName() == 'projects.index')
+                        <div class="flex h-2 w-2 rounded-full bg-red-600 shadow-sm"></div>
+                    @endif
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    {{--  Articles Section  --}}
+    <li>
+        <div class="mb-3 flex items-center gap-2">
+            <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
+            <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                    {{ __('Articles') }}
+                </span>
+            <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
+        </div>
+
+        <ul role="list" class="space-y-1">
+            <li>
+                <a
+                    href="{{ route('articles.index') }}"
+                    wire:navigate
+                    class="{{ request()->route()->getName() == 'articles.index'
+                        ? 'bg-gradient-to-r from-red-50 to-red-50/50 text-red-700 shadow-sm'
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }} group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200"
+                    title="{{ __('Articles') }}"
+                >
+                    <div class="{{ request()->route()->getName() == 'articles.index'
+                        ? 'bg-red-600 shadow-md'
+                        : 'bg-gray-100 group-hover:bg-red-100'
+                    }} flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200">
+                        <svg
+                            class="{{ request()->route()->getName() == 'articles.index'
+                                ? 'text-white'
+                                : 'text-gray-600 group-hover:text-red-600'
+                            }} h-5 w-5 shrink-0 transition-colors duration-200"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="currentColor"
+                        >
+                            <path d="m18.226 5.226-2.52-2.52A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-.351"/><path d="M21.378 12.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><path d="M8 18h1"/>
+                        </svg>
+                    </div>
+                    <span class="flex-1">{{ __('Articles') }}</span>
+
+                    {{-- Active indicator --}}
+                    @if(request()->route()->getName() == 'articles.index')
                         <div class="flex h-2 w-2 rounded-full bg-red-600 shadow-sm"></div>
                     @endif
                 </a>
@@ -119,11 +168,11 @@
             </span>
             <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
         </div>
-        
+
         <ul role="list" class="space-y-1">
             <li>
-                <a 
-                    href="#" 
+                <a
+                    href="#"
                     wire:navigate
                     class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200"
                     title="{{ __('General') }}"
@@ -138,8 +187,8 @@
                 </a>
             </li>
             <li>
-                <a 
-                    href="#" 
+                <a
+                    href="#"
                     wire:navigate
                     class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200"
                     title="{{ __('Users') }}"
@@ -164,11 +213,11 @@
             </span>
             <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
         </div>
-        
+
         <ul role="list" class="space-y-1">
             <li>
-                <a 
-                    href="#" 
+                <a
+                    href="#"
                     wire:navigate
                     class="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-all duration-200"
                     title="{{ __('Help Center') }}"

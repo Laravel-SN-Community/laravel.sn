@@ -24,7 +24,7 @@ class Article extends Model implements HasMedia, ViewableContract
     use InteractsWithMedia;
     use InteractsWithViews;
 
-    protected $fillable = ['title', 'slug', 'content', 'status', 'published_at', 'category_id'];
+    protected $fillable = ['title', 'slug', 'content', 'status', 'published_at', 'category_id', 'user_id', 'cover'];
 
     protected $casts = [
         'status' => ArticleStatus::class,
