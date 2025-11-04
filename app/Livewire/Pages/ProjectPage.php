@@ -50,6 +50,7 @@ class ProjectPage extends Component
             ->where('status', ProjectStatus::Approved)
             ->with('categories')
             ->with('technologies')
+            ->with('user')
             ->withCount('votes')
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
