@@ -81,6 +81,13 @@
                 @endif
             @endif
         </div>
+
+        <!-- LinkedIn URL -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="linkedin_url" value="{{ __('LinkedIn Profile URL') }}" />
+            <x-input id="linkedin_url" type="url" class="mt-1 block w-full" wire:model="state.linkedin_url" autocomplete="off" placeholder="https://www.linkedin.com/in/your-profile" />
+            <x-input-error for="linkedin_url" class="mt-2" />
+        </div>
     </x-slot>
 
     <x-slot name="actions">
