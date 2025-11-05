@@ -86,6 +86,11 @@
                         </svg>
                         <span class="text-gray-300">Dakar, Sénégal</span>
                     </div>
+
+                    {{-- Change Locale --}}
+                    <div class="mt-6 gap-3">
+                        <livewire:components.change-locale />
+                    </div>
                 </div>
             </div>
         </div>
