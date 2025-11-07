@@ -1,4 +1,4 @@
-<x-slot:title>Articles</x-slot:title>
+<x-slot:title>{{ __('Articles') }}</x-slot:title>
 <div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
 
     <!-- Hero Section -->
@@ -22,12 +22,12 @@
         <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Main Title -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-center">
-                Blog Laravel Sénégal
+                {{ __('Laravel Senegal Blog') }}
             </h1>
 
             <!-- Subtitle -->
             <p class="text-xl md:text-2xl text-gray-700 mb-8 text-center max-w-4xl mx-auto">
-                Découvrez nos articles, tutoriels et actualités de la communauté
+                {{ __('Discover our articles, tutorials and news from the Laravel community in Senegal') }}
                 <span class="text-red-600 font-semibold">Laravel</span> au Sénégal
             </p>
 
@@ -36,7 +36,7 @@
                 <div class="relative">
                     <input type="text"
                            wire:model.live.debounce.300ms="search"
-                           placeholder="Rechercher un article..."
+                           placeholder="{{ __('Search for an article...') }}"
                            class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
                     <svg class="absolute left-3 top-3.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -96,7 +96,7 @@
                             <div class="px-6 pb-6">
                                 <a wire:navigate href="{{ route('article.show', $article->slug) }}"
                                    class="w-full bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors text-center block">
-                                    Lire l'article
+                                    {{ __('Read the article') }}
                                 </a>
                             </div>
                         </article>
@@ -115,18 +115,18 @@
                     <svg class="mx-auto h-24 w-24 text-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                     </svg>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Aucun article trouvé</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('No article found') }}</h3>
                     <p class="text-gray-600 mb-8">
                         @if($search)
-                            Aucun article ne correspond à votre recherche "{{ $search }}".
+                            {{ __('No article found for your search') }} "{{ $search }}".
                         @else
-                            Aucun article n'est actuellement disponible.
+                            {{ __('No article is currently available') }}.
                         @endif
                     </p>
                     @if($search)
                         <button wire:click="$set('search', '')"
                                 class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
-                            Voir tous les articles
+                            {{ __('View all articles') }}
                         </button>
                     @endif
                 </div>

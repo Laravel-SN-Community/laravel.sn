@@ -1,4 +1,4 @@
-<x-slot:title>Projets</x-slot:title>
+<x-slot:title>{{ __('Projects') }}</x-slot:title>
 <div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
 
     <!-- Hero Section -->
@@ -22,12 +22,12 @@
         <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Main Title -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-center">
-                Projets Laravel Sénégal
+                {{ __('Laravel Senegal Projects') }}
             </h1>
 
             <!-- Subtitle -->
             <p class="text-xl md:text-2xl text-gray-700 mb-8 text-center max-w-4xl mx-auto">
-                Découvrez les projets de la communauté
+                {{ __('Discover the projects from the Laravel community in Senegal') }}
                 <span class="text-red-600 font-semibold">Laravel</span> au Sénégal
             </p>
 
@@ -36,7 +36,7 @@
                 <div class="relative">
                     <input type="text"
                            wire:model.live.debounce.300ms="search"
-                           placeholder="Rechercher un projet..."
+                           placeholder="{{ __('Search for a project...') }}"
                            class="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
                     <svg class="absolute left-3 top-3.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -146,18 +146,18 @@
                     <svg class="mx-auto h-24 w-24 text-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Aucun projet trouvé</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('No project found') }}</h3>
                     <p class="mb-6">
                         @if($search)
-                            Aucun projet ne correspond à votre recherche "{{ $search }}".
+                            {{ __('No project found for your search') }} "{{ $search }}".
                         @else
-                            Aucun projet n'est actuellement disponible.
+                            {{ __('No project is currently available') }}.
                         @endif
                     </p>
                     @if($search)
                         <button wire:click="$set('search', '')"
                                 class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
-                            Voir tous les projets
+                            {{ __('View all projects') }}
                         </button>
                     @endif
                 </div>

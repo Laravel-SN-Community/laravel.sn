@@ -18,11 +18,16 @@ class SetLocale
         $browserLocale = explode('_', (string) $request->getPreferredLanguage())[0];
         $activeLocale = session()->get('locale');
         $supportedLocales = config('app.available_locales');
+        $defaultLocale = config('app.locale', 'en');
 
-        if (! $activeLocale && in_array($browserLocale, $supportedLocales)) {
-            app()->setLocale($browserLocale);
+        if (! $activeLocale) {
+            if (in_array($browserLocale, $supportedLocales)) {
+                app()->setLocale($browserLocale);
+            } else {
+                app()->setLocale($defaultLocale);
+            }
         } else {
-            app()->setLocale($activeLocale);
+            app()->setLocale($activeLocale ?: $defaultLocale);
         }
 
         return $next($request);

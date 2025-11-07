@@ -21,11 +21,11 @@
                     <img src="{{ asset('images/Laravelsn.jpg') }}" alt="Laravel Sénégal"
                          class="h-10 w-10 rounded-full object-cover ring-2">
                     <h3 class="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                        Laravel Sénégal
+                        {{ __('Laravel Senegal') }}
                     </h3>
                 </div>
                 <p class="text-gray-300 text-lg mb-6 max-w-md">
-                    La communauté Laravel du Sénégal. Ensemble, construisons l'avenir du développement web au Sénégal.
+                    {{ __('The Laravel community in Senegal. Together, let\'s build the future of web development in Senegal.') }}
                 </p>
 
                 <!-- Social Links -->
@@ -59,17 +59,17 @@
 
             <!-- Quick Links -->
             <div>
-                <h4 class="text-lg font-semibold mb-6 text-white">Liens Rapides</h4>
+                <h4 class="text-lg font-semibold mb-6 text-white">{{ __('Quick Links') }}</h4>
                 <ul class="space-y-3">
-                    <li><a wire:navigate href="{{ route('welcome') }}" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Accueil</a></li>
-                    <li><a wire:navigate href="{{ route('events') }}" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Événements</a></li>
-                    <li><a wire:navigate href="{{ route('welcome') }}#contact" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">Contact</a></li>
+                    <li><a wire:navigate href="{{ route('welcome') }}" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">{{ __('Home') }}</a></li>
+                    <li><a wire:navigate href="{{ route('events') }}" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">{{ __('Events') }}</a></li>
+                    <li><a wire:navigate href="{{ route('welcome') }}#contact" class="text-gray-300 hover:text-rose-400 transition-colors duration-300">{{ __('Contact') }}</a></li>
                 </ul>
             </div>
 
             <!-- Contact Info -->
             <div>
-                <h4 class="text-lg font-semibold mb-6 text-white">Contact</h4>
+                <h4 class="text-lg font-semibold mb-6 text-white">{{ __('Contact') }}</h4>
                 <div class="space-y-3">
                     <div class="flex items-start gap-3">
                         <svg class="w-5 h-5 text-rose-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,10 +87,6 @@
                         <span class="text-gray-300">Dakar, Sénégal</span>
                     </div>
 
-                    {{-- Change Locale --}}
-                    <div class="mt-6 gap-3">
-                        <livewire:components.change-locale />
-                    </div>
                 </div>
             </div>
         </div>
@@ -101,12 +97,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-gray-400 text-sm">
-                © {{ date('Y') }} Laravel Sénégal. Tous droits réservés.
+                © {{ date('Y') }} Laravel Senegal. All rights reserved.
             </p>
                 <div class="flex gap-6 text-sm">
-                    <a href="#" class="text-gray-400 hover:text-rose-400 transition-colors duration-300">Mentions légales</a>
-                    <a href="#" class="text-gray-400 hover:text-rose-400 transition-colors duration-300">Politique de confidentialité</a>
-                    <a href="#" class="text-gray-400 hover:text-rose-400 transition-colors duration-300">CGU</a>
+                    <a href="#" class="text-gray-400 hover:text-rose-400 transition-colors duration-300">{{ __('Legal Notice') }}</a>
+                    <a href="#" class="text-gray-400 hover:text-rose-400 transition-colors duration-300">{{ __('Privacy Policy') }}</a>
+                    <a href="#" class="text-gray-400 hover:text-rose-400 transition-colors duration-300">{{ __('Terms of Service') }}</a>
                 </div>
             </div>
         </div>

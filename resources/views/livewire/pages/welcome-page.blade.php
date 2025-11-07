@@ -22,31 +22,31 @@
         <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Main Title -->
             <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                Laravel Sénégal
+                {{ __('Laravel Senegal') }}
             </h1>
 
             <!-- Subtitle -->
             <p class="text-xl md:text-2xl lg:text-3xl text-gray-700 mb-8 font-light max-w-4xl mx-auto">
-                Bienvenue dans la plus grande communauté de développeurs
-                <span class="text-red-600 font-semibold">Laravel</span> au Sénégal
+                {{ __('Welcome to the largest community of developers') }}
+                <span class="text-red-600 font-semibold">Laravel</span> {{ __('in Senegal') }}
             </p>
 
             <!-- Description -->
             <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Rejoignez une communauté dynamique de <span class="font-semibold text-gray-800">500+ développeurs</span>
-                passionnés par Laravel. Participez à nos événements, partagez vos projets et
-                accélérez votre carrière dans le développement web.
+                {{ __('Join a dynamic community of') }} <span class="font-semibold text-gray-800">500+ developers</span>
+                {{ __('passionate about Laravel. Participate in our events, share your projects and
+                accelerate your career in web development.') }}
             </p>
 
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
                 <a href="#presentation"
                     class="inline-block bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl scroll-smooth">
-                    Découvrir la communauté
+                    {{ __('Discover the community') }}
                 </a>
                 <a href="https://chat.whatsapp.com/JwITxALLv0uJIGNu7AsVnx" target="_blank"
                     class="inline-block border-2 border-red-600 text-red-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-600 hover:text-white transition-all duration-300">
-                    Rejoindre la communauté WhatsApp
+                    {{ __('Join the WhatsApp community') }}
                 </a>
             </div>
 
@@ -62,10 +62,10 @@
             <div class="text-center mb-16">
 
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Une Communauté <span class="text-red-600">Vibrante</span>
+                    {{ __('A Vibrant Community') }}
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Rassembler, former et inspirer la prochaine génération de développeurs Laravel au Sénégal
+                    {{ __('Gather, form and inspire the next generation of Laravel developers in Senegal') }}
                 </p>
             </div>
 
@@ -88,7 +88,7 @@
                                 <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                                 <span class="text-2xl font-bold text-gray-900">500+</span>
                             </div>
-                            <span class="text-gray-600">Développeurs actifs</span>
+                            <span class="text-gray-600">{{ __('Active developers') }}</span>
                         </div>
                     </div>
                 </div>
@@ -96,13 +96,11 @@
                 <!-- Colonne de droite - Contenu -->
                 <div class="space-y-6">
                     <h3 class="text-3xl font-bold text-gray-900">
-                        Construisons ensemble <br>l'écosystème Laravel <span class="text-red-600">Sénégalais</span>
+                        {{ __('Let\'s build together the Laravel ecosystem in Senegal') }}
                     </h3>
 
                     <p class="text-lg text-gray-600 leading-relaxed">
-                        Laravel Sénégal est bien plus qu'une communauté de développeurs. C'est un espace d'échange,
-                        d'apprentissage et d'innovation où les passionnés du framework Laravel se rencontrent,
-                        partagent et grandissent ensemble.
+                        {{ __('Laravel Senegal is more than just a community of developers. It\'s a space for exchange, learning and innovation where passionate Laravel developers meet, share and grow together.') }}
                     </p>
 
                     <div class="grid grid-cols-2 gap-4 pt-4">
@@ -114,7 +112,7 @@
                                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
                             </div>
-                            <span class="text-gray-700 font-medium">Événements mensuels</span>
+                            <span class="text-gray-700 font-medium">{{ __('Monthly events') }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
@@ -124,7 +122,7 @@
                                         d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>
                             </div>
-                            <span class="text-gray-700 font-medium">Ressources gratuites</span>
+                            <span class="text-gray-700 font-medium">{{ __('Free resources') }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
@@ -134,7 +132,7 @@
                                         d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                                 </svg>
                             </div>
-                            <span class="text-gray-700 font-medium">Mentorat actif</span>
+                            <span class="text-gray-700 font-medium">{{ __('Active mentoring') }}</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -144,7 +142,7 @@
                                         d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                                 </svg>
                             </div>
-                            <span class="text-gray-700 font-medium">Projets collaboratifs</span>
+                            <span class="text-gray-700 font-medium">{{ __('Collaborative projects') }}</span>
                         </div>
                     </div>
                 </div>
@@ -155,15 +153,15 @@
     <!-- Newsletter Section -->
     {{-- <section id="newsletter" class="py-20 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Newsletter</h2>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ __('Newsletter') }}</h2>
             <p class="text-lg text-gray-600 mb-8">
-                Restez informé des dernières actualités, événements et ressources Laravel Sénégal
+                {{ __('Stay informed about the latest news, events and resources from Laravel Senegal') }}
             </p>
 
             <div class="bg-white p-8 rounded-lg shadow-md max-w-md mx-auto">
                 <form wire:submit="subscribe" class="space-y-4">
                     <div>
-                        <input type="email" wire:model="email" placeholder="Votre adresse email"
+                        <input type="email" wire:model="email" placeholder="{{ __('Your email address') }}"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             required>
                         @error('email')
@@ -174,7 +172,7 @@
                     <button type="submit"
                         class="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors disabled:opacity-50"
                         wire:loading.attr="disabled">
-                        <span wire:loading.remove>S'abonner à la newsletter</span>
+                        <span wire:loading.remove>{{ __('Subscribe to the newsletter') }}</span>
                         <span wire:loading>Inscription en cours...</span>
                     </button>
                 </form>
@@ -189,10 +187,10 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-14">
 
-                <h2 class="mt-3 text-4xl font-bold tracking-tight text-gray-900">Restons en contact
+                <h2 class="mt-3 text-4xl font-bold tracking-tight text-gray-900">{{ __('Let\'s stay in contact') }}
                 </h2>
-                <p class="mt-3 text-lg text-gray-600">Rejoignez la communauté ou suivez nos
-                    actualités.</p>
+                <p class="mt-3 text-lg text-gray-600">{{ __('Join the community or follow our news') }}
+                    {{ __('news') }}.</p>
             </div>
 
             <div class="grid gap-8 md:grid-cols-2">
@@ -207,7 +205,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-900">Email</h3>
+                                <h3 class="text-lg font-semibold text-gray-900">{{ __('Email') }}</h3>
                                 <p class="text-gray-600">laravelsenegal@gmail.com</p>
                                 <a href="mailto:laravelsenegal@gmail.com"
                                     class="mt-2 inline-flex items-center text-sm font-medium text-rose-600 hover:underline">Écrire
@@ -217,7 +215,7 @@
                     </div>
 
                     <div class="rounded-2xl border border-gray-200 p-6 shadow-sm">
-                        <h3 class="mb-4 text-lg font-semibold text-gray-900">Réseaux & Communauté</h3>
+                        <h3 class="mb-4 text-lg font-semibold text-gray-900">{{ __('Networks & Community') }}</h3>
                         <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
                             <a href="https://chat.whatsapp.com/JwITxALLv0uJIGNu7AsVnx" target="_blank"
                                 class="group inline-flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-800 transition hover:shadow-md">
@@ -240,7 +238,7 @@
                                             d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z"
                                             clip-rule="evenodd"></path>
                                     </svg>
-                                    WhatsApp
+                                    {{ __('WhatsApp') }}
                                 </span>
                                 <span class="text-xs opacity-60 group-hover:opacity-100">Rejoindre →</span>
                             </a>
@@ -252,7 +250,7 @@
                                         <path
                                             d="M18.9 1.98h3.28l-7.17 8.2 8.43 11.84h-6.6l-5.17-6.78-5.91 6.78H1.47l7.67-8.8L1 1.98h6.8l4.7 6.17 6.4-6.17Z" />
                                     </svg>
-                                    X (Twitter)
+                                    {{ __('X (Twitter)') }}
                                 </span>
                                 <span class="text-xs opacity-60 group-hover:opacity-100">@laravel_sn</span>
                             </a>
@@ -264,7 +262,7 @@
                                         <path
                                             d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.79-.26.79-.58v-2.23c-3.34.72-4.03-1.42-4.03-1.42-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.31-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.53-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.69.8.58C20.56 21.8 24 17.3 24 12 24 5.37 18.63 0 12 0Z" />
                                     </svg>
-                                    GitHub
+                                    {{ __('GitHub') }}
                                 </span>
                                 <span class="text-xs opacity-60 group-hover:opacity-100">Open Source →</span>
                             </a>
@@ -281,7 +279,7 @@
                                             d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z">
                                         </path>
                                     </svg>
-                                    LinkedIn
+                                    {{ __('LinkedIn') }}
                                 </span>
                                 <span class="text-xs opacity-60 group-hover:opacity-100">Suivre →</span>
                             </a>
@@ -291,9 +289,9 @@
 
                 <div class="space-y-6">
                     <div class="rounded-3xl border border-white/60 bg-white p-8 shadow-xl">
-                        <h3 class="mb-2 text-2xl font-semibold text-gray-900">Proposer un talk</h3>
-                        <p class="mb-6 text-sm text-gray-600">Pitch rapide par email — notre équipe
-                            programme les prochains meetups.</p>
+                        <h3 class="mb-2 text-2xl font-semibold text-gray-900">{{ __('Propose a talk') }}</h3>
+                        <p class="mb-6 text-sm text-gray-600">{{ __('Quick pitch by email — our team programs the next meetups.') }}
+                            {{ __('Our team programs the next meetups.') }}</p>
 
                         <a href="mailto:laravelsenegal@gmail.com?subject=Proposition%20de%20talk%20Laravel%20S%C3%A9n%C3%A9gal"
                             class="inline-flex items-center justify-center gap-2 rounded-xl bg-rose-600 px-6 py-3 font-semibold text-white shadow-lg transition hover:scale-[1.01] hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-rose-300">
@@ -301,11 +299,10 @@
                                 <path
                                     d="M12 12.713 1.2 6.053C1.69 4.86 2.79 4 4.11 4h15.78c1.33 0 2.42.86 2.91 2.053L12 12.713zm0 2.574L.75 7.5v10.39C.75 19.06 1.69 20 2.86 20h18.28c1.17 0 2.11-.94 2.11-2.11V7.5L12 15.287z" />
                             </svg>
-                            Envoyer ma proposition
+                            {{ __('Send my proposal') }}
                         </a>
 
-                        <p class="mt-5 text-xs text-gray-500">En nous contactant, vous acceptez
-                            notre politique de confidentialité.</p>
+                        <p class="mt-5 text-xs text-gray-500">{{ __('By contacting us, you accept our privacy policy.') }}</p>
                     </div>
                 </div>
             </div>
