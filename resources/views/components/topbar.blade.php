@@ -20,6 +20,9 @@
     <div class="flex flex-1 justify-end gap-x-4 self-stretch lg:gap-x-6">
         <div class="flex items-center gap-x-4 lg:gap-x-6">
             
+            {{-- Language selector dropdown --}}
+            <livewire:pages.lang.change-locale />
+            
             {{-- User profile dropdown --}}
             <div class="relative" x-data="{ open: false }" x-on:click.away="open = false">
                 <button 
