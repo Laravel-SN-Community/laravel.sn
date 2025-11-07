@@ -16,6 +16,9 @@
 
         <!-- Styles -->
         @livewireStyles
+
+        <!-- Mixpanel -->
+        @include('genealabs-laravel-mixpanel::partials.mixpanel')
     </head>
     <body class="h-full">
 

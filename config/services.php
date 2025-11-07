@@ -47,4 +47,8 @@ return [
         'redirect' => env('APP_URL').'/auth/google/callback',
     ],
 
+    'mixpanel' => [
+        'token' => env('MIXPANEL_TOKEN'),
+    ],
+
 ];
