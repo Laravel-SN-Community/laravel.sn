@@ -2,33 +2,48 @@
 
 namespace App\Livewire\Pages;
 
+use App\Enums\SubscriberStatus;
+use App\Models\NewsletterSubscription;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 
 class WelcomePage extends Component
 {
-    public $email = '';
-
-    protected $rules = [
-        'email' => 'required|email|max:255',
-    ];
-
-    protected $messages = [
-        'email.required' => 'L\'adresse email est requise.',
-        'email.email' => 'Veuillez entrer une adresse email valide.',
-        'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
-    ];
-
-    #[Layout('layouts.guest')]
-    public function render()
-    {
-        return view('livewire.pages.welcome-page');
-    }
+    #[Validate('required|email|max:255|unique:newsletter_subscriptions,email')]
+    public $email;
 
     public function subscribe()
     {
         $this->validate();
 
-        // do something with the email
+        $existingSubscription = NewsletterSubscription::where('email', $this->email)
+            ->first();
+
+        if ($existingSubscription) {
+            Toaster::error(__('this email is already subscribed to our newsletter'));
+
+            return;
+        }
+
+        NewsletterSubscription::create(
+            [
+                'email' => $this->email,
+                'status' => SubscriberStatus::Subscribed,
+                'subscribed_at' => now(),
+            ],
+        );
+
+        Toaster::success(__('thank you for subscribing to our newsletter'));
+
+        $this->reset('email');
+
+    }
+
+    #[Layout('layouts.guest')]
+    public function render()
+    {
+        return view('livewire.pages.welcome-page');
     }
 }

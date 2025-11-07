@@ -7,17 +7,34 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "cyrildewit/eloquent-viewable": "^7.0",
+        "filament/actions": "^4.0",
+        "filament/filament": "4.0",
+        "filament/forms": "^4.0",
+        "filament/infolists": "^4.0",
+        "filament/notifications": "^4.0",
+        "filament/schemas": "^4.0",
+        "filament/spatie-laravel-media-library-plugin": "^4.0",
+        "filament/tables": "^4.0",
+        "filament/widgets": "^4.0",
+        "genealabs/laravel-mixpanel": "^12.0",
+        "google-gemini-php/laravel": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
+        "laravel/socialite": "^5.23",
         "laravel/tinker": "^2.9",
+        "league/commonmark": "^2.7",
         "livewire/livewire": "^3.0",
         "masmerise/livewire-toaster": "^2.8",
+        "prism-php/prism": "^0.91.0",
+        "spatie/laravel-medialibrary": "^11.15",
         "spatie/laravel-newsletter": "^5.3",
         "spatie/laravel-package-tools": "^1.92"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "laravel/boost": "^1.3",
         "laravel/pail": "^1.1",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
@@ -40,7 +57,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

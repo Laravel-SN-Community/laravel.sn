@@ -1,7 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/laravel/jetstream/**/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../../vendor/masmerise/livewire-toaster/resources/views/*.blade.php';
+
+@theme {
+    --font-sans: "Playfair Display", Figtree, ui-sans-serif, system-ui,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
 
 [x-cloak] {
     display: none;
+}
+
+/* Custom styles for code blocks in articles */
+.prose pre[class*="language-"] {
+    background: #1e1e1e !important;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.prose code[class*="language-"] {
+    background: transparent !important;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+}
+
+.prose pre[class*="language-"] code {
+    color: #d4d4d4;
+    background: transparent !important;
+}
+
+/* Override Prism.js theme colors for better readability */
+.prose pre[class*="language-"] .token.comment,
+.prose pre[class*="language-"] .token.prolog,
+.prose pre[class*="language-"] .token.doctype,
+.prose pre[class*="language-"] .token.cdata {
+    color: #6a9955;
+}
+
+.prose pre[class*="language-"] .token.punctuation {
+    color: #d4d4d4;
+}
+
+.prose pre[class*="language-"] .token.property,
+.prose pre[class*="language-"] .token.tag,
+.prose pre[class*="language-"] .token.boolean,
+.prose pre[class*="language-"] .token.number,
+.prose pre[class*="language-"] .token.constant,
+.prose pre[class*="language-"] .token.symbol,
+.prose pre[class*="language-"] .token.deleted {
+    color: #569cd6;
+}
+
+.prose pre[class*="language-"] .token.selector,
+.prose pre[class*="language-"] .token.attr-name,
+.prose pre[class*="language-"] .token.string,
+.prose pre[class*="language-"] .token.char,
+.prose pre[class*="language-"] .token.builtin,
+.prose pre[class*="language-"] .token.inserted {
+    color: #ce9178;
+}
+
+.prose pre[class*="language-"] .token.operator,
+.prose pre[class*="language-"] .token.entity,
+.prose pre[class*="language-"] .token.url,
+.prose pre[class*="language-"] .language-css .token.string,
+.prose pre[class*="language-"] .style .token.string {
+    color: #d4d4d4;
+}
+
+.prose pre[class*="language-"] .token.atrule,
+.prose pre[class*="language-"] .token.attr-value,
+.prose pre[class*="language-"] .token.keyword {
+    color: #c586c0;
+}
+
+.prose pre[class*="language-"] .token.function,
+.prose pre[class*="language-"] .token.class-name {
+    color: #dcdcaa;
 }

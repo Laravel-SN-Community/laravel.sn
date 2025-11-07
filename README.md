@@ -48,7 +48,7 @@ php artisan key:generate
 Prepare your database and run the migrations:
 
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
 Link the storage to the public folder:
@@ -68,6 +68,13 @@ Finally, start the development server:
 ```bash
 php artisan serve
 ```
+# Admin credentials
+- Email: admin1@gmail.com
+- Password: passer
+
+> Create GEMINI_API_KEY in your .env file to enable AI features.
+
+> You can now access the application at [http://localhost:8000](http://localhost:8000) and the admin panel at [http://localhost:8000/admin](http://localhost:8000/admin).
 
 > Note: By default, emails are sent to the `log` driver. You can change this in the `.env` file to something like `mailtrap`.
 
