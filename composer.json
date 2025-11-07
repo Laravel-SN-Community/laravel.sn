@@ -17,6 +17,7 @@
         "filament/spatie-laravel-media-library-plugin": "^4.0",
         "filament/tables": "^4.0",
         "filament/widgets": "^4.0",
+        "genealabs/laravel-mixpanel": "^12.0",
         "google-gemini-php/laravel": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/jetstream": "^5.3",
