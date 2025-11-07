@@ -16,13 +16,14 @@ class ForumPage extends Component
         $categories = ForumCategory::active()
             ->ordered()
             ->when($this->search, function ($query) {
-                $query->where('name', 'like', '%' . $this->search . '%')
-                      ->orWhere('description', 'like', '%' . $this->search . '%');
+                $query->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('description', 'like', '%'.$this->search.'%');
             })
             ->get()
             ->map(function ($category) {
                 // Charger les statistiques pour chaque catégorie
                 $category->loadCount('threads');
+
                 return $category;
             });
 

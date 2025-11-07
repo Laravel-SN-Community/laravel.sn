@@ -80,7 +80,7 @@ class ForumThread extends Model
     public function updatePostsCount(): void
     {
         $this->update([
-            'posts_count' => $this->posts()->count()
+            'posts_count' => $this->posts()->count(),
         ]);
     }
 

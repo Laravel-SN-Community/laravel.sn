@@ -79,13 +79,13 @@ class ForumPost extends Model
         $downvotes = $this->downvotes()->count();
 
         $this->update([
-            'votes_count' => $upvotes - $downvotes
+            'votes_count' => $upvotes - $downvotes,
         ]);
     }
 
     public function getUserVoteAttribute(): ?ForumPostVote
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return null;
         }
 

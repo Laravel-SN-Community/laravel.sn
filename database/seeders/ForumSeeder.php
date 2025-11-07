@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\ForumCategory;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ForumSeeder extends Seeder
