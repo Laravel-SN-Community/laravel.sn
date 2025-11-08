@@ -108,3 +108,38 @@
 .prose pre[class*="language-"] .token.class-name {
     color: #dcdcaa;
 }
+
+/* Animations for the event gallery carousel */
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    @keyframes scroll-right {
+        0% {
+            transform: translateX(-50%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    .animate-scroll-left {
+        animation: scroll-left 30s linear infinite;
+    }
+
+    .animate-scroll-left:hover {
+        animation-play-state: paused;
+    }
+
+    .animate-scroll-right {
+        animation: scroll-right 30s linear infinite;
+    }
+
+    .animate-scroll-right:hover {
+    animation-play-state: paused;
+}
