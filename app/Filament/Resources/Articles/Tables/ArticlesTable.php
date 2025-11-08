@@ -24,10 +24,10 @@ class ArticlesTable
                 TextColumn::make('slug')
                     ->limit(30)
                     ->searchable(),
-                TextColumn::make('category.name')
-                    ->label('Category')
+                TextColumn::make('technologies.name')
+                    ->label('Technologies')
                     ->badge()
-                    ->color(fn ($record) => $record->category?->color ?? 'gray')
+                    ->separator(',')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('views_count')
@@ -59,10 +59,11 @@ class ArticlesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('category')
-                    ->relationship('category', 'name')
+                SelectFilter::make('technologies')
+                    ->relationship('technologies', 'name')
                     ->searchable()
-                    ->preload(),
+                    ->preload()
+                    ->multiple(),
                 SelectFilter::make('status')
                     ->options(ArticleStatus::class),
             ])
