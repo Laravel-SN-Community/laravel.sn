@@ -26,6 +26,7 @@
         "laravel/tinker": "^2.9",
         "league/commonmark": "^2.7",
         "livewire/livewire": "^3.0",
+        "livewire/volt": "^1.9",
         "masmerise/livewire-toaster": "^2.8",
         "prism-php/prism": "^0.91.0",
         "spatie/laravel-medialibrary": "^11.15",
