@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\ForumCategory;
+use App\Models\ForumThread;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ForumSeeder extends Seeder
@@ -12,6 +14,13 @@ class ForumSeeder extends Seeder
      */
     public function run(): void
     {
+        // Récupérer ou créer un utilisateur de test
+        $user = User::first();
+        if (!$user) {
+            $this->command->warn('No users found. Please create a user first.');
+            return;
+        }
+
         // Créer quelques catégories de forum
         $categories = [
             [
@@ -65,9 +74,21 @@ class ForumSeeder extends Seeder
         ];
 
         foreach ($categories as $categoryData) {
-            ForumCategory::create($categoryData);
+            $category = ForumCategory::create($categoryData);
+
+            // Créer quelques discussions de test pour chaque catégorie
+            for ($i = 1; $i <= 3; $i++) {
+                ForumThread::create([
+                    'forum_category_id' => $category->id,
+                    'user_id' => $user->id,
+                    'title' => "Discussion test $i dans {$category->name}",
+                    'content' => "Ceci est le contenu de la discussion test numéro $i dans la catégorie {$category->name}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    'is_pinned' => $i === 1, // Épingler la première
+                    'views_count' => rand(10, 100),
+                ]);
+            }
         }
 
-        $this->command->info('Forum categories created successfully!');
+        $this->command->info('Forum categories and threads created successfully!');
     }
 }

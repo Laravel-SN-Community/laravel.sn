@@ -18,11 +18,14 @@ class ForumCategoryResource extends Resource
 {
     protected static ?string $model = ForumCategory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlineChatBubbleLeftRight;
-
-    protected static ?string $navigationGroup = 'Forum';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleLeftRight;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Forum';
+    }
 
     public static function form(Schema $schema): Schema
     {

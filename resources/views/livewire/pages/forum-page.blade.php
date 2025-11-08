@@ -120,9 +120,11 @@
 
                             <!-- Category Footer -->
                             <div class="px-6 pb-6">
-                                <button class="w-full bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors text-center block cursor-not-allowed opacity-75">
-                                    {{ __('Voir les discussions') }} ({{ __('Bientôt') }})
-                                </button>
+                                <a href="{{ route('forum.category.show', $category->slug) }}"
+                                   wire:navigate
+                                   class="w-full bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors text-center block">
+                                    {{ __('Voir les discussions') }}
+                                </a>
                             </div>
                         </article>
                     @endforeach
@@ -131,12 +133,7 @@
                 <!-- Call to Action -->
                 @auth
                     <div class="mt-16 text-center">
-                        <button class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 transition-colors cursor-not-allowed opacity-75">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                            {{ __('Créer une nouvelle discussion') }} ({{ __('Bientôt') }})
-                        </button>
+                        <p class="text-gray-600 mb-4">{{ __('Sélectionnez une catégorie ci-dessus pour créer une nouvelle discussion') }}</p>
                     </div>
                 @endauth
             @else
