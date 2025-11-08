@@ -48,6 +48,14 @@ class Article extends Model implements HasMedia, ViewableContract
     }
 
     /**
+     * Get the technologies for the article.
+     */
+    public function technologies(): BelongsToMany
+    {
+        return $this->belongsToMany(Technology::class);
+    }
+
+    /**
      * Get the article content as HTML (parsed from markdown).
      */
     protected function contentHtml(): Attribute

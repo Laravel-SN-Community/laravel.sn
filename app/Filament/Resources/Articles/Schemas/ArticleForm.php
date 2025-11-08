@@ -152,9 +152,10 @@ class ArticleForm
 
                     ->maxSize(5120)
                     ->columnSpanFull(),
-                Select::make('category_id')
-                    ->label('Category')
-                    ->relationship('category', 'name')
+                Select::make('technologies')
+                    ->label('Technologies')
+                    ->relationship('technologies', 'name')
+                    ->multiple()
                     ->searchable()
                     ->preload()
                     ->createOptionForm([
@@ -162,11 +163,10 @@ class ArticleForm
                             ->required()
                             ->maxLength(255),
                         TextInput::make('slug')
+                            ->required()
                             ->maxLength(255),
-                        TextInput::make('description')
-                            ->maxLength(500),
                     ])
-                    ->helperText('Select a category for this article or create a new one'),
+                    ->helperText('Select technologies for this article or create new ones'),
 
                 Select::make('status')
                     ->options(ArticleStatus::class)

@@ -50,6 +50,14 @@ class ArticleInfolist
                                                     default => 'success',
                                                 }
                                             ),
+
+                                        TextEntry::make('technologies.name')
+                                            ->label('Technologies')
+                                            ->badge()
+                                            ->color('info')
+                                            ->separator(',')
+                                            ->icon('heroicon-m-code-bracket')
+                                            ->columnSpanFull(),
                                     ]),
                             ])
                             ->collapsible(),
