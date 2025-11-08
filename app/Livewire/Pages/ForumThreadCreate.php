@@ -10,7 +10,9 @@ use Livewire\Component;
 class ForumThreadCreate extends Component
 {
     public ForumCategory $category;
+
     public string $title = '';
+
     public string $content = '';
 
     public function mount($slug)

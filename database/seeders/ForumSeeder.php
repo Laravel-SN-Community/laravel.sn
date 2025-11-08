@@ -16,8 +16,9 @@ class ForumSeeder extends Seeder
     {
         // Récupérer ou créer un utilisateur de test
         $user = User::first();
-        if (!$user) {
+        if (! $user) {
             $this->command->warn('No users found. Please create a user first.');
+
             return;
         }
 

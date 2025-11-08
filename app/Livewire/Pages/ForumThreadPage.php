@@ -11,7 +11,9 @@ use Livewire\Component;
 class ForumThreadPage extends Component
 {
     public $categoryId;
+
     public $threadId;
+
     public string $reply = '';
 
     public function mount($category, $thread)
@@ -43,7 +45,7 @@ class ForumThreadPage extends Component
 
     public function postReply()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return redirect()->route('login');
         }
 
@@ -53,6 +55,7 @@ class ForumThreadPage extends Component
 
         if ($this->thread->is_locked) {
             session()->flash('error', 'Cette discussion est verrouillée.');
+
             return;
         }
 

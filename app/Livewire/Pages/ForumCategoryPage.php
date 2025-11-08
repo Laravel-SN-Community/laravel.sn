@@ -13,7 +13,9 @@ class ForumCategoryPage extends Component
     use WithPagination;
 
     public ForumCategory $category;
+
     public string $search = '';
+
     public string $sortBy = 'latest'; // latest, popular, oldest
 
     public function mount($slug)
@@ -36,13 +38,13 @@ class ForumCategoryPage extends Component
         // Search
         if ($this->search) {
             $threadsQuery->where(function ($query) {
-                $query->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('content', 'like', '%' . $this->search . '%');
+                $query->where('title', 'like', '%'.$this->search.'%')
+                    ->orWhere('content', 'like', '%'.$this->search.'%');
             });
         }
 
         // Sorting
-        match($this->sortBy) {
+        match ($this->sortBy) {
             'popular' => $threadsQuery->orderBy('views_count', 'desc'),
             'oldest' => $threadsQuery->orderBy('created_at', 'asc'),
             default => $threadsQuery->orderBy('is_pinned', 'desc')
