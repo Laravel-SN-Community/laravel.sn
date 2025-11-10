@@ -33,24 +33,18 @@
                     <livewire:pages.lang.change-locale />
 
                     @auth
-                        <form method="POST" action="{{ route('logout') }}" class="flex items-center">
-                            @csrf
-                            <button type="submit"
-                                class="inline-flex items-center justify-center rounded-lg p-0 leading-none text-gray-900 hover:text-red-600 transition-colors bg-transparent border-0 cursor-pointer"
-                                title="{{ __('Logout') }}" aria-label="{{ __('Logout') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-red-600">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
-                                </svg>
-                            </button>
-                        </form>
+                        <x-user-profil-dropdown />
                     @else
                         <!-- Login icon -->
                         <a href="{{ route('login') }}"
                             class="inline-flex items-center justify-center rounded-lg px-3 py-2 leading-none text-gray-900 hover:text-red-600 transition-colors"
                             title="{{ __('Login') }}" aria-label="{{ __('Login') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-red-600">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15M12 9l-3 3m0 0 3 3m-3-3h12.75" />
-                            </svg>
+                            {{ __('Login') }}
+                        </a>
+                        <a href="{{ route('register') }}"
+                            class="inline-flex items-center justify-center rounded-lg px-3 py-2 leading-none text-gray-900 hover:text-red-600 transition-colors"
+                            title="{{ __('Register') }}" aria-label="{{ __('Register') }}">
+                            {{ __('Register') }}
                         </a>
                     @endauth
                 </div>

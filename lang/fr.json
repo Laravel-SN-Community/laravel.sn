@@ -45,7 +45,6 @@
     "Free resources": "Ressources gratuites",
     "Active mentoring": "Mentorat actif",
     "Collaborative projects": "Projets collaboratifs",
-    "Newsletter": "Newsletter",
     "Stay informed about the latest news, events and resources from Laravel Senegal": "Restez informé des dernières actualités, événements et ressources de Laravel Senegal",
     "Your email address": "Votre adresse email",
     "Subscribe to the newsletter": "S'abonner à la newsletter",
@@ -109,5 +108,11 @@
     "No project found": "Aucun projet trouvé",
     "No project found for your search": "Aucun projet trouvé pour votre recherche",
     "No project is currently available": "Aucun projet n'est actuellement disponible.",
-    "View all projects": "Voir tous les projets"
+    "View all projects": "Voir tous les projets",
+    "Register": "S'inscrire",
+    "Your profile": "Votre profil",
+    "Settings": "Paramètres",
+    "Sign out": "Se déconnecter",
+    "Profile": "Profil",
+    "Dashboard": "Tableau de bord"
 }
