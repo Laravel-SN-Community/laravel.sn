@@ -50,54 +50,74 @@
     </section>
 
     <!-- Articles Section -->
-    <section id="articles" class="py-20 bg-white">
+    <section id="articles" class="top-10 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($articles->count() > 0)
                 <!-- Articles Grid -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($articles as $article)
-                        <article class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                            <!-- Article Cover Image -->
-                            <a wire:navigate href="{{ route('article.show', $article->slug) }}">
-                                <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <article class="bg-white rounded-xl overflow-hidden transition-all duration-300 flex flex-col">
+                            <!-- Article Cover Image with Title Overlay -->
+                            <a wire:navigate href="{{ route('article.show', $article->slug) }}" class="block">
+                                <div class="relative h-64 overflow-hidden bg-gradient-to-br rounded-xl from-gray-900 via-gray-800 to-gray-900">
                                     <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}"
                                         alt="{{ $article->title }}"
-                                        class="w-full h-full object-cover">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                                </div>
-                            </a>
-                            <!-- Article Header -->
-                            <div class="p-6 pb-4">
-                                <div class="flex items-start justify-between mb-4">
-                                    <div class="flex-1">
-                                        <a wire:navigate href="{{ route('article.show', $article->slug) }}">
-                                            <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 hover:text-red-500 hover:underline">
-                                                {{ $article->title }}
-                                            </h3>
-                                        </a>
-                                        <div class="flex items-center text-gray-600 mb-2">
-                                            <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                            </svg>
-                                            <span class="text-sm font-medium">
-                                                {{ $article->published_at->format('d/m/Y') }}
-                                            </span>
-                                        </div>
+                                        class="w-full h-full object-cover opacity-40">
+                                    
+                                    <!-- Dark Gradient Overlay -->
+                                    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
+                                    
+                                    <!-- Title Overlay -->
+                                    <div class="absolute inset-0 flex items-center justify-center p-6">
+                                        <h3 class="text-2xl font-bold text-white text-center line-clamp-3 drop-shadow-lg hover:scale-105 transition-transform duration-300">
+                                            {{ $article->title }}
+                                        </h3>
                                     </div>
                                 </div>
+                            </a>
+
+                            <!-- Article Content -->
+                            <div class="p-6 flex flex-col gap-4 flex-1">
+                                <!-- Technology Tags -->
+                                @if($article->technologies->count() > 0)
+                                    <div class="flex flex-wrap gap-2">
+                                        @foreach($article->technologies as $technology)
+                                            <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full border border-gray-200">
+                                                <span class="w-2 h-2 rounded-full {{ $loop->index === 0 ? 'bg-red-500' : ($loop->index === 1 ? 'bg-green-500' : 'bg-purple-500') }}"></span>
+                                                {{ $technology->name }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
+
+                                <!-- Article Title (Clickable) -->
+                                <a wire:navigate href="{{ route('article.show', $article->slug) }}" class="block">
+                                    <h4 class="text-xl font-bold text-gray-900 hover:text-red-600 transition-colors line-clamp-2">
+                                        {{ $article->title }}
+                                    </h4>
+                                </a>
 
                                 <!-- Article Excerpt -->
-                                <p class="text-gray-600 text-sm line-clamp-3 mb-4">
+                                <p class="text-gray-600 text-sm line-clamp-3 flex-1">
                                     {{ $article->excerpt }}
                                 </p>
-                            </div>
 
-                            <!-- Article Actions -->
-                            <div class="px-6 pb-6">
-                                <a wire:navigate href="{{ route('article.show', $article->slug) }}"
-                                   class="w-full bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors text-center block">
-                                    {{ __('Read the article') }}
-                                </a>
+                                <!-- Article Actions -->
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                    <div class="flex items-center text-gray-500 text-xs">
+                                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        <span>{{ $article->published_at->format('d M Y') }}</span>
+                                    </div>
+                                    <a wire:navigate href="{{ route('article.show', $article->slug) }}"
+                                       class="inline-flex items-center gap-1 text-red-600 text-sm font-semibold hover:text-red-700 transition-colors group">
+                                        {{ __('Read more') }}
+                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
                         </article>
                     @endforeach

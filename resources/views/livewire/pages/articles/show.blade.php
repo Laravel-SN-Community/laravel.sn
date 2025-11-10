@@ -13,7 +13,6 @@
                 Retour au blog
             </a>
         </div>
-    </section>
 
     <!-- Article Content -->
     <section class="py-12 bg-white">
@@ -81,26 +80,6 @@
             </footer>
         </div>
     </section>
-
-    <!-- Related Articles Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
-                Autres articles
-            </h2>
-
-            <div class="text-center">
-                <a wire:navigate href="{{ route('articles') }}"
-                   class="inline-flex items-center bg-red-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
-                    Voir tous les articles
-                </a>
-            </div>
-        </div>
-    </section>
-
 </div>
 
 <!-- Initialize Prism.js after content is loaded -->

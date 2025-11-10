@@ -23,6 +23,7 @@ class ArticlesPage extends Component
     public function render()
     {
         $articles = Article::query()
+            ->with('technologies')
             ->where('status', ArticleStatus::Published)
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
