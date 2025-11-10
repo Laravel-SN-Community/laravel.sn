@@ -57,22 +57,12 @@
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($articles as $article)
                         <article class="bg-white rounded-xl overflow-hidden transition-all duration-300 flex flex-col">
-                            <!-- Article Cover Image with Title Overlay -->
+                            <!-- Article Cover Image -->
                             <a wire:navigate href="{{ route('article.show', $article->slug) }}" class="block">
-                                <div class="relative h-64 overflow-hidden bg-gradient-to-br rounded-xl from-gray-900 via-gray-800 to-gray-900">
+                                <div class="relative h-64 overflow-hidden bg-gray-100 rounded-xl">
                                     <img src="{{ $article->getFirstMediaUrl('articles') ?: asset('/images/Laravelsn.jpg') }}"
                                         alt="{{ $article->title }}"
-                                        class="w-full h-full object-cover opacity-40">
-                                    
-                                    <!-- Dark Gradient Overlay -->
-                                    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
-                                    
-                                    <!-- Title Overlay -->
-                                    <div class="absolute inset-0 flex items-center justify-center p-6">
-                                        <h3 class="text-2xl font-bold text-white text-center line-clamp-3 drop-shadow-lg hover:scale-105 transition-transform duration-300">
-                                            {{ $article->title }}
-                                        </h3>
-                                    </div>
+                                        class="w-full h-full object-cover transition-transform duration-300">
                                 </div>
                             </a>
 
