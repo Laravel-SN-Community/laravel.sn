@@ -114,5 +114,9 @@
     "Settings": "Paramètres",
     "Sign out": "Se déconnecter",
     "Profile": "Profil",
-    "Dashboard": "Tableau de bord"
+    "Dashboard": "Tableau de bord",
+    "No projects yet": "Vous n'avez pas encore créer de projets", 
+    "Start by creating your first project!":  "Commencez par créer votre premier projet !",
+    "Approved": "Approuvé",
+    "Pending": "En attente"
 }
