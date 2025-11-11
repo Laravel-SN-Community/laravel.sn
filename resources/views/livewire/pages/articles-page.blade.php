@@ -50,7 +50,7 @@
     </section>
 
     <!-- Articles Section -->
-    <section id="articles" class="top-10 bg-white">
+    <section id="articles" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             @if($articles->count() > 0)
                 <!-- Articles Grid -->
