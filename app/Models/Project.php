@@ -3,20 +3,26 @@
 namespace App\Models;
 
 use App\Enums\ProjectStatus;
+use CyrildeWit\EloquentViewable\Contracts\Viewable as ViewableContract;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
 
-class Project extends Model
+class Project extends Model implements HasMedia, ViewableContract
 {
     use HasFactory;
     use HasTags;
+    use InteractsWithMedia;
+    use InteractsWithViews;
 
-    protected $fillable = ['name', 'slug', 'description', 'github_link', 'project_link', 'status', 'user_id'];
+    protected $fillable = ['name', 'slug', 'description', 'github_link', 'project_link', 'status', 'user_id', 'cover'];
 
     protected function casts(): array
     {
@@ -72,4 +78,15 @@ class Project extends Model
             get: fn () => Str::limit($this->description, 100)
         );
     }
+
+    /**
+     * Register the media collections for the project.
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('projects')
+            ->useDisk('public')
+            ->singleFile();
+    }
+
 }

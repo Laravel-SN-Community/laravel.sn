@@ -1,5 +1,5 @@
 <x-slot:title>{{ __('Projects') }}</x-slot:title>
-<div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
+<div class=" bg-gradient-to-br from-red-50 via-white to-green-50">
 
     <!-- Hero Section -->
     <section class="relative py-20 bg-white overflow-hidden">
@@ -50,30 +50,48 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-10 bg-white">
+    <section id="projects" class=" bg-white">
         <!-- Button to share your project -->
         <div class="flex justify-end max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
             <a wire:navigate href="{{ route('projects.index') }}" class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
                 {{__('Share your project')}}
             </a>
         </div>
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4">
             @if($projects->count() > 0)
                 <!-- Projects List -->
-                <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-8 mb-12">
                     @foreach($projects as $project)
-                        <div class="bg-white rounded-xl border py-2 px-4 hover:border-red-600 transition-colors">
-                            <div class="flex gap-6">
+                        <div class="flex flex-col md:flex-row overflow-hidden gap-4 w-full bg-white rounded-xl border py-2 px-4 hover:border-red-600 transition-colors">
+                            <div class="h-64 w-full md:max-w-64 overflow-hidden  bg-gray-100 rounded-xl">
+                                <div class="relative">
+                                    @if($project->status === \App\Enums\ProjectStatus::Approved)
+                                        <span class="absolute top-2 right-2 bg-green-100 text-green-500 font-semibold px-2.5 py-0.5 rounded-full text-xs">
+                                            {{__('Approved')}}
+                                        </span>
+                                    @else
+                                        <span class="absolute top-2 right-2 bg-yellow-100 text-yellow-500 text-green-800font-semibold px-2.5 py-0.5 rounded-full text-xs">
+                                            {{__('Pending')}}
+                                        </span>
+                                    @endif
+                                </div>
+                                <img src="{{ $project->getFirstMediaUrl('projects') ?: asset('/images/Laravelsn.jpg') }}"
+                                     alt="{{ $project->name }}"
+                                     class="w-full h-full object-cover transition-transform duration-300 flex-shrink-0">
+
+                            </div>
+                            <div class="p-6 flex flex-col gap-4 flex-1 md:flex-row justify-between">
+
                                 <!-- Left Side: Project Info -->
-                                <div class="flex-1 min-w-0">
+                                <div class="flex-1 min-w-0 w-full flex flex-col">
                                     <!-- 1. Project Name -->
                                     <h3 class="text-lg font-semibold text-red-600 mb-3">
                                         {{ $project->name }}
                                     </h3>
+                                    <p class="text-sm mb-4 line-clamp-2">
 
-                                    <!-- 2. Project Description -->
-                                    <p class="text-sm mb-4">
-                                        {{ $project->description }}
+                                        {!! str($project->description) !!}
+
                                     </p>
 
                                     <!-- 4. Project Technologies -->
@@ -97,7 +115,7 @@
                                                 </svg>
                                             </a>
                                         @endif
-                                        
+
                                         @if($project->project_link)
                                             <a href="{{ $project->project_link }}" target="_blank" rel="noopener noreferrer"
                                                class="text-gray-500 hover:text-red-600 transition-colors">
@@ -115,18 +133,26 @@
                                         </svg>
                                         <span>{{ $project->user->name }}</span>
                                     </div>
+
+                                    <a wire:navigate href="{{ route('projects.show', $project) }}"
+                                       class="mt-5 inline-flex items-center gap-1 text-red-600 text-sm font-semibold hover:text-red-700 transition-colors group">
+                                        {{ __('Read more') }}
+                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
                                 </div>
 
                                 <!-- Right Side: Fire Button with Vote Count -->
                                 <div class="flex items-center gap-2 md:flex-shrink-0">
-                                    <button wire:click="toggleVote({{ $project->id }})" 
+                                    <button wire:click="toggleVote({{ $project->id }})"
                                             type="button"
                                             class="flex items-center gap-2 border px-4 py-2 rounded-lg font-semibold transition-colors {{ auth()->user()?->hasVotedFor($project) ? 'border-red-600 text-red-600' : 'border-gray-300 hover:border-red-600 hover:text-red-600' }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z" />
-                                        </svg>                                          
-                                        <span class="text-sm font-semibold">{{ $project->votes_count }}</span>
+                                        </svg>
+                                        <span class="text-sm font-semibold">{{ $project->votes_count ?? 0 }}</span>
                                     </button>
                                 </div>
                             </div>
