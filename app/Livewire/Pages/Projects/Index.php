@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\On;
 
 class Index extends Component
 {
@@ -24,6 +25,12 @@ class Index extends Component
         } else {
             $user->votes()->attach($project);
         }
+    }
+
+    #[On('project-created')]
+    public function refreshProjects(): void
+    {
+        // Livewire va automatiquement rafraîchir le composant
     }
 
     #[Layout('layouts.app')]
