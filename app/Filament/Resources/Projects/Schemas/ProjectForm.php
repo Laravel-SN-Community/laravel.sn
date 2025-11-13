@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Projects\Schemas;
 
 use App\Enums\ProjectStatus;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -20,6 +21,11 @@ class ProjectForm
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
+                SpatieTagsInput::make('tags')
+                    ->label('Tags')
+                    ->type('project')
+                    ->suggestions(fn () => \Spatie\Tags\Tag::where('type', 'project')->pluck('name')->toArray())
+                    ->helperText('Add tags for this project (e.g., Laravel, React, Docker). Press Enter or comma to add multiple tags.'),
                 TextInput::make('github_link')
                     ->url()
                     ->placeholder('https://github.com/username/repository'),

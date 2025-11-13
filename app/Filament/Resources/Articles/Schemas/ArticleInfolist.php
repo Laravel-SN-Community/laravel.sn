@@ -51,12 +51,12 @@ class ArticleInfolist
                                                 }
                                             ),
 
-                                        TextEntry::make('technologies.name')
-                                            ->label('Technologies')
+                                        TextEntry::make('tags.name')
+                                            ->label('Tags')
                                             ->badge()
                                             ->color('info')
                                             ->separator(',')
-                                            ->icon('heroicon-m-code-bracket')
+                                            ->icon('heroicon-m-tag')
                                             ->columnSpanFull(),
                                     ]),
                             ])

@@ -2,22 +2,18 @@
 
 use App\Enums\ArticleStatus;
 use App\Models\Article;
-use App\Models\Technology;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-test('articles page displays published articles with technologies', function () {
-    $laravel = Technology::create(['name' => 'Laravel', 'slug' => 'laravel']);
-    $vuejs = Technology::create(['name' => 'Vue.js', 'slug' => 'vuejs']);
-
+test('articles page displays published articles with tags', function () {
     $article = Article::factory()->create([
         'title' => 'Laravel et Vue.js: l\'IA et les Outils Modernes',
         'status' => ArticleStatus::Published,
         'published_at' => now(),
     ]);
 
-    $article->technologies()->attach([$laravel->id, $vuejs->id]);
+    $article->attachTags(['Laravel', 'Vue.js']);
 
     $response = $this->get(route('articles'));
 

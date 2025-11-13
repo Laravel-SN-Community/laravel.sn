@@ -61,11 +61,11 @@
                         @endif
 
                         <!-- Technologies -->
-                        @if($project->technologies->isNotEmpty())
+                        @if($project->tags->isNotEmpty())
                             <div class="flex items-center gap-2 mt-2">
-                                @foreach($project->technologies as $technology)
+                                @foreach($project->tags as $tag)
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-red-600">
-                                        {{ $technology->name }}
+                                        {{ $tag->name }}
                                     </span>
                                 @endforeach
                             </div>

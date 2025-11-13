@@ -34,6 +34,7 @@ class Index extends Component
 
         $projects = Project::query()
             ->with('categories')
+            ->with('tags')
             ->withCount('votes')
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc')

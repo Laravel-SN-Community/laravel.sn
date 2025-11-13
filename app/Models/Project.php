@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
+use Spatie\Tags\HasTags;
 
 class Project extends Model
 {
     use HasFactory;
+    use HasTags;
 
     protected $fillable = ['name', 'slug', 'description', 'github_link', 'project_link', 'status', 'user_id'];
 
@@ -34,14 +36,6 @@ class Project extends Model
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
-    }
-
-    /**
-     * Get the technologies for the project.
-     */
-    public function technologies(): BelongsToMany
-    {
-        return $this->belongsToMany(Technology::class);
     }
 
     /**
