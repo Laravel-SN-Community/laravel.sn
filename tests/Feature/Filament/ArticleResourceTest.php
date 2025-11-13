@@ -4,7 +4,6 @@ use App\Enums\ArticleStatus;
 use App\Filament\Resources\Articles\Pages\CreateArticle;
 use App\Filament\Resources\Articles\Pages\EditArticle;
 use App\Models\Article;
-use App\Models\Technology;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -42,10 +41,7 @@ This is a test article with some content.',
     ]);
 });
 
-test('can create an article with technologies', function () {
-    $technology1 = Technology::create(['name' => 'Laravel', 'slug' => 'laravel']);
-    $technology2 = Technology::create(['name' => 'PHP', 'slug' => 'php']);
-
+test('can create an article with tags', function () {
     $articleData = [
         'title' => 'Laravel Tutorial',
         'slug' => 'laravel-tutorial',
@@ -53,7 +49,7 @@ test('can create an article with technologies', function () {
 
 Learn Laravel basics.',
         'status' => ArticleStatus::Published,
-        'technologies' => [$technology1->id, $technology2->id],
+        'tags' => ['Laravel', 'PHP'],
     ];
 
     Livewire::test(CreateArticle::class)
@@ -64,8 +60,8 @@ Learn Laravel basics.',
     $article = Article::where('slug', 'laravel-tutorial')->first();
 
     expect($article)->not->toBeNull();
-    expect($article->technologies)->toHaveCount(2);
-    expect($article->technologies->pluck('name')->toArray())->toContain('Laravel', 'PHP');
+    expect($article->tags)->toHaveCount(2);
+    expect($article->tags->pluck('name')->toArray())->toContain('Laravel', 'PHP');
 });
 
 test('can validate article creation', function () {
@@ -116,57 +112,16 @@ test('can edit an article', function () {
         ->slug->toBe('updated-slug');
 });
 
-test('can attach technologies to existing article', function () {
+test('can attach tags to existing article', function () {
     $article = Article::factory()->create();
-    $technology1 = Technology::create(['name' => 'Vue.js', 'slug' => 'vuejs']);
-    $technology2 = Technology::create(['name' => 'React', 'slug' => 'react']);
 
     Livewire::test(EditArticle::class, ['record' => $article->getRouteKey()])
         ->fillForm([
-            'technologies' => [$technology1->id, $technology2->id],
+            'tags' => ['Vue.js', 'React'],
         ])
         ->call('save')
         ->assertHasNoFormErrors();
 
-    expect($article->fresh()->technologies)->toHaveCount(2);
-    expect($article->technologies->pluck('name')->toArray())->toContain('Vue.js', 'React');
-});
-
-test('can update technologies on article', function () {
-    $article = Article::factory()->create();
-    $technology1 = Technology::create(['name' => 'JavaScript', 'slug' => 'javascript']);
-    $technology2 = Technology::create(['name' => 'TypeScript', 'slug' => 'typescript']);
-    $technology3 = Technology::create(['name' => 'Node.js', 'slug' => 'nodejs']);
-
-    $article->technologies()->attach([$technology1->id, $technology2->id]);
-
-    expect($article->fresh()->technologies)->toHaveCount(2);
-
-    Livewire::test(EditArticle::class, ['record' => $article->getRouteKey()])
-        ->fillForm([
-            'technologies' => [$technology3->id],
-        ])
-        ->call('save')
-        ->assertHasNoFormErrors();
-
-    $article->refresh();
-    expect($article->technologies)->toHaveCount(1);
-    expect($article->technologies->first()->name)->toBe('Node.js');
-});
-
-test('can remove all technologies from article', function () {
-    $article = Article::factory()->create();
-    $technology = Technology::create(['name' => 'Python', 'slug' => 'python']);
-
-    $article->technologies()->attach($technology->id);
-    expect($article->fresh()->technologies)->toHaveCount(1);
-
-    Livewire::test(EditArticle::class, ['record' => $article->getRouteKey()])
-        ->fillForm([
-            'technologies' => [],
-        ])
-        ->call('save')
-        ->assertHasNoFormErrors();
-
-    expect($article->fresh()->technologies)->toHaveCount(0);
+    expect($article->fresh()->tags)->toHaveCount(2);
+    expect($article->tags->pluck('name')->toArray())->toContain('Vue.js', 'React');
 });

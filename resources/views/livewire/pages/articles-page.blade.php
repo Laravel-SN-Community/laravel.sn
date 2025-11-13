@@ -68,13 +68,13 @@
 
                             <!-- Article Content -->
                             <div class="p-6 flex flex-col gap-4 flex-1">
-                                <!-- Technology Tags -->
-                                @if($article->technologies->count() > 0)
+                                <!-- Tags -->
+                                @if($article->tags->count() > 0)
                                     <div class="flex flex-wrap gap-2">
-                                        @foreach($article->technologies as $technology)
+                                        @foreach($article->tags as $tag)
                                             <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full border border-gray-200">
                                                 <span class="w-2 h-2 rounded-full {{ $loop->index === 0 ? 'bg-red-500' : ($loop->index === 1 ? 'bg-green-500' : 'bg-purple-500') }}"></span>
-                                                {{ $technology->name }}
+                                                {{ $tag->name }}
                                             </span>
                                         @endforeach
                                     </div>

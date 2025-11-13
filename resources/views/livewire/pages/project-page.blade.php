@@ -77,11 +77,11 @@
                                     </p>
 
                                     <!-- 4. Project Technologies -->
-                                    @if($project->technologies->isNotEmpty())
+                                    @if($project->tags->isNotEmpty())
                                         <div class="flex flex-wrap items-center gap-2 mb-4">
-                                            @foreach($project->technologies as $technology)
+                                            @foreach($project->tags as $tag)
                                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-red-600">
-                                                    {{ $technology->name }}
+                                                    {{ $tag->name }}
                                                 </span>
                                             @endforeach
                                         </div>

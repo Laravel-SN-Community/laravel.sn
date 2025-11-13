@@ -15,6 +15,7 @@
         "filament/notifications": "^4.0",
         "filament/schemas": "^4.0",
         "filament/spatie-laravel-media-library-plugin": "^4.0",
+        "filament/spatie-laravel-tags-plugin": "^4.0",
         "filament/tables": "^4.0",
         "filament/widgets": "^4.0",
         "genealabs/laravel-mixpanel": "^12.0",
@@ -30,7 +31,8 @@
         "prism-php/prism": "^0.91.0",
         "spatie/laravel-medialibrary": "^11.15",
         "spatie/laravel-newsletter": "^5.3",
-        "spatie/laravel-package-tools": "^1.92"
+        "spatie/laravel-package-tools": "^1.92",
+        "spatie/laravel-tags": "^4.10"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

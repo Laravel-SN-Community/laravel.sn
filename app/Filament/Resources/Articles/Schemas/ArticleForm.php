@@ -8,6 +8,7 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Schemas\Components\Utilities\Get;
@@ -152,21 +153,10 @@ class ArticleForm
 
                     ->maxSize(5120)
                     ->columnSpanFull(),
-                Select::make('technologies')
-                    ->label('Technologies')
-                    ->relationship('technologies', 'name')
-                    ->multiple()
-                    ->searchable()
-                    ->preload()
-                    ->createOptionForm([
-                        TextInput::make('name')
-                            ->required()
-                            ->maxLength(255),
-                        TextInput::make('slug')
-                            ->required()
-                            ->maxLength(255),
-                    ])
-                    ->helperText('Select technologies for this article or create new ones'),
+                SpatieTagsInput::make('tags')
+                    ->label('Tags')
+                    ->type('article')
+                    ->suggestions(fn () => \Spatie\Tags\Tag::where('type', 'article')->pluck('name')->toArray()),
 
                 Select::make('status')
                     ->options(ArticleStatus::class)

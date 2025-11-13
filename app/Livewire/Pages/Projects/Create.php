@@ -5,7 +5,6 @@ namespace App\Livewire\Pages\Projects;
 use App\Enums\ProjectStatus;
 use App\Models\Category;
 use App\Models\Project;
-use App\Models\Technology;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -18,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Spatie\Tags\Tag;
 
 class Create extends Component implements HasActions, HasSchemas
 {
@@ -41,10 +41,10 @@ class Create extends Component implements HasActions, HasSchemas
                     ->label('Description')
                     ->required()
                     ->columnSpanFull(),
-                Select::make('technologies')
-                    ->label('Technologies')
+                Select::make('tags')
+                    ->label('Tags')
                     ->options(
-                        Technology::all()->pluck('name', 'id')
+                        Tag::all()->pluck('name', 'id')
                     )
                     ->searchable()
                     ->preload()
@@ -70,7 +70,7 @@ class Create extends Component implements HasActions, HasSchemas
             ->action(function ($data) {
                 $project = Project::create([
                     'user_id' => auth()->user()->id,
-                    'slug' => Str::slug($data['name']),
+                    'slug' => Str::uuid()->toString(),
                     'name' => $data['name'],
                     'description' => $data['description'],
                     'github_link' => $data['github_link'],
@@ -78,7 +78,8 @@ class Create extends Component implements HasActions, HasSchemas
                     'status' => ProjectStatus::Approved,
                 ]);
 
-                $project->technologies()->attach($data['technologies']);
+                $tags = Tag::whereIn('id', $data['tags'])->get();
+                $project->attachTags($tags);
 
                 $project->categories()->attach($data['categories']);
             })

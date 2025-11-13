@@ -24,8 +24,8 @@ class ArticlesTable
                 TextColumn::make('slug')
                     ->limit(30)
                     ->searchable(),
-                TextColumn::make('technologies.name')
-                    ->label('Technologies')
+                TextColumn::make('tags.name')
+                    ->label('Tags')
                     ->badge()
                     ->separator(',')
                     ->searchable()
@@ -59,8 +59,8 @@ class ArticlesTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('technologies')
-                    ->relationship('technologies', 'name')
+                SelectFilter::make('tags')
+                    ->relationship('tags', 'name')
                     ->searchable()
                     ->preload()
                     ->multiple(),

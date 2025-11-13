@@ -16,11 +16,13 @@ use Illuminate\Support\Str;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Tags\HasTags;
 
 #[ObservedBy([ArticleObserver::class])]
 class Article extends Model implements HasMedia, ViewableContract
 {
     use HasFactory;
+    use HasTags;
     use InteractsWithMedia;
     use InteractsWithViews;
 
@@ -45,14 +47,6 @@ class Article extends Model implements HasMedia, ViewableContract
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
-    }
-
-    /**
-     * Get the technologies for the article.
-     */
-    public function technologies(): BelongsToMany
-    {
-        return $this->belongsToMany(Technology::class);
     }
 
     /**

@@ -4,6 +4,8 @@ use App\Models\Category;
 use App\Models\Technology;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
+use Spatie\Tags\Tag;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -149,3 +151,68 @@ Artisan::command('categories:seed', function () {
         );
     }
 })->purpose('Seed the categories table with predefined data');
+
+Artisan::command('migrate:technologies-to-tags', function () {
+    $this->info('Starting migration of technologies to tags...');
+
+    // Get all technologies
+    $technologies = Technology::all();
+
+    if ($technologies->isEmpty()) {
+        $this->warn('No technologies found to migrate.');
+
+        return;
+    }
+
+    $this->info("Found {$technologies->count()} technologies to migrate.");
+
+    $technologyToTagMap = [];
+
+    // Create tags from technologies
+    foreach ($technologies as $technology) {
+        $tag = Tag::findOrCreate($technology->name);
+        $technologyToTagMap[$technology->id] = $tag->id;
+        $this->line("Created tag: {$tag->name}");
+    }
+
+    // Migrate article-technology relationships
+    $articleTechCount = DB::table('article_technology')->count();
+    if ($articleTechCount > 0) {
+        $this->info("\nMigrating {$articleTechCount} article-technology relationships...");
+
+        $articleTechRelations = DB::table('article_technology')->get();
+
+        foreach ($articleTechRelations as $relation) {
+            DB::table('taggables')->insert([
+                'tag_id' => $technologyToTagMap[$relation->technology_id],
+                'taggable_type' => \App\Models\Article::class,
+                'taggable_id' => $relation->article_id,
+            ]);
+        }
+
+        $this->info("Migrated {$articleTechCount} article-technology relationships.");
+    }
+
+    // Migrate project-technology relationships
+    $projectTechCount = DB::table('project_technology')->count();
+    if ($projectTechCount > 0) {
+        $this->info("\nMigrating {$projectTechCount} project-technology relationships...");
+
+        $projectTechRelations = DB::table('project_technology')->get();
+
+        foreach ($projectTechRelations as $relation) {
+            DB::table('taggables')->insert([
+                'tag_id' => $technologyToTagMap[$relation->technology_id],
+                'taggable_type' => \App\Models\Project::class,
+                'taggable_id' => $relation->project_id,
+            ]);
+        }
+
+        $this->info("Migrated {$projectTechCount} project-technology relationships.");
+    }
+
+    $this->newLine();
+    $this->info('✓ Migration completed successfully!');
+    $this->info("Total tags created: {$technologies->count()}");
+    $this->info('Total relationships migrated: '.($articleTechCount + $projectTechCount));
+})->purpose('Migrate existing technologies data to Spatie tags');
