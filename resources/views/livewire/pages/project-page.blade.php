@@ -62,17 +62,32 @@
                 <!-- Projects List -->
                 <div class="flex flex-col gap-4">
                     @foreach($projects as $project)
-                        <div class="bg-white rounded-xl border py-2 px-4 hover:border-red-600 transition-colors">
-                            <div class="flex gap-6">
+                        <div class="flex flex-col md:flex-row overflow-hidden gap-4 w-full bg-white rounded-xl border py-2 px-4 hover:border-red-600 transition-colors">
+                            <div class="h-64 w-full md:max-w-64 overflow-hidden  bg-gray-100 rounded-xl">
+{{--                                <div class="relative">--}}
+{{--                                    @if($project->status === \App\Enums\ProjectStatus::Approved)--}}
+{{--                                        <span class="absolute top-2 right-2 bg-green-100 text-green-500 font-semibold px-2.5 py-0.5 rounded-full text-xs">--}}
+{{--                                            {{__('Approved')}}--}}
+{{--                                        </span>--}}
+{{--                                    @else--}}
+{{--                                        <span class="absolute top-2 right-2 bg-yellow-100 text-yellow-500 text-green-800font-semibold px-2.5 py-0.5 rounded-full text-xs">--}}
+{{--                                            {{__('Pending')}}--}}
+{{--                                        </span>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+                                <img src="{{ $project->getFirstMediaUrl('projects') ?: asset('/images/Laravelsn.jpg') }}"
+                                     alt="{{ $project->name }}"
+                                     class="w-full h-full object-cover transition-transform duration-300 flex-shrink-0">
+
+                            </div>
+                            <div class="p-6 flex flex-col gap-4 flex-1 md:flex-row justify-between">
                                 <!-- Left Side: Project Info -->
-                                <div class="flex-1 min-w-0">
+                                <div class="flex-1 min-w-0 w-full flex flex-col">
                                     <!-- 1. Project Name -->
                                     <h3 class="text-lg font-semibold text-red-600 mb-3">
                                         {{ $project->name }}
                                     </h3>
-
-                                    <!-- 2. Project Description -->
-                                    <p class="text-sm mb-4">
+                                    <p class="text-sm mb-4 line-clamp-2">
                                         {{ $project->description }}
                                     </p>
 
@@ -115,6 +130,13 @@
                                         </svg>
                                         <span>{{ $project->user->name }}</span>
                                     </div>
+                                    <a wire:navigate href="{{ route('projects.show', $project) }}"
+                                       class="mt-5 inline-flex items-center gap-1 text-red-600 text-sm font-semibold hover:text-red-700 transition-colors group">
+                                        {{ __('Read more') }}
+                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
                                 </div>
 
                                 <!-- Right Side: Fire Button with Vote Count -->
