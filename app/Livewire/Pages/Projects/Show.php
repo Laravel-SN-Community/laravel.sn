@@ -20,8 +20,15 @@ class Show extends Component
     {
         $user = auth()->user();
 
+        if (!$user) {
+            Toaster::error('You must be logged in to vote.');
+            $this->redirect(route('login'));
+            return;
+        }
+
         /** @var \App\Models\Project $project */
         $project = Project::findOrFail($projectId);
+        $project->load('votes');
 
         if ($user->hasVotedFor($project)) {
             $user->votes()->detach($project);
