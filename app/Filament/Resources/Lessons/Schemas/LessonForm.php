@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Lessons\Schemas;
 
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -39,9 +40,8 @@ class LessonForm
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
 
-                Textarea::make('summary')
+                MarkdownEditor::make('summary')
                     ->required()
-                    ->rows(3)
                     ->columnSpanFull(),
             ]);
     }
