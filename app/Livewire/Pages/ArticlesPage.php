@@ -24,6 +24,7 @@ class ArticlesPage extends Component
     {
         $articles = Article::query()
             ->with('tags')
+            ->withViewsCount()
             ->where('status', ArticleStatus::Published)
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
