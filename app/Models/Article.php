@@ -97,4 +97,16 @@ class Article extends Model implements HasMedia, ViewableContract
             }
         );
     }
+
+    /**
+     * Get the count of views for the article.
+     */
+    protected function viewsCount(): Attribute
+    {
+        return Attribute::make(
+            get: function (): int {
+                return views($this)->unique()->count();
+            }
+        );
+    }
 }

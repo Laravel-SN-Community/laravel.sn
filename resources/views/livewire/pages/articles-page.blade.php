@@ -94,11 +94,16 @@
 
                                 <!-- Article Actions -->
                                 <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                                    <div class="flex items-center text-gray-500 text-xs">
-                                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                        </svg>
-                                        <span class="text-gray-900 text-lg font-semibold">{{ $article->published_at->format('d M Y') }}</span>
+                                    <div class="flex flex-col gap-2">
+                                        <div class="flex items-center text-gray-500 text-xs">
+                                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg>
+                                            <span class="text-gray-900 text-lg font-semibold">{{ $article->published_at->format('d M Y') }}</span>
+                                        </div>
+                                        <div class="flex items-center text-gray-500 text-xs">
+                                            <span class="text-gray-700 font-medium">{{ number_format($article->views_count) }} {{ __('views') }}</span>
+                                        </div>
                                     </div>
                                     <a wire:navigate href="{{ route('article.show', $article->slug) }}"
                                        class="inline-flex items-center gap-1 text-red-600 text-sm font-semibold hover:text-red-700 transition-colors group">
