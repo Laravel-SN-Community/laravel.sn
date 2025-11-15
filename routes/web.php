@@ -9,6 +9,7 @@ use App\Livewire\Pages\EventsPage;
 use App\Livewire\Pages\ForumPage;
 use App\Livewire\Pages\ProjectPage;
 use App\Livewire\Pages\Projects\Index as ProjectsIndex;
+use App\Livewire\Pages\Projects\Show as ProjectShowPage;
 use App\Livewire\Pages\WelcomePage;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::get('/event/{event}', ShowEvent::class)->name('event.show');
 Route::get('/articles', ArticlesPage::class)->name('articles');
 Route::get('/article/{article:slug}', ShowArticle::class)->name('article.show');
 Route::get('/projects', ProjectPage::class)->name('projects');
+Route::get('/projects/show/{project:slug}', ProjectShowPage::class)
+    ->name('projects.show');
 Route::get('/forum', ForumPage::class)->name('forum');
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])

@@ -19,7 +19,14 @@ class ProjectsTable
                     ->sortable(),
                 TextColumn::make('description')
                     ->limit(50)
+                    ->toggleable()
                     ->searchable(),
+                TextColumn::make('tags.name')
+                    ->label('Tags')
+                    ->badge()
+                    ->separator(',')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn ($state) => match ($state) {
@@ -33,13 +40,15 @@ class ProjectsTable
                     ->url(fn ($record) => $record->github_link)
                     ->openUrlInNewTab()
                     ->icon('heroicon-m-link')
-                    ->limit(30),
+                    ->limit(30)
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('project_link')
                     ->label('Project')
                     ->url(fn ($record) => $record->project_link)
                     ->openUrlInNewTab()
                     ->icon('heroicon-m-link')
-                    ->limit(30),
+                    ->limit(30)
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('user.name')
                     ->label('User')
                     ->searchable()
