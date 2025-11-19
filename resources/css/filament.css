@@ -38,7 +38,7 @@
 @source '../../vendor/masmerise/livewire-toaster/resources/views/*.blade.php';
 
 @theme {
-    --font-sans: "Playfair Display", Figtree, ui-sans-serif, system-ui,
+    --font-sans: "Work Sans", ui-sans-serif, system-ui,
         sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
