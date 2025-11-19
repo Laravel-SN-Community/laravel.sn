@@ -19,7 +19,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
     <!-- Icons -->
@@ -49,7 +49,7 @@
 
 <body>
     <div class="min-h-screen w-full bg-[#f8fafc]">
-        
+
         <div class="font-sans text-gray-900 antialiased">
             <x-topbar-guest />
             {{ $slot }}
