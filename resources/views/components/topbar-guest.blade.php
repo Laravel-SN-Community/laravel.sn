@@ -1,4 +1,4 @@
-<header class="bg-white shadow-xs sticky top-0 z-40">
+<header class="bg-white shadow-xs sticky top-0 z-40 border border-b border-gray-300">
     <div class="flex h-16 items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ open: false }"
         @keydown.window.escape="open = false; document.body.style.overflow = 'auto';">
         <a href="{{ route('welcome') }}" wire:navigate>

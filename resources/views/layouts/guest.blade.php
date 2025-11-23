@@ -1,8 +1,3 @@
-@php
-    use App\Models\Event;
-    $ongoingEvent = Event::query()->upcoming()->published()->first();
-@endphp
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -48,11 +43,20 @@
 </head>
 
 <body>
-    <div class="min-h-screen w-full bg-[#f8fafc]">
+    <div class="min-h-screen w-full bg-white">
         
         <div class="font-sans text-gray-900 antialiased">
             <x-topbar-guest />
-            {{ $slot }}
+            
+            <!-- Main Content with Vertical Lines -->
+            <div class="relative max-w-7xl mx-auto">
+                <!-- Gray Accent Bars -->
+                <div class="absolute left-0 top-0 bottom-0 w-px bg-gray-300"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-px bg-gray-300"></div>
+                
+                {{ $slot }}
+            </div>
+            
             <x-footer />
         </div>
         <x-toaster-hub />
