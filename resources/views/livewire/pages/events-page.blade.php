@@ -1,39 +1,31 @@
 <x-slot:title>{{ __('Events') }}</x-slot:title>
-<div class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50">
+<div class="min-h-screen">
 
     <!-- Hero Section -->
-    <section class="relative py-20 bg-white overflow-hidden">
-        <!-- Gradient Overlay from Top to White -->
-        <div class="absolute inset-0 z-0 pointer-events-none">
-            <div class="absolute inset-0"
-                style="background: linear-gradient(to bottom, #f3f4f6 0%, #ffffff 100%);">
-            </div>
-            <!-- Grid Background -->
-            <div class="absolute inset-0 opacity-20">
-                <div class="absolute inset-0"
-                    style="background-image:
-                    linear-gradient(to right, #9ca3af 1px, transparent 1px),
-                    linear-gradient(to bottom, #9ca3af 1px, transparent 1px);
-                    background-size: 20px 20px;">
+    <section class="relative py-20">
+        <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
+            <div class="max-w-4xl">
+                <!-- Label -->
+                <div class="inline-flex items-center gap-2 mb-8">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-red-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                    </svg>                      
+                    <span class="text-sm font-medium text-red-600 uppercase tracking-wider">{{ __('Events') }}</span>
                 </div>
-            </div>
-        </div>
 
-        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Main Title -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 text-center">
-                {{ __('Laravel Senegal Events') }}
-            </h1>
+                <!-- Main Title -->
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-10 leading-[1.1] tracking-tight">
+                    {{ __('Laravel Senegal Events') }}
+                </h1>
 
-            <!-- Subtitle -->
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 text-center max-w-4xl mx-auto">
-                {{ __('Discover our upcoming meetups, workshops and events from the Laravel community in Senegal') }}
-                <span class="text-red-600 font-semibold">Laravel</span> au Sénégal
-            </p>
+                <!-- Subtitle -->
+                <p class="text-xl md:text-2xl text-gray-600 mb-16 leading-relaxed font-light max-w-2xl">
+                    {{ __('Discover our upcoming meetups, workshops and events from the Laravel community in Senegal') }}
+                    <span class="text-red-600 font-normal">Laravel</span> au Sénégal
+                </p>
 
-            <!-- Search and Filter -->
-            <div class="max-w-2xl mx-auto mb-12">
-                <div class="flex flex-col sm:flex-row gap-4">
+                <!-- Search and Filter -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
                     <!-- Search -->
                     <div class="flex-1">
                         <div class="relative">
@@ -59,25 +51,22 @@
                 </div>
             </div>
         </div>
-
-        <!-- Fade Effect Bottom -->
-        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white pointer-events-none z-20"></div>
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="events" class="py-20">
+        <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
             @if($events->count() > 0)
                 <!-- Events Grid -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach($events as $event)
-                        <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                        <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-red-300 transition-all duration-200 group">
                             <!-- Event Header -->
                             <div class="p-6 pb-4">
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex-1">
                                         <a wire:navigate href="{{ route('event.show', $event) }}">
-                                            <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 hover:text-red-500 hover:underline">
+                                            <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors">
                                                 {{ $event->name }}
                                             </h3>
                                         </a>
@@ -100,7 +89,7 @@
                                 </div>
 
                                 <!-- Event Description -->
-                                <p class="text-gray-600 text-sm line-clamp-3 mb-4">
+                                <p class="text-gray-600 text-sm line-clamp-3 mb-4 font-light leading-relaxed">
                                     {{ $event->description }}
                                 </p>
                             </div>
@@ -108,8 +97,11 @@
                             <!-- Event Actions -->
                             <div class="px-6 pb-6">
                                 <a wire:navigate href="{{ route('event.show', $event) }}"
-                                   class="block w-full bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors text-center">
+                                   class="inline-flex items-center justify-center w-full bg-red-600 text-white px-4 py-3 rounded-xl text-sm font-semibold hover:bg-red-700 transition-all duration-200 group/btn">
                                     {{ __('View details') }}
+                                    <svg class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
                                 </a>
                             </div>
                         </div>
@@ -124,12 +116,12 @@
                 @endif
             @else
                 <!-- Empty State -->
-                <div class="text-center py-16">
-                    <svg class="mx-auto h-24 w-24 text-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-center py-16 max-w-2xl mx-auto">
+                    <svg class="mx-auto h-20 w-20 text-gray-300 mb-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                     </svg>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ __('No event found') }}</h3>
-                    <p class="text-gray-600 mb-8">
+                    <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight tracking-tight">{{ __('No event found') }}</h3>
+                    <p class="text-lg md:text-xl text-gray-600 mb-10 font-light leading-relaxed">
                         @if($search)
                             {{ __('No event found for your search') }} "{{ $search }}".
                         @else
@@ -138,7 +130,7 @@
                     </p>
                     @if($search)
                         <button wire:click="$set('search', '')"
-                                class="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                                class="inline-flex items-center justify-center bg-red-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-red-700 transition-all duration-200">
                             {{ __('View all events') }}
                         </button>
                     @endif

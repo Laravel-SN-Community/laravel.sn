@@ -24,7 +24,6 @@ class ProjectForm
                 SpatieTagsInput::make('tags')
                     ->label('Tags')
                     ->type('project')
-                    ->suggestions(fn () => \Spatie\Tags\Tag::where('type', 'project')->pluck('name')->toArray())
                     ->helperText('Add tags for this project (e.g., Laravel, React, Docker). Press Enter or comma to add multiple tags.'),
                 TextInput::make('github_link')
                     ->url()
