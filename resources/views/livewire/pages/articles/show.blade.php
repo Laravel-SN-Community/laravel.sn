@@ -33,7 +33,9 @@
                 <header class="mb-12">
                     <!-- Label -->
                     <div class="inline-flex items-center gap-2 mb-8">
-                        <span class="h-px w-12 bg-red-500"></span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
+                        </svg>
                         <span class="text-sm font-medium text-red-600 uppercase tracking-wider">Article</span>
                     </div>
 
