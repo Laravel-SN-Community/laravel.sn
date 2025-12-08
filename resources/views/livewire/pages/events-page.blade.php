@@ -57,7 +57,7 @@
     </section>
 
     <!-- Events Section -->
-    <section id="events">
+    <section id="events" class="mb-12">
         <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
             @if ($events->count() > 0)
                 <!-- Events Grid -->
