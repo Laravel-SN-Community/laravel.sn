@@ -6,6 +6,7 @@ use App\Livewire\Pages\ArticlesPage;
 use App\Livewire\Pages\DashboardPage;
 use App\Livewire\Pages\Events\Show as ShowEvent;
 use App\Livewire\Pages\EventsPage;
+use App\Livewire\Pages\FeedsPage;
 use App\Livewire\Pages\ForumPage;
 use App\Livewire\Pages\ProjectPage;
 use App\Livewire\Pages\Projects\Index as ProjectsIndex;
@@ -22,6 +23,7 @@ Route::get('/event/{event}', ShowEvent::class)->name('event.show');
 Route::get('/articles', ArticlesPage::class)->name('articles');
 Route::get('/article/{article:slug}', ShowArticle::class)->name('article.show');
 Route::get('/projects', ProjectPage::class)->name('projects');
+Route::get('/feeds', FeedsPage::class)->name('feeds');
 Route::get('/forum', ForumPage::class)->name('forum');
 
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])

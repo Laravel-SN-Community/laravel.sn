@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('passer'),
         ]);
         // php artisan db:seed
+
+        $this->call([
+            RssSourceSeeder::class,
+        ]);
     }
 }
