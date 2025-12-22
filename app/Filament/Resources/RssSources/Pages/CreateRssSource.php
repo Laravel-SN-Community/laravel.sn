@@ -9,4 +9,3 @@ class CreateRssSource extends CreateRecord
 {
     protected static string $resource = RssSourceResource::class;
 }
-

@@ -17,4 +17,3 @@ class ListRssSources extends ListRecords
         ];
     }
 }
-

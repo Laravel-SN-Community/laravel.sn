@@ -47,4 +47,3 @@ class FeedsPage extends Component
         $this->selectedSourceId = null;
     }
 }
-

@@ -270,4 +270,3 @@ class RssFeedService
         return $this;
     }
 }
-

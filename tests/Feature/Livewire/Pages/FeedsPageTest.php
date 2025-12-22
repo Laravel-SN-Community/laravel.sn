@@ -155,4 +155,3 @@ test('handles feed fetch errors gracefully', function () {
         ->assertSuccessful()
         ->assertSee('No feeds available');
 });
-

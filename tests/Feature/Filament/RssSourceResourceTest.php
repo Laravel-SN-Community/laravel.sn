@@ -138,4 +138,3 @@ test('can filter by active status', function () {
         ->assertCanSeeTableRecords([$active])
         ->assertCanNotSeeTableRecords([$inactive]);
 });
-
