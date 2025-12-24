@@ -43,6 +43,32 @@
                         {{ __('Join the WhatsApp community') }}
                     </a>
                 </div>
+
+                <!-- Recap 2025 Button -->
+                <div class="mt-12 animate-fade-in-up">
+                    <a href="{{ route('recap.2025') }}" wire:navigate
+                        class="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white px-8 py-4 rounded-2xl text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden">
+                        <!-- Animated background gradient -->
+                        <span class="absolute inset-0 bg-gradient-to-r from-red-700 via-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                        
+                        <!-- Shimmer effect -->
+                        <span class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></span>
+                        
+                        <!-- Content -->
+                        <span class="relative flex items-center gap-3">
+                            <svg class="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span>{{ __('Watch Recap 2025') }}</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </span>
+                        
+                        <!-- Pulsing ring effect -->
+                        <span class="absolute -inset-1 rounded-2xl bg-red-500 opacity-30 group-hover:opacity-50 animate-pulse-slow"></span>
+                    </a>
+                </div>
             </div>
         </div>
        
