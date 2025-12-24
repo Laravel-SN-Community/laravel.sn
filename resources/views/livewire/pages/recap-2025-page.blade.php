@@ -6,12 +6,14 @@
         >
             <div class="flex gap-1">
                 <template x-for="(media, index) in images" :key="index">
-                    <div class="flex-1 h-1 bg-red-500/30 rounded-full overflow-hidden">
+                    <div 
+                        class="flex-1 h-1 rounded-full overflow-hidden transition-colors"
+                        :class="index < currentIndex ? 'bg-red-500/30' : index === currentIndex ? 'bg-red-500/20' : 'bg-red-500/10'"
+                    >
                         <div 
                             class="h-full bg-red-500 rounded-full transition-all duration-100 ease-linear"
                             :class="{ 'animate-progress': currentIndex === index && isPlaying }"
-                            :style="currentIndex === index && isPlaying ? `animation-duration: ${duration}s` : ''"
-                            x-show="index <= currentIndex"
+                            :style="currentIndex === index && isPlaying ? `animation-duration: ${duration}s` : index < currentIndex ? 'width: 100%' : 'width: 0%'"
                         ></div>
                     </div>
                 </template>
@@ -78,15 +80,19 @@
                         class="w-full h-full object-contain"
                         style="object-fit: contain; max-width: 100%; max-height: 100%;"
                         autoplay
-                        loop
+                        :loop="index < images.length - 1"
                         :muted="isMuted"
                         playsinline
+                        preload="auto"
                         @loadeddata="onVideoReady(index, $event.target)"
+                        @canplay="onVideoReady(index, $event.target)"
+                        @canplaythrough="onVideoReady(index, $event.target)"
+                        @play="onVideoReady(index, $event.target)"
                         @ended="onVideoEnded(index)"
                     ></video>
                     
                     <!-- Year 2025 and Title Overlay - Modern Design -->
-                    <div class="absolute bottom-0 left-0 right-0 z-40 text-center pointer-events-none pb-12 px-4">
+                    <div class="absolute bottom-0 left-0 right-0 z-40 text-center pointer-events-none pb-20 px-4">
                         <div class="relative inline-block max-w-4xl">
                             <!-- Gradient Background -->
                             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent blur-xl rounded-t-full -mx-8 -my-4"></div>
@@ -200,7 +206,7 @@
 
         <!-- Media Counter -->
         <div 
-            class="absolute bottom-24 left-1/2 -translate-x-1/2 z-50 text-white/70 text-xs font-medium bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10"
+            class="absolute top-6 left-6 z-50 text-white/70 text-xs font-medium bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10"
             x-show="!showIntro"
         >
             <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
@@ -258,6 +264,20 @@
                 this.currentIndex = 0;
                 setTimeout(() => {
                     this.startTimer();
+                    // Also check if first media is a video and trigger play
+                    this.$nextTick(() => {
+                        const firstMedia = this.images[0];
+                        const firstSrc = this.getMediaSrc(firstMedia);
+                        if (this.isVideo(firstSrc)) {
+                            // Give video time to load, then try to play
+                            setTimeout(() => {
+                                const videoElement = document.querySelector(`video[src*="${firstSrc}"]`);
+                                if (videoElement && videoElement.paused) {
+                                    videoElement.play().catch(() => {});
+                                }
+                            }, 300);
+                        }
+                    });
                 }, 500);
             },
 
@@ -265,6 +285,7 @@
                 // Check if current media is a video
                 const currentMedia = this.images[this.currentIndex];
                 const currentSrc = this.getMediaSrc(currentMedia);
+                
                 if (this.isVideo(currentSrc)) {
                     // For videos, don't use timer - let video play and handle on ended
                     this.isPlaying = true;
@@ -293,6 +314,31 @@
             resetTimer() {
                 this.stopTimer();
                 this.startTimer();
+                // If new media is a video, ensure it starts playing
+                this.$nextTick(() => {
+                    const currentMedia = this.images[this.currentIndex];
+                    const currentSrc = this.getMediaSrc(currentMedia);
+                    if (this.isVideo(currentSrc)) {
+                        // Give video a moment to be in the DOM, then try to play
+                        setTimeout(() => {
+                            const videoEl = this.videos[this.currentIndex];
+                            if (videoEl) {
+                                if (videoEl.paused) {
+                                    videoEl.play().catch(() => {});
+                                }
+                            } else {
+                                // If video not in cache, find it in DOM
+                                const videoElement = document.querySelector(`video[src*="${currentSrc.split('/').pop()}"]`);
+                                if (videoElement) {
+                                    this.videos[this.currentIndex] = videoElement;
+                                    videoElement.muted = this.isMuted;
+                                    videoElement.loop = this.currentIndex < this.images.length - 1;
+                                    videoElement.play().catch(() => {});
+                                }
+                            }
+                        }, 200);
+                    }
+                });
             },
 
             next() {
@@ -369,16 +415,33 @@
                     this.videos[index] = videoElement;
                     // Set mute state
                     videoElement.muted = this.isMuted;
-                    videoElement.play().catch(() => {
-                        // Autoplay failed, continue anyway
-                    });
+                    // Set loop based on whether it's the last video (last video should not loop)
+                    const isLastVideo = index === this.images.length - 1;
+                    videoElement.loop = !isLastVideo;
+                    
+                    // Ensure video plays - always try to play, even if not paused
+                    const tryPlay = () => {
+                        if (videoElement.paused || videoElement.readyState < 2) {
+                            videoElement.play().catch((error) => {
+                                // If autoplay fails, try again after a short delay
+                                setTimeout(tryPlay, 500);
+                            });
+                        }
+                    };
+                    tryPlay();
                 }
             },
 
             onVideoEnded(index) {
-                // When video ends, move to next
+                // When video ends, move to next or close if last
                 if (index === this.currentIndex) {
-                    this.next();
+                    const isLastSlide = this.currentIndex === this.images.length - 1;
+                    if (isLastSlide) {
+                        // Last slide ended, close and redirect
+                        this.close();
+                    } else {
+                        this.next();
+                    }
                 }
             },
 
@@ -390,8 +453,8 @@
                 });
                 this.videos = {};
                 document.body.style.overflow = '';
-                // Redirect to home or previous page
-                window.history.back();
+                // Redirect to home page
+                window.location.href = '{{ route('welcome') }}';
             }
         }
     }
