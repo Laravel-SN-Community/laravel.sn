@@ -15,7 +15,7 @@ class Recap2025Page extends Component
     public function mount(): void
     {
         $this->images = [
-            ['src' => 'images/event-2025/laravelsn1.jpg', 'title' => 'Laravel Senegal Community'],
+            ['src' => 'images/laravelsn.jpg', 'title' => 'Laravel Senegal Community'],
             ['src' => 'images/event-2025/dorogueye.png', 'title' => 'Doro Gueye, Presentation about Laravel Routing, Controllers, and Blade Templating,'],
             ['src' => 'images/event-2025/idrissawade.png', 'title' => 'Idrissa Wade, Presentation about Database migrations, seeding, Eloquent ORM and relationships'],
             ['src' => 'images/event-2025/diopsystem.png', 'title' => 'Diop System, Presentation about Middleware and request handling in Laravel'],
