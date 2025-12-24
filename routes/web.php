@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', WelcomePage::class)->name('welcome');
+Route::get('/recap-2025', \App\Livewire\Pages\Recap2025Page::class)->name('recap.2025');
 Route::get('/events', EventsPage::class)->name('events');
 Route::get('/event/{event}', ShowEvent::class)->name('event.show');
 Route::get('/articles', ArticlesPage::class)->name('articles');
