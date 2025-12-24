@@ -6,5 +6,7 @@
     class="{{ request()->routeIs('articles') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Articles') }}</a>
 <a href="{{ route('projects') }}" wire:navigate
     class="{{ request()->routeIs('projects') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Projects') }}</a>
+<a href="{{ route('recap.2025') }}" wire:navigate
+    class="{{ request()->routeIs('recap.2025') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Recap 2025') }}</a>
 {{-- <a href="{{ route('forum') }}" wire:navigate
     class="{{ request()->routeIs('forum') ? 'text-red-600 font-bold' : 'text-gray-900 font-bold hover:text-red-600 transition-colors' }}">{{ __('Forum') }}</a> --}}
