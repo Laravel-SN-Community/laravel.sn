@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\PublicationStatus;
+use Carbon\CarbonInterface;
 use Database\Factories\ArticleFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -36,6 +37,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
  * @property int $likes_count
  * @property array<string, mixed>|null $seo_meta
  * @property string $excerpt
+ * @property bool $was_revised
  * @property string|null $cover_url
  * @property array{sm?: string, md?: string, full?: string}|null $cover_srcset
  */
@@ -65,7 +67,7 @@ final class Article extends Model implements HasMedia
     use SoftDeletes;
 
     /** @var list<string> */
-    protected $appends = ['excerpt', 'cover_url', 'cover_srcset'];
+    protected $appends = ['excerpt', 'cover_url', 'cover_srcset', 'was_revised'];
 
     #[Override]
     protected static function boot(): void
@@ -154,6 +156,39 @@ final class Article extends Model implements HasMedia
             $text = trim(preg_replace('/\s+/', ' ', $text ?? ''));
 
             return mb_strlen($text) > 200 ? mb_substr($text, 0, 200).'…' : $text;
+        });
+    }
+
+    /**
+     * Whether the body was actually edited after the article went live.
+     *
+     * Two conditions, because published_at is a date picked by the author and
+     * therefore sits at midnight, while content_updated_at is a real instant.
+     * Comparing only those two marks every article published on the day it
+     * was written as revised, by however many hours past midnight it happened
+     * to be written. So an edit must also have moved content_updated_at away
+     * from created_at, which CreateArticle stamps them level at.
+     */
+    protected function wasRevised(): Attribute
+    {
+        return Attribute::get(function (): bool {
+            // CarbonInterface, not Carbon: Date::use(CarbonImmutable::class)
+            // means these casts hydrate to CarbonImmutable, which does not
+            // extend Carbon\Carbon.
+            if (! $this->published_at instanceof CarbonInterface || ! $this->content_updated_at instanceof CarbonInterface) {
+                return false;
+            }
+
+            if (! $this->created_at instanceof CarbonInterface) {
+                return false;
+            }
+
+            // A few seconds of slack: both columns are written by the same
+            // insert and can straddle a second boundary.
+            $editedSinceCreation = $this->content_updated_at->diffInSeconds($this->created_at, true) > 5;
+
+            return $editedSinceCreation
+                && $this->content_updated_at->greaterThan($this->published_at);
         });
     }
 
