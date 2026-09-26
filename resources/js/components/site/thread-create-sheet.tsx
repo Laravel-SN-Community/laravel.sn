@@ -226,8 +226,7 @@ export function ThreadCreateSheet({
                                         }
                                         error={
                                             errors.channel_ids as
-                                                | string
-                                                | undefined
+                                                string | undefined
                                         }
                                     />
                                 </div>

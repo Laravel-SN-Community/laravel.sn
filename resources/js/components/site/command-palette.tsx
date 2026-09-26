@@ -22,11 +22,7 @@ import { useAppearance } from '@/hooks/use-appearance';
 type Scope = 'articles' | 'threads' | 'members' | null;
 
 type PaletteItemType =
-    | 'scope-selector'
-    | 'nav'
-    | 'action'
-    | 'command'
-    | 'result';
+    'scope-selector' | 'nav' | 'action' | 'command' | 'result';
 
 interface PaletteItem {
     type: PaletteItemType;
