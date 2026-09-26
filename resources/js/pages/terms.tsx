@@ -51,7 +51,7 @@ const SECTIONS = [
     {
         h: 'Contact',
         body: [
-            'Pour toute question relative à ces conditions, écris-nous à hello@laravel-sn.community.',
+            'Pour toute question relative à ces conditions, écris-nous à contact@laravel.sn.',
         ],
     },
 ];

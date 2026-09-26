@@ -13,6 +13,9 @@ use App\Models\Thread;
 use App\Support\Exceptions\ForumException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+
+use function Illuminate\Support\defer;
+
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;

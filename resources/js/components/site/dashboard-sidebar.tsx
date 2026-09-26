@@ -9,6 +9,7 @@ import {
     ShieldCheck,
     UserCircle,
     UserCog,
+    UsersRound,
 } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useInitials } from '@/hooks/use-initials';
@@ -68,11 +69,28 @@ const MANAGE_SECTIONS = [
         Icon: CalendarDays,
         href: '/dashboard/manage/events',
     },
+    {
+        id: 'manage-users',
+        label: 'Utilisateurs',
+        Icon: UsersRound,
+        href: '/dashboard/manage/users',
+    },
+] as const;
+
+// Réservé aux administrateurs (permission users:manage).
+const ADMIN_SECTIONS = [
+    {
+        id: 'manage-roles',
+        label: 'Rôles',
+        Icon: ShieldCheck,
+        href: '/dashboard/manage/roles',
+    },
 ] as const;
 
 type SectionId =
     | (typeof USER_SECTIONS)[number]['id']
     | (typeof MANAGE_SECTIONS)[number]['id']
+    | (typeof ADMIN_SECTIONS)[number]['id']
     // Sections temporairement masquées (voir USER_SECTIONS) — à réimplémenter
     | 'events'
     | 'notifications';
@@ -148,16 +166,19 @@ export default function DashSidebar({ section }: { section: SectionId }) {
 
     const init = getInitials(user.name);
     const tint = getTint(user.name);
-    const isMod = role === 'moderator' || role === 'admin';
+    const isAdmin = role === 'admin';
+    const isMod = role === 'moderator' || isAdmin;
 
     function handleLogout() {
         router.post(logout());
     }
 
-    const allMobileItems = [
-        ...USER_SECTIONS,
+    const manageItems = [
         ...(isMod ? MANAGE_SECTIONS : []),
+        ...(isAdmin ? ADMIN_SECTIONS : []),
     ];
+
+    const allMobileItems = [...USER_SECTIONS, ...manageItems];
 
     return (
         <aside className="min-w-0 lg:sticky lg:top-24 lg:self-start">
@@ -301,7 +322,7 @@ export default function DashSidebar({ section }: { section: SectionId }) {
                             Modération
                         </div>
                         <nav className="space-y-0.5">
-                            {MANAGE_SECTIONS.map((s) => (
+                            {manageItems.map((s) => (
                                 <NavLink
                                     key={s.id}
                                     href={s.href}

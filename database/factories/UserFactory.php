@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\User;
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -71,6 +72,31 @@ class UserFactory extends Factory
                     ->toMediaCollection('avatar');
             }
         });
+    }
+
+    /**
+     * Indicate that the account is permanently suspended.
+     */
+    public function suspended(): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'suspended_at' => now(),
+            'suspended_until' => null,
+            'suspension_reason' => 'Non-respect du code de conduite.',
+        ]);
+    }
+
+    /**
+     * Indicate that the account is suspended until a given moment.
+     * A past $until produces an expired suspension.
+     */
+    public function suspendedUntil(CarbonInterface $until): static
+    {
+        return $this->state(fn (array $attributes): array => [
+            'suspended_at' => now(),
+            'suspended_until' => $until,
+            'suspension_reason' => 'Non-respect du code de conduite.',
+        ]);
     }
 
     /**
