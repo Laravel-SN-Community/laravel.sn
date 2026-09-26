@@ -22,10 +22,10 @@ export default defineConfig({
             ],
         }),
         inertia(),
+        // plugin-react 6 dropped the `babel` option; React Compiler is now
+        // enabled through `compiler` and runs via oxc-transform-react.
         react({
-            babel: {
-                plugins: ['babel-plugin-react-compiler'],
-            },
+            compiler: true,
         }),
         tailwindcss(),
         wayfinder({
