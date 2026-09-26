@@ -1,4 +1,3 @@
-import '@/lib/prism-global';
 import {
     BlockTypeSelect,
     BoldItalicUnderlineToggles,
@@ -26,16 +25,12 @@ import {
     UndoRedo,
 } from '@mdxeditor/editor';
 import type { MDXEditorMethods } from '@mdxeditor/editor';
-import Prism from 'prismjs';
 import { forwardRef, useCallback, useEffect, useMemo, useRef } from 'react';
 import { uploadEditorImage } from '@/lib/editor-upload';
 import { cn } from '@/lib/utils';
 
 import '@mdxeditor/editor/style.css';
 import './markdown-editor.css';
-
-// @lexical/code expects Prism on the global scope; Vite's ESM bundling doesn't preserve the IIFE assignment
-(globalThis as unknown as { Prism: typeof Prism }).Prism = Prism;
 
 export type EditorScope = 'full' | 'compact';
 
