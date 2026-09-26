@@ -107,7 +107,9 @@
         /* Completeness */
         // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
         "skipLibCheck": true /* Skip type checking all .d.ts files. */,
-        "baseUrl": ".",
+        /* No "baseUrl": deprecated in TypeScript 6 and removed in 7. Without
+           it, "paths" entries resolve relative to this file, which is what
+           the "./resources/js/*" mapping below already assumes. */
         "paths": {
             "@/*": ["./resources/js/*"]
         },
