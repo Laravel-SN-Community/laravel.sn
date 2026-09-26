@@ -12,6 +12,7 @@ use App\Http\Controllers\Forum\ReactionController;
 use App\Http\Controllers\Forum\ReplyController;
 use App\Http\Controllers\Forum\ThreadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Routing\RedirectController;
@@ -88,6 +89,7 @@ Route::middleware('auth')->group(function (): void {
 Route::middleware(['auth'])->group(function (): void {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/articles', [ArticleController::class, 'dashboardIndex'])->name('dashboard.articles');
+
     Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
     Route::patch('/articles/{article}', [ArticleController::class, 'update'])->name('articles.update');
     Route::post('/articles/{article}/submit', [ArticleController::class, 'submit'])->name('articles.submit');
@@ -109,6 +111,11 @@ Route::middleware(['auth'])->group(function (): void {
         Route::patch('/events/{event}', [EventController::class, 'update'])->name('events.update');
         Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
         Route::get('/users', [UserController::class, 'manageIndex'])->name('users.index');
+        Route::patch('/users/{user}/role', [UserController::class, 'updateRole'])->name('users.role');
+        Route::post('/users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
+        Route::delete('/users/{user}/suspend', [UserController::class, 'unsuspend'])->name('users.unsuspend');
+        Route::delete('/users/{user}', [UserController::class, 'manageDestroy'])->name('users.destroy');
+        Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     });
 });
 

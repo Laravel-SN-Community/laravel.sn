@@ -46,6 +46,13 @@ class SocialLoginController extends Controller
 
         $user = $this->findOrCreateUser($provider, $socialUser);
 
+        // Socialite never passes through Fortify's authentication callback,
+        // so the suspension check has to be repeated on this path.
+        if ($user->isSuspended()) {
+            return redirect()->route('login')
+                ->withErrors(['email' => (string) $user->suspensionMessage()]);
+        }
+
         Auth::login($user, remember: true);
 
         session()->regenerate();

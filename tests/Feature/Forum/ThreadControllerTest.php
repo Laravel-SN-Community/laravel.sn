@@ -55,6 +55,18 @@ describe('Thread show', function (): void {
                 ->has('replies.data', 1)
             );
     });
+
+    // The swoole extension registers a global defer() that shadows Laravel's
+    // helper and throws outside a coroutine, killing the process with no
+    // output. The controller must use Illuminate\Support\defer explicitly.
+    it('defers the view increment through the framework helper, not a shadowing extension', function (): void {
+        $thread = Thread::factory()->create();
+        $before = $thread->views_count;
+
+        $this->get(route('forum.threads.show', $thread))->assertOk();
+
+        expect($thread->fresh()->views_count)->toBe($before + 1);
+    });
 });
 
 describe('Thread store', function (): void {

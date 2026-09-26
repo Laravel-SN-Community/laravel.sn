@@ -42,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('events:manage', fn ($user) => $user->hasPermissionTo('events:manage'));
         Gate::define('forum:moderate', fn ($user) => $user->hasPermissionTo('forum:moderate'));
         Gate::define('users:manage', fn ($user) => $user->hasPermissionTo('users:manage'));
+        Gate::define('users:moderate', fn ($user) => $user->hasPermissionTo('users:moderate'));
     }
 
     /**

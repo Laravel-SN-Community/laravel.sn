@@ -1,5 +1,7 @@
-import { Head, Link } from '@inertiajs/react';
-import { Github } from 'lucide-react';
+import { Head, Link, usePage } from '@inertiajs/react';
+import { AlertCircle, Github } from 'lucide-react';
+import { useState } from 'react';
+import { Spinner } from '@/components/ui/spinner';
 // import { Form } from '@inertiajs/react';
 // import InputError from '@/components/input-error';
 // import PasswordInput from '@/components/password-input';
@@ -12,6 +14,8 @@ type Props = {
     canResetPassword: boolean;
     canRegister: boolean;
 };
+
+type Provider = 'github' | 'google';
 
 function GoogleIcon() {
     return (
@@ -37,9 +41,38 @@ function GoogleIcon() {
 }
 
 export default function Login({ status, canRegister }: Props) {
+    const { errors } = usePage().props as unknown as {
+        errors: Record<string, string>;
+    };
+    const [pending, setPending] = useState<Provider | null>(null);
+
+    // The OAuth round-trip is a full page navigation, so without a pending
+    // state the button just sits there looking dead while the browser works.
+    function startSocial(provider: Provider) {
+        setPending(provider);
+        window.location.href = `/auth/${provider}/redirect`;
+    }
+
+    const loginError = errors?.email;
+
     return (
         <>
             <Head title="Connexion" />
+
+            {loginError && (
+                <div
+                    className="mb-5 flex items-start gap-2 rounded-md p-3 text-[12.5px]"
+                    style={{
+                        background:
+                            'color-mix(in oklch, var(--destructive) 8%, transparent)',
+                        color: 'var(--destructive)',
+                    }}
+                    role="alert"
+                >
+                    <AlertCircle size={15} className="mt-px shrink-0" />
+                    <span>{loginError}</span>
+                </div>
+            )}
 
             {status && (
                 <div
@@ -55,20 +88,36 @@ export default function Login({ status, canRegister }: Props) {
             )}
 
             <div className="flex flex-col gap-3">
-                <a
-                    href="/auth/github/redirect"
-                    className="sn-btn sn-btn-secondary w-full justify-center gap-2.5 py-3 text-[13.5px]"
+                <button
+                    type="button"
+                    onClick={() => startSocial('github')}
+                    disabled={pending !== null}
+                    className="sn-btn sn-btn-secondary w-full justify-center gap-2.5 py-3 text-[13.5px] disabled:opacity-60"
                 >
-                    <Github size={15} />
-                    Continuer avec GitHub
-                </a>
-                <a
-                    href="/auth/google/redirect"
-                    className="sn-btn sn-btn-secondary w-full justify-center gap-2.5 py-3 text-[13.5px]"
+                    {pending === 'github' ? (
+                        <Spinner className="size-[15px]" />
+                    ) : (
+                        <Github size={15} />
+                    )}
+                    {pending === 'github'
+                        ? 'Redirection vers GitHub…'
+                        : 'Continuer avec GitHub'}
+                </button>
+                <button
+                    type="button"
+                    onClick={() => startSocial('google')}
+                    disabled={pending !== null}
+                    className="sn-btn sn-btn-secondary w-full justify-center gap-2.5 py-3 text-[13.5px] disabled:opacity-60"
                 >
-                    <GoogleIcon />
-                    Continuer avec Google
-                </a>
+                    {pending === 'google' ? (
+                        <Spinner className="size-[15px]" />
+                    ) : (
+                        <GoogleIcon />
+                    )}
+                    {pending === 'google'
+                        ? 'Redirection vers Google…'
+                        : 'Continuer avec Google'}
+                </button>
             </div>
 
             {/* Email / password form (temporarily hidden) */}

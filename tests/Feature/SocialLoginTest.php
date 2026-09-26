@@ -156,3 +156,98 @@ test('a callback without an email redirects back to login with an error', functi
 
     expect(auth()->check())->toBeFalse();
 });
+
+// ── callback: suspended accounts ───────────────────────────────────────────
+
+test('a suspended user cannot log in through a linked github account', function (): void {
+    $user = User::factory()->suspended()->asUser()->create(['email' => 'banned@example.com']);
+    $user->forceFill(['github_id' => 'github-666'])->save();
+
+    Socialite::fake('github', (new SocialiteUser)->map([
+        'id' => 'github-666',
+        'nickname' => 'banned',
+        'name' => 'Banned Member',
+        'email' => 'banned@example.com',
+    ]));
+
+    $this->get('/auth/github/callback')
+        ->assertRedirect(route('login'))
+        ->assertSessionHasErrors('email');
+
+    expect(auth()->check())->toBeFalse();
+});
+
+test('a suspended user cannot log in through google either', function (): void {
+    $user = User::factory()->suspended()->asUser()->create(['email' => 'banned@example.com']);
+    $user->forceFill(['google_id' => 'google-666'])->save();
+
+    Socialite::fake('google', (new SocialiteUser)->map([
+        'id' => 'google-666',
+        'name' => 'Banned Member',
+        'email' => 'banned@example.com',
+    ]));
+
+    $this->get('/auth/google/callback')
+        ->assertRedirect(route('login'))
+        ->assertSessionHasErrors('email');
+
+    expect(auth()->check())->toBeFalse();
+});
+
+test('a suspended user cannot link a fresh provider to slip past the check', function (): void {
+    User::factory()->suspended()->asUser()->create(['email' => 'banned@example.com']);
+
+    Socialite::fake('github', (new SocialiteUser)->map([
+        'id' => 'brand-new-github-id',
+        'nickname' => 'banned',
+        'name' => 'Banned Member',
+        'email' => 'banned@example.com',
+    ]));
+
+    $this->get('/auth/github/callback')
+        ->assertRedirect(route('login'))
+        ->assertSessionHasErrors('email');
+
+    expect(auth()->check())->toBeFalse();
+});
+
+test('a rejected social login points the member at the team, never at the reason', function (): void {
+    $user = User::factory()->asUser()->create(['email' => 'banned@example.com']);
+    $user->forceFill([
+        'suspended_at' => now(),
+        'suspended_until' => null,
+        'suspension_reason' => 'Spam répété.',
+        'github_id' => 'github-666',
+    ])->save();
+
+    Socialite::fake('github', (new SocialiteUser)->map([
+        'id' => 'github-666',
+        'name' => 'Banned Member',
+        'email' => 'banned@example.com',
+    ]));
+
+    $this->get('/auth/github/callback')
+        ->assertRedirect(route('login'))
+        ->assertInvalid(['email' => 'contact@laravel.sn']);
+
+    // The reason is moderator-facing context and must not leak to the
+    // person being locked out.
+    expect($user->suspensionMessage())
+        ->toContain('Votre compte a été suspendu.')
+        ->not->toContain('Spam répété.');
+});
+
+test('a user whose suspension expired can log in socially again', function (): void {
+    $user = User::factory()->suspendedUntil(now()->subDay())->asUser()->create(['email' => 'freed@example.com']);
+    $user->forceFill(['github_id' => 'github-777'])->save();
+
+    Socialite::fake('github', (new SocialiteUser)->map([
+        'id' => 'github-777',
+        'name' => 'Freed Member',
+        'email' => 'freed@example.com',
+    ]));
+
+    $this->get('/auth/github/callback')->assertRedirect('/dashboard');
+
+    expect(auth()->id())->toBe($user->id);
+});

@@ -20,6 +20,7 @@ final class RolesAndPermissionsSeeder extends Seeder
             'articles:delete',
             'events:manage',
             'forum:moderate',
+            'users:moderate',
             'users:manage',
         ];
 
@@ -34,6 +35,7 @@ final class RolesAndPermissionsSeeder extends Seeder
             'articles:publish',
             'events:manage',
             'forum:moderate',
+            'users:moderate',
         ]);
 
         $admin = Role::firstOrCreate(['name' => 'admin']);
