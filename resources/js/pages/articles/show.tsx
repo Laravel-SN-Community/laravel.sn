@@ -354,14 +354,8 @@ export default function ArticleShow() {
                                 style={{ color: 'var(--sn-muted)' }}
                             >
                                 <div>{fmtDate(article.published_at)}</div>
-                                {article.content_updated_at &&
-                                    new Date(
-                                        article.content_updated_at,
-                                    ).getTime() -
-                                        new Date(
-                                            article.published_at,
-                                        ).getTime() >
-                                        300_000 && (
+                                {article.was_revised &&
+                                    article.content_updated_at && (
                                         <div
                                             className="mt-0.5"
                                             style={{
