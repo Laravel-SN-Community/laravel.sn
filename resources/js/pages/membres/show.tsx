@@ -5,7 +5,6 @@ import {
     Clock,
     CornerDownRight,
     Eye,
-    Github,
     Globe,
     MapPin,
     MessagesSquare,
@@ -14,6 +13,7 @@ import {
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useState } from 'react';
+import { GithubIcon } from '@/components/site/brand-icons';
 import { useInitials } from '@/hooks/use-initials';
 import type { ArticleSummary } from '@/types/article';
 
@@ -281,7 +281,7 @@ export default function MembreShow() {
                                                 color: 'var(--sn-muted)',
                                             }}
                                         >
-                                            <Github size={18} />
+                                            <GithubIcon size={18} />
                                         </a>
                                     )}
                                     {user.twitter_handle && (

@@ -6,7 +6,6 @@ import {
     BookOpen,
     CalendarDays,
     CornerDownLeft,
-    Github,
     MessageSquare,
     Moon,
     Search,
@@ -15,6 +14,7 @@ import {
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ElementType } from 'react';
+import { GithubIcon } from '@/components/site/brand-icons';
 import { useAppearance } from '@/hooks/use-appearance';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -145,7 +145,7 @@ const ACTION_ITEMS: PaletteItem[] = [
         group: 'Actions',
         label: 'GitHub — Laravel SN Community',
         description: 'github.com/Laravel-SN-Community',
-        Icon: Github,
+        Icon: GithubIcon,
         href: 'https://github.com/Laravel-SN-Community/laravel.sn',
         newTab: true,
     },

@@ -61,7 +61,7 @@
         "globals": "^15.14.0",
         "input-otp": "^1.4.2",
         "laravel-vite-plugin": "^3.1",
-        "lucide-react": "^0.475.0",
+        "lucide-react": "^1.48.0",
         "react": "^19.2.6",
         "react-dom": "^19.2.6",
         "react-markdown": "^10.1.0",
