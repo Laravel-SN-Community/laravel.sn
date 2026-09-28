@@ -144,9 +144,9 @@ const ACTION_ITEMS: PaletteItem[] = [
         type: 'action',
         group: 'Actions',
         label: 'GitHub — Laravel SN Community',
-        description: 'github.com/Laravel-SN-Community',
+        description: 'github.com/laravel-sn',
         Icon: GithubIcon,
-        href: 'https://github.com/Laravel-SN-Community/laravel.sn',
+        href: 'https://github.com/laravel-sn/laravel.sn',
         newTab: true,
     },
 ];

@@ -68,7 +68,7 @@ export default function CtaSection() {
                         >
                             ou ·{' '}
                             <a
-                                href="https://github.com/Laravel-SN-Community/laravel.sn"
+                                href="https://github.com/laravel-sn/laravel.sn"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline hover:text-white"

@@ -36,7 +36,7 @@ Ce code de conduite s'applique à tous les espaces communautaires, et s'applique
 
 Ces espaces incluent notamment :
 
-- Le dépôt GitHub `Laravel-SN-Community/laravel.sn` et tous les autres dépôts de l'organisation
+- Le dépôt GitHub `laravel-sn/laravel.sn` et tous les autres dépôts de l'organisation
 - Le serveur Discord de la communauté
 - Le groupe WhatsApp de la communauté
 - Les comptes officiels Twitter / X et LinkedIn
