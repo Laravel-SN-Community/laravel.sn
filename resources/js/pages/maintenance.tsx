@@ -15,7 +15,7 @@ import SiteWordmark from '@/components/site/site-wordmark';
 export default function Maintenance() {
     return (
         <>
-            <Head title="Maintenance — Laravel Sénégal" />
+            <Head title="Maintenance" />
 
             <div
                 className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-16 text-center"

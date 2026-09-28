@@ -30,7 +30,7 @@ const WhatsAppIcon = () => (
 export default function Rejoindre() {
     return (
         <>
-            <Head title="Rejoindre — Laravel Sénégal" />
+            <Head title="Rejoindre" />
 
             <div className="mx-auto max-w-[1400px] px-6 pt-16 pb-24 lg:px-10">
                 {/* Hero */}

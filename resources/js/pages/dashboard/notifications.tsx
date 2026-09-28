@@ -58,7 +58,7 @@ const NOTIFICATIONS: Notification[] = [
 export default function DashboardNotifications() {
     return (
         <>
-            <Head title="Notifications — Laravel Sénégal" />
+            <Head title="Notifications" />
 
             <div className="mx-auto max-w-[1300px] px-6 py-8 lg:px-10">
                 <div className="grid gap-8 lg:grid-cols-[240px_1fr]">

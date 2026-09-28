@@ -39,7 +39,7 @@ export default function EventsIndex({ events, filters }: Props) {
 
     return (
         <>
-            <Head title="Événements — Laravel Sénégal" />
+            <Head title="Événements" />
 
             {/* Page header */}
             <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-6 lg:px-10 lg:pt-16">

@@ -122,7 +122,7 @@ export default function DashboardProfile() {
 
     return (
         <>
-            <Head title="Mon profil — Laravel Sénégal" />
+            <Head title="Mon profil" />
 
             <div className="mx-auto max-w-[1300px] px-6 py-8 lg:px-10">
                 <div className="grid gap-8 lg:grid-cols-[240px_1fr]">

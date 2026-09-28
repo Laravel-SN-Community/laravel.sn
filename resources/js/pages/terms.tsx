@@ -59,7 +59,7 @@ const SECTIONS = [
 export default function Conditions() {
     return (
         <>
-            <Head title="Conditions d'utilisation — Laravel Sénégal" />
+            <Head title="Conditions d'utilisation" />
             <StaticPage
                 title="Conditions d'utilisation"
                 updated="01 janvier 2026"

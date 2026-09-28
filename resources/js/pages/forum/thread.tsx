@@ -141,7 +141,7 @@ export default function Thread({ thread, replies, isSubscribed }: Props) {
 
     return (
         <>
-            <Head title={`${thread.title} — Forum — Laravel Sénégal`} />
+            <Head title={`${thread.title} — Forum`} />
 
             <div className="mx-auto max-w-[1400px] px-6 pt-10 pb-16 lg:px-10">
                 <div className="grid items-start gap-8 lg:grid-cols-[260px_1fr]">

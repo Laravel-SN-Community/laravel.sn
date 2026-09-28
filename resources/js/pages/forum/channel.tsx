@@ -174,7 +174,7 @@ export default function Channel({ channel, channels, threads }: Props) {
 
     return (
         <>
-            <Head title={`${channel.name} — Forum — Laravel Sénégal`} />
+            <Head title={`${channel.name} — Forum`} />
             <ThreadCreateSheet
                 open={sheetOpen}
                 onOpenChange={setSheetOpen}

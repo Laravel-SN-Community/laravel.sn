@@ -38,7 +38,7 @@ function RoleIcon({ role }: { role: string }) {
 export default function ManageRoles({ roles, permissions }: Props) {
     return (
         <>
-            <Head title="Rôles et permissions — Laravel Sénégal" />
+            <Head title="Rôles et permissions" />
 
             <div className="mx-auto max-w-[1300px] px-6 py-8 lg:px-10">
                 <div className="grid gap-8 lg:grid-cols-[240px_1fr]">

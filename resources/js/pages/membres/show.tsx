@@ -151,7 +151,7 @@ export default function MembreShow() {
 
     return (
         <>
-            <Head title={`@${user.username} — Laravel Sénégal`} />
+            <Head title={`@${user.username}`} />
 
             <header
                 className="relative overflow-hidden"

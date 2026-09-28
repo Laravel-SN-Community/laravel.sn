@@ -6,10 +6,12 @@ import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SiteLayout from '@/layouts/site-layout';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Laravel Sénégal';
 
 createInertiaApp({
-    title: (title) => (title ? `${title} - ${appName}` : appName),
+    // Pages pass only their own title; the site name is appended here so it
+    // stays consistent and is never written out twice.
+    title: (title) => (title ? `${title} — ${appName}` : appName),
     layout: (name) => {
         switch (true) {
             case name === 'welcome':

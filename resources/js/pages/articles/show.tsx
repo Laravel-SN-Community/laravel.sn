@@ -238,7 +238,7 @@ export default function ArticleShow() {
 
     return (
         <>
-            <Head title={`${article.title} — Laravel Sénégal`}>
+            <Head title={article.title}>
                 <meta name="description" content={article.excerpt} />
                 <meta property="og:title" content={article.title} />
                 <meta property="og:description" content={article.excerpt} />

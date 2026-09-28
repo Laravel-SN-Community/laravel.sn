@@ -98,7 +98,7 @@ export default function EventShow({
 
     return (
         <>
-            <Head title={`${event.title} — Laravel Sénégal`} />
+            <Head title={event.title} />
 
             {/* ── Hero ── */}
             <div className="relative overflow-hidden">

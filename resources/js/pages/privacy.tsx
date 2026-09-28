@@ -70,7 +70,7 @@ const SECTIONS = [
 export default function Confidentialite() {
     return (
         <>
-            <Head title="Confidentialité — Laravel Sénégal" />
+            <Head title="Confidentialité" />
             <StaticPage
                 title="Confidentialité"
                 updated="01 janvier 2026"
