@@ -1,4 +1,10 @@
 version: 2
+
+# Grouping strategy: minor and patch updates are batched into a single PR per
+# ecosystem, because they are reviewed as one lockfile bump anyway and merging
+# them individually invalidates every other open PR's lockfile. Majors are
+# deliberately left ungrouped so each one gets its own PR to review — they are
+# where breaking changes and blocked peer ranges show up.
 updates:
   - package-ecosystem: 'composer'
     directory: '/'
@@ -19,8 +25,17 @@ updates:
         patterns:
           - 'laravel/*'
           - 'illuminate/*'
-      dev-dependencies:
-        dependency-type: 'development'
+        update-types:
+          - 'minor'
+          - 'patch'
+      # Catch-all, evaluated after the groups above: anything else that is not
+      # a major lands in one PR rather than one PR per package.
+      composer-minor-and-patch:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
 
   - package-ecosystem: 'npm'
     directory: '/'
@@ -42,19 +57,50 @@ updates:
           - 'react'
           - 'react-dom'
           - '@types/react*'
+        update-types:
+          - 'minor'
+          - 'patch'
       tailwind:
         patterns:
           - 'tailwindcss'
           - '@tailwindcss/*'
+        update-types:
+          - 'minor'
+          - 'patch'
       inertia:
         patterns:
           - '@inertiajs/*'
-      dev-dependencies:
-        dependency-type: 'development'
+        update-types:
+          - 'minor'
+          - 'patch'
+      # Radix ships a package per primitive, so without this each one opens
+      # its own PR every time any of them moves.
+      radix:
+        patterns:
+          - '@radix-ui/*'
+        update-types:
+          - 'minor'
+          - 'patch'
+      npm-minor-and-patch:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
     ignore:
+      # ESLint 10 is unusable until eslint-plugin-react and eslint-plugin-import
+      # list ^10 as a supported peer; both are already at their latest release.
       - dependency-name: 'eslint'
         update-types: ['version-update:semver-major']
       - dependency-name: '@eslint/js'
+        update-types: ['version-update:semver-major']
+      # TypeScript 7 is the native compiler; typescript-eslint caps it at
+      # <6.1.0, so a major bump here would break linting.
+      - dependency-name: 'typescript'
+        update-types: ['version-update:semver-major']
+      # @types/node tracks the Node major that Laravel Cloud builds on (24),
+      # not the newest release, so it describes the runtime that ships.
+      - dependency-name: '@types/node'
         update-types: ['version-update:semver-major']
 
   - package-ecosystem: 'github-actions'
@@ -66,3 +112,7 @@ updates:
       - 'ci'
     commit-message:
       prefix: 'ci'
+    groups:
+      github-actions:
+        patterns:
+          - '*'

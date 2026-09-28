@@ -37,12 +37,16 @@ class AppServiceProvider extends ServiceProvider
         // Admins bypass all gates
         Gate::before(fn ($user): ?true => $user->hasRole('admin') ? true : null);
 
-        Gate::define('articles:publish', fn ($user) => $user->hasPermissionTo('articles:publish'));
-        Gate::define('articles:delete', fn ($user) => $user->hasPermissionTo('articles:delete'));
-        Gate::define('events:manage', fn ($user) => $user->hasPermissionTo('events:manage'));
-        Gate::define('forum:moderate', fn ($user) => $user->hasPermissionTo('forum:moderate'));
-        Gate::define('users:manage', fn ($user) => $user->hasPermissionTo('users:manage'));
-        Gate::define('users:moderate', fn ($user) => $user->hasPermissionTo('users:moderate'));
+        // checkPermissionTo() rather than hasPermissionTo(): the latter throws
+        // PermissionDoesNotExist when the row is missing, so code naming a
+        // permission the database has not been seeded with takes the whole
+        // page down with a 500 instead of simply denying access.
+        Gate::define('articles:publish', fn ($user): bool => $user->checkPermissionTo('articles:publish'));
+        Gate::define('articles:delete', fn ($user): bool => $user->checkPermissionTo('articles:delete'));
+        Gate::define('events:manage', fn ($user): bool => $user->checkPermissionTo('events:manage'));
+        Gate::define('forum:moderate', fn ($user): bool => $user->checkPermissionTo('forum:moderate'));
+        Gate::define('users:manage', fn ($user): bool => $user->checkPermissionTo('users:manage'));
+        Gate::define('users:moderate', fn ($user): bool => $user->checkPermissionTo('users:moderate'));
     }
 
     /**
