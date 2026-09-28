@@ -27,7 +27,7 @@
         "eslint-plugin-import": "^2.32.0",
         "eslint-plugin-react": "^7.37.3",
         "eslint-plugin-react-hooks": "^7.0.0",
-        "oxc-transform-react": "^0.145.0",
+        "oxc-transform-react": "^0.151.0",
         "prettier": "^3.4.2",
         "prettier-plugin-tailwindcss": "^0.8.0",
         "typescript": "^6.0.3",
@@ -74,8 +74,8 @@
         "vite": "^8.0.0"
     },
     "optionalDependencies": {
-        "@rollup/rollup-linux-x64-gnu": "4.60.3",
-        "@rollup/rollup-win32-x64-msvc": "4.60.4",
+        "@rollup/rollup-linux-x64-gnu": "4.63.5",
+        "@rollup/rollup-win32-x64-msvc": "4.63.5",
         "@tailwindcss/oxide-linux-x64-gnu": "^4.0.1",
         "@tailwindcss/oxide-win32-x64-msvc": "^4.0.1",
         "lightningcss-linux-x64-gnu": "^1.29.1",
