@@ -101,7 +101,7 @@ body:
     attributes:
       label: Code de conduite
       options:
-        - label: J'accepte le [code de conduite](https://github.com/Laravel-SN-Community/laravel.sn/blob/main/.github/CODE_OF_CONDUCT.md)
+        - label: J'accepte le [code de conduite](https://github.com/laravel-sn/laravel.sn/blob/main/.github/CODE_OF_CONDUCT.md)
           required: true
         - label: J'ai cherché dans les issues existantes et je n'ai pas trouvé de doublon
           required: true

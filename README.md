@@ -44,7 +44,7 @@ Aucun service externe n'est nécessaire en dev : SQLite fait office de base de d
 ## Installation
 
 ```bash
-git clone git@github.com:Laravel-SN-Community/laravel.sn.git
+git clone git@github.com:laravel-sn/laravel.sn.git
 cd laravel.sn
 composer run setup
 ```
@@ -138,7 +138,7 @@ laravel.sn/
 
 Les contributions sont chaleureusement accueillies. Avant de proposer une modification, lis [CONTRIBUTING.md](.github/CONTRIBUTING.md) et le [code de conduite](.github/CODE_OF_CONDUCT.md).
 
-Pour signaler un bug ou proposer une fonctionnalité, ouvre une [issue](https://github.com/Laravel-SN-Community/laravel.sn/issues/new/choose).
+Pour signaler un bug ou proposer une fonctionnalité, ouvre une [issue](https://github.com/laravel-sn/laravel.sn/issues/new/choose).
 
 Pour les questions générales, rejoins la [communauté WhatsApp](https://chat.whatsapp.com/JwITxALLv0uJIGNu7AsVnx).
 

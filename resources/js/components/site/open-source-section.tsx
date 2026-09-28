@@ -140,7 +140,7 @@ export default function OpenSourceSection() {
 
             <div className="mt-6 flex justify-end">
                 <a
-                    href="https://github.com/Laravel-SN-Community"
+                    href="https://github.com/laravel-sn"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="sn-btn sn-btn-ghost sn-btn-sm"

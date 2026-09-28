@@ -98,7 +98,7 @@ export default function Maintenance() {
                         Réessayer
                     </button>
                     <a
-                        href="https://github.com/Laravel-SN-Community"
+                        href="https://github.com/laravel-sn"
                         target="_blank"
                         rel="noreferrer"
                         className="sn-btn sn-btn-secondary"

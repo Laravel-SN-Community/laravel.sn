@@ -33,15 +33,15 @@ Plusieurs façons d'aider la communauté :
 - **Bugs** : signaler des bugs avec des reproductions claires
 - **Traductions** : aider à maintenir la version anglaise du site
 
-Si c'est ta première contribution open source, regarde les issues taguées [`good-first-issue`](https://github.com/Laravel-SN-Community/laravel.sn/issues?q=is%3Aopen+is%3Aissue+label%3Agood-first-issue). Elles sont pensées pour être abordables.
+Si c'est ta première contribution open source, regarde les issues taguées [`good-first-issue`](https://github.com/laravel-sn/laravel.sn/issues?q=is%3Aopen+is%3Aissue+label%3Agood-first-issue). Elles sont pensées pour être abordables.
 
 ## Setup du projet en local
 
 Voir le [README](../README.md#installation) pour les instructions complètes (pré-requis : PHP 8.4+, Composer 2, Node 22+ — aucun service externe, la base de données est SQLite). En résumé :
 
 ```bash
-git clone https://github.com/Laravel-SN-Community/laravel.sn-v2.git
-cd laravel.sn-v2
+git clone https://github.com/laravel-sn/laravel.sn.git
+cd laravel.sn
 composer run setup  # install, .env, clé, migrations + seed, build
 composer run dev    # serveur de dev (Laravel + Vite + queue + logs)
 ```
@@ -63,7 +63,7 @@ Si tu n'es pas mainteneur, fork le repo, puis clone ton fork :
 ```bash
 git clone git@github.com:TON-USERNAME/laravel.sn.git
 cd laravel.sn
-git remote add upstream https://github.com/Laravel-SN-Community/laravel.sn.git
+git remote add upstream https://github.com/laravel-sn/laravel.sn.git
 ```
 
 ### 3. Crée une branche

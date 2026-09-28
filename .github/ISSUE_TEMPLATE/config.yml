@@ -4,5 +4,5 @@ contact_links:
     url: https://chat.whatsapp.com/JwITxALLv0uJIGNu7AsVnx
     about: Discussions quotidiennes de la communauté Laravel Sénégal.
   - name: 🔒 Faille de sécurité
-    url: https://github.com/Laravel-SN-Community/laravel.sn/security/policy
+    url: https://github.com/laravel-sn/laravel.sn/security/policy
     about: Pour signaler une vulnérabilité, ne crée PAS d'issue publique. Lis notre politique de sécurité.
