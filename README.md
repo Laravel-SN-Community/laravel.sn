@@ -44,8 +44,8 @@ Aucun service externe n'est nécessaire en dev : SQLite fait office de base de d
 ## Installation
 
 ```bash
-git clone git@github.com:Laravel-SN-Community/laravel.sn-v2.git
-cd laravel.sn-v2
+git clone git@github.com:Laravel-SN-Community/laravel.sn.git
+cd laravel.sn
 composer run setup
 ```
 
