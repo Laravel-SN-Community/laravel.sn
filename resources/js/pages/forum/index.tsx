@@ -220,7 +220,7 @@ export default function Forum({ channels, threads, filter, locale }: Props) {
 
     return (
         <>
-            <Head title="Forum — Laravel Sénégal" />
+            <Head title="Forum" />
             <ThreadCreateSheet
                 open={sheetOpen}
                 onOpenChange={setSheetOpen}

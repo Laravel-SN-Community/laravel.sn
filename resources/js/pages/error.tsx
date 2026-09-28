@@ -200,7 +200,7 @@ export default function Error({ status, path }: ErrorProps) {
 
     return (
         <>
-            <Head title={`${status} — Laravel Sénégal`} />
+            <Head title={`${status}`} />
 
             <section className="relative overflow-hidden">
                 {/* Soft radial glow tinted by the error kind */}

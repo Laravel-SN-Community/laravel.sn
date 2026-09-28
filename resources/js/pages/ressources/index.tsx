@@ -43,7 +43,7 @@ export default function Ressources() {
 
     return (
         <>
-            <Head title="Ressources — Laravel Sénégal" />
+            <Head title="Ressources" />
 
             <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-8 lg:px-10 lg:pt-16">
                 <h1

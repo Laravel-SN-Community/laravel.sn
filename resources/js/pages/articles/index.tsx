@@ -60,7 +60,7 @@ export default function Articles({ articles, tags, filters }: Props) {
 
     return (
         <>
-            <Head title="Articles — Laravel Sénégal" />
+            <Head title="Articles" />
 
             {/* Page header */}
             <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-10 lg:px-10 lg:pt-16">

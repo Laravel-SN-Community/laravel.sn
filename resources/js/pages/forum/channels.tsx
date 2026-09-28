@@ -101,7 +101,7 @@ export default function ForumChannels({ channels, totals }: Props) {
 
     return (
         <>
-            <Head title="Channels — Forum — Laravel Sénégal" />
+            <Head title="Channels — Forum" />
             <ThreadCreateSheet
                 open={sheetOpen}
                 onOpenChange={setSheetOpen}

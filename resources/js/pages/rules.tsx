@@ -61,7 +61,7 @@ const SECTIONS = [
 export default function Rules() {
     return (
         <>
-            <Head title="Code de conduite — Laravel Sénégal" />
+            <Head title="Code de conduite" />
             <StaticPage
                 title="Code de conduite"
                 updated="01 janvier 2026"
